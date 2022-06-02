@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.2" baseProfile="tiny-ps" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	viewBox="0 0 419.71 425.2" overflow="visible" xml:space="preserve">
+<title>InboxAlly</title>
+<g>
+	<path fill="#1CACD5" d="M104.35,16.03h104.17v398.53H104.35V16.03z"/>
+	<polygon fill="#1CACD5" points="104.35,51.28 69.09,16.03 139.6,16.03 	"/>
+	<g>
+		<path d="M256.49,310.67l-47.32-104.24h-1.37l-48.01,104.24l-31.55,72.01l-19.89,42.52H0L200.25,0h17.83l201.63,425.2H311.35
+			l-20.57-42.52L256.49,310.67z"/>
+		<g>
+			<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-6.4579" y1="482.2899" x2="291.2063" y2="191.132">
+				<stop  offset="0" style="stop-color:#E02127"/>
+				<stop  offset="1" style="stop-color:#EF4523"/>
+			</linearGradient>
+			<polygon fill="url(#SVGID_1_)" points="107.94,425.2 156,389.52 207.49,416.89 370.55,230.19 15.25,317.19 86.77,354.73 			"/>
+			<polygon fill="#BB2026" points="370.55,230.19 86.77,354.73 107.94,425.2 120.5,373.47 			"/>
+			<polygon fill="#EC6D25" points="156,389.52 120.5,373.47 107.94,425.2 			"/>
+			
+				<linearGradient id="SVGID_00000080923576720142052450000010903670333811154584_" gradientUnits="userSpaceOnUse" x1="-13.2563" y1="475.3396" x2="284.4079" y2="184.1817">
+				<stop  offset="0" style="stop-color:#E02127"/>
+				<stop  offset="1" style="stop-color:#EF4523"/>
+			</linearGradient>
+			<polygon fill="url(#SVGID_00000080923576720142052450000010903670333811154584_)" points="370.55,230.19 15.25,317.19 
+				86.77,354.73 			"/>
+		</g>
+	</g>
+</g>
+</svg>
