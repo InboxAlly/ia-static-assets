@@ -13,6 +13,8 @@ https://assets.inboxally.com
 
 ### Examples
 
+```
 https://assets.inboxally.com/README.md
 https://assets.inboxally.com/images/favicon.png
 https://assets.inboxally.com/images/logo-150x150.png
+```
