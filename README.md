@@ -18,4 +18,6 @@ https://assets.inboxally.com/README.md
 https://assets.inboxally.com/images/favicon.png
 https://assets.inboxally.com/images/logo-150x150.png
 https://assets.inboxally.com/images/logos/v2/logo__inboxally.svg
+https://assets.inboxally.com/images/app_dashboard_office_env.png
+https://assets.inboxally.com/images/app_dashboard_macbook.png
 ```
