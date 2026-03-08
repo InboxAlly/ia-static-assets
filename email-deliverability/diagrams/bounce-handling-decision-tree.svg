@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     width="100%"
+     viewBox="0 0 1200 1240"
+     xml:lang="en"
+     preserveAspectRatio="xMidYMid meet"
+     role="img"
+     aria-labelledby="title desc"
+     data-source="InboxAlly Deliverability Research">
+
+<title id="title">Bounce Handling Decision Tree</title>
+
+<desc id="desc">
+Bounce handling decision tree for email deliverability. When an SMTP failure response is received,
+the bounce is classified into one of three categories. Hard bounces (5xx codes — invalid address,
+domain not found, mailbox disabled) require immediate suppression of the recipient address. Soft
+bounces (4xx codes — mailbox full, rate limited, DNS timeout, server unavailable) should be retried
+up to 3 times over 72 hours; if still failing after retries, the address should be suppressed. Block
+bounces (content rejected, IP or domain blocklisted, DMARC policy rejection, rate throttling) require
+investigation and remediation specific to the block type. All bounce types impact sender reputation —
+hard bounce rates above 2% cause immediate reputation damage, and persistent soft bounces signal list
+hygiene problems. Maintaining bounce rates below 2% is critical for inbox placement.
+</desc>
+
+<metadata>
+<rdf:RDF>
+  <cc:Work rdf:about="">
+    <dc:title>Bounce Handling Decision Tree Diagram</dc:title>
+    <dc:creator>InboxAlly</dc:creator>
+    <dc:source>https://www.inboxally.com</dc:source>
+    <dc:subject>email bounces, hard bounce, soft bounce, block bounce, SMTP codes, 5xx, 4xx, 550, 552, 452, 421, 450, bounce handling, suppress address, retry logic, blocklist, DMARC reject, content block, rate throttle, sender reputation, list hygiene, bounce rate, email deliverability</dc:subject>
+    <dc:description>Decision tree showing how to classify and handle hard, soft, and block bounces, with SMTP code references, retry logic, and reputation impact warnings.</dc:description>
+    <cc:license rdf:resource="https://creativecommons.org/licenses/by/4.0/" />
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Bounce Handling Decision Tree",
+  "description": "How to classify and handle email bounces to protect sender reputation and maintain list hygiene.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "InboxAlly",
+    "url": "https://www.inboxally.com"
+  },
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Classify the Bounce",
+      "text": "When an SMTP failure response is received, classify the bounce by its response code: 5xx codes indicate hard (permanent) bounces, 4xx codes indicate soft (temporary) bounces, and policy or reputation rejections indicate block bounces."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Handle Hard Bounces",
+      "text": "Hard bounces (550 invalid address, 551 user not found, 552 mailbox disabled, 553 domain not found) are permanent failures. Suppress the address immediately — do not retry. Continued sending to hard-bounced addresses damages sender reputation."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Handle Soft Bounces",
+      "text": "Soft bounces include mailbox full (452), rate limited (421), DNS timeout (450), and server unavailable (451). Retry delivery up to 3 times over 72 hours. If the address is still failing after retries, suppress it."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "Handle Block Bounces",
+      "text": "Block bounces include content rejection (message flagged by filters), IP or domain blocklisting, DMARC policy rejection (p=reject), and rate throttling. Each requires specific investigation: fix content triggers, request delisting, correct authentication, or reduce sending rate."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 5,
+      "name": "Monitor Reputation Impact",
+      "text": "All bounce types affect sender reputation. Hard bounce rates above 2% cause immediate reputation damage. Persistent soft bounces signal list hygiene problems. Keep total bounce rate below 2% to maintain healthy inbox placement."
+    }
+  ]
+}
+</script>
+
+<style>
+  /* === Light mode === */
+  .bg { fill: #F1F0ED; }
+  .header-bar { fill: #292929; }
+  .header-text { font-family: Georgia, "Times New Roman", serif; font-size: 24px; fill: #FFFFFF; dominant-baseline: middle; }
+  .header-sub { font-family: Arial, Helvetica, sans-serif; font-size: 13px; fill: #DDEFFF; letter-spacing: 1px; dominant-baseline: middle; }
+
+  /* Entry */
+  .entry-box { fill: #292929; stroke: none; }
+  .entry-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 18px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .entry-sub { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 12px; text-anchor: middle; dominant-baseline: middle; opacity: 0.6; }
+
+  /* Decision diamond */
+  .diamond { fill: #FFFFFF; stroke: #292929; stroke-width: 1.5; }
+  .diamond-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 16px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+
+  /* Bounce type cards */
+  .hard-box { fill: #FFF0F0; stroke: #FF3333; stroke-width: 2; }
+  .hard-inner { fill: none; stroke: #FF3333; stroke-width: 1; opacity: 0.12; }
+  .soft-box { fill: #FFF8E0; stroke: #CC8800; stroke-width: 2; }
+  .soft-inner { fill: none; stroke: #CC8800; stroke-width: 1; opacity: 0.12; }
+  .block-box { fill: #DDEFFF; stroke: #0062FF; stroke-width: 2; }
+  .block-inner { fill: none; stroke: #0062FF; stroke-width: 1; opacity: 0.12; }
+
+  /* Category headers */
+  .hard-header { fill: #FF3333; }
+  .soft-header { fill: #CC8800; }
+  .block-header { fill: #0062FF; }
+  .cat-header-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 18px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .cat-header-sub { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 11px; text-anchor: middle; dominant-baseline: middle; opacity: 0.7; }
+
+  /* Content text */
+  .label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 14px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+  .label-center { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 14px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .desc-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; text-anchor: start; dominant-baseline: middle; opacity: 0.55; }
+  .desc-center { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; text-anchor: middle; dominant-baseline: middle; opacity: 0.55; }
+  .code { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 11px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+  .code-hard { fill: #FF3333; }
+  .code-soft { fill: #CC8800; }
+
+  /* Action boxes */
+  .action-suppress { fill: #FF3333; stroke: none; }
+  .action-retry { fill: #CC8800; stroke: none; }
+  .action-investigate { fill: #0062FF; stroke: none; }
+  .action-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 15px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .action-sub { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 11px; text-anchor: middle; dominant-baseline: middle; opacity: 0.7; }
+
+  /* Retry detail */
+  .retry-box { fill: #FFFFFF; stroke: #CC8800; stroke-width: 1.5; }
+  .retry-label { font-family: Arial, Helvetica, sans-serif; fill: #CC8800; font-size: 13px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .retry-desc { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: middle; dominant-baseline: middle; opacity: 0.55; }
+
+  /* Reputation impact */
+  .rep-box { fill: #FFF0F0; stroke: #FF3333; stroke-width: 1.5; stroke-dasharray: 6 3; }
+  .rep-title { font-family: Arial, Helvetica, sans-serif; fill: #FF3333; font-size: 14px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .rep-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; text-anchor: middle; dominant-baseline: middle; opacity: 0.6; }
+
+  /* Remediation */
+  .rem-box { fill: #DDEFFF; stroke: #0062FF; stroke-width: 1.5; }
+  .rem-title { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 13px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+  .rem-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: start; dominant-baseline: middle; opacity: 0.55; }
+
+  /* Arrows */
+  .arrow { stroke: #292929; stroke-width: 2; marker-end: url(#arrow-dark); opacity: 0.5; }
+  .arrow-hard { stroke: #FF3333; stroke-width: 2; marker-end: url(#arrow-red); }
+  .arrow-soft { stroke: #CC8800; stroke-width: 2; marker-end: url(#arrow-amber); }
+  .arrow-block { stroke: #0062FF; stroke-width: 2; marker-end: url(#arrow-blue); }
+  .arrow-consequence { stroke: #FF3333; stroke-width: 1.5; stroke-dasharray: 6 3; opacity: 0.5; marker-end: url(#arrow-red-light); }
+
+  /* Decorative */
+  .connector-dot { fill: #292929; opacity: 0.5; }
+  .diag-line { stroke: #0062FF; stroke-width: 0.5; opacity: 0.06; }
+  .attribution { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #292929; opacity: 0.4; }
+  .badge { fill: #FF3333; }
+  .badge-text { font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: 700; fill: #FFFFFF; text-anchor: middle; dominant-baseline: middle; }
+  .branch-label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; opacity: 0.4; }
+
+  /* === Dark mode === */
+  @media (prefers-color-scheme: dark) {
+    .bg { fill: #1A1A1A; }
+    .header-bar { fill: #0D0D0D; }
+    .entry-box { fill: #333333; }
+    .diamond { fill: #2A2A2A; stroke: #666666; }
+    .diamond-text { fill: #E8E8E8; }
+    .hard-box { fill: #3A1A1A; stroke: #FF6666; }
+    .hard-inner { stroke: #FF6666; }
+    .soft-box { fill: #3A3A1A; stroke: #DDAA00; }
+    .soft-inner { stroke: #DDAA00; }
+    .block-box { fill: #1A2A3A; stroke: #4D9AFF; }
+    .block-inner { stroke: #4D9AFF; }
+    .hard-header { fill: #FF6666; }
+    .soft-header { fill: #DDAA00; }
+    .block-header { fill: #4D9AFF; }
+    .label { fill: #E8E8E8; }
+    .label-center { fill: #E8E8E8; }
+    .desc-text { fill: #A0A0A0; }
+    .desc-center { fill: #A0A0A0; }
+    .code { fill: #4D9AFF; }
+    .code-hard { fill: #FF6666; }
+    .code-soft { fill: #DDAA00; }
+    .action-suppress { fill: #FF6666; }
+    .action-retry { fill: #DDAA00; }
+    .action-investigate { fill: #4D9AFF; }
+    .retry-box { fill: #2A2A2A; stroke: #DDAA00; }
+    .retry-label { fill: #DDAA00; }
+    .retry-desc { fill: #A0A0A0; }
+    .rep-box { fill: #3A1A1A; stroke: #FF6666; }
+    .rep-title { fill: #FF6666; }
+    .rep-text { fill: #A0A0A0; }
+    .rem-box { fill: #1A2A3A; stroke: #4D9AFF; }
+    .rem-title { fill: #4D9AFF; }
+    .rem-text { fill: #A0A0A0; }
+    .arrow { stroke: #888888; }
+    .arrow-hard { stroke: #FF6666; }
+    .arrow-soft { stroke: #DDAA00; }
+    .arrow-block { stroke: #4D9AFF; }
+    .arrow-consequence { stroke: #FF6666; }
+    .connector-dot { fill: #888888; }
+    .diag-line { stroke: #4D9AFF; opacity: 0.04; }
+    .attribution { fill: #888888; }
+    .branch-label { fill: #888888; }
+  }
+</style>
+
+<defs>
+  <marker id="arrow-dark" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <polygon points="0 0, 8 3, 0 6" fill="#292929" opacity="0.5"/>
+  </marker>
+  <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <polygon points="0 0, 8 3, 0 6" fill="#FF3333"/>
+  </marker>
+  <marker id="arrow-red-light" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <polygon points="0 0, 8 3, 0 6" fill="#FF3333" opacity="0.5"/>
+  </marker>
+  <marker id="arrow-amber" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <polygon points="0 0, 8 3, 0 6" fill="#CC8800"/>
+  </marker>
+  <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <polygon points="0 0, 8 3, 0 6" fill="#0062FF"/>
+  </marker>
+  <clipPath id="clip-canvas">
+    <rect x="0" y="0" width="1200" height="1240"/>
+  </clipPath>
+</defs>
+
+<!-- Background -->
+<rect class="bg" x="0" y="0" width="1200" height="1240"/>
+
+<!-- Diagonal line motif -->
+<g clip-path="url(#clip-canvas)" aria-hidden="true">
+  <line class="diag-line" x1="-50" y1="1240" x2="750" y2="0"/>
+  <line class="diag-line" x1="50" y1="1240" x2="850" y2="0"/>
+  <line class="diag-line" x1="150" y1="1240" x2="950" y2="0"/>
+  <line class="diag-line" x1="250" y1="1240" x2="1050" y2="0"/>
+  <line class="diag-line" x1="350" y1="1240" x2="1150" y2="0"/>
+  <line class="diag-line" x1="450" y1="1240" x2="1250" y2="0"/>
+</g>
+
+<!-- Header bar -->
+<rect class="header-bar" x="0" y="0" width="1200" height="54"/>
+<text class="header-text" x="36" y="29">Bounce Handling Decision Tree</text>
+<text class="header-sub" x="1164" y="29" text-anchor="end">INBOXALLY DELIVERABILITY RESEARCH</text>
+
+<!-- ============================================================ -->
+<!-- ENTRY: Bounce Received -->
+<!-- ============================================================ -->
+
+<g id="entry-bounce"
+   aria-label="A bounce is received: the sending system gets an SMTP failure response from the receiving server">
+  <rect class="entry-box" x="440" y="78" width="320" height="52" rx="8"/>
+  <text class="entry-text" x="600" y="98">Bounce Received</text>
+  <text class="entry-sub" x="600" y="116">SMTP failure response from receiving server</text>
+</g>
+
+<!-- Arrow to decision -->
+<circle class="connector-dot" cx="600" cy="130" r="3" aria-hidden="true"/>
+<line class="arrow" x1="600" y1="133" x2="600" y2="156"/>
+
+<!-- ============================================================ -->
+<!-- DECISION: What type? -->
+<!-- ============================================================ -->
+
+<g id="decision-bounce-type"
+   aria-label="Decision: classify the bounce by its SMTP response code into hard, soft, or block">
+  <polygon class="diamond" points="600,160 700,210 600,260 500,210"/>
+  <text class="diamond-text" x="600" y="210">Type?</text>
+</g>
+
+<!-- Branch arrows -->
+<text class="branch-label" x="340" y="250">PERMANENT</text>
+<text class="branch-label" x="660" y="274">TEMPORARY</text>
+<text class="branch-label" x="870" y="250">POLICY / REP</text>
+
+<line class="arrow-hard" x1="530" y1="230" x2="240" y2="300"/>
+<line class="arrow-soft" x1="600" y1="260" x2="600" y2="300"/>
+<line class="arrow-block" x1="670" y1="230" x2="960" y2="300"/>
+
+<!-- ============================================================ -->
+<!-- HARD BOUNCE (left) -->
+<!-- ============================================================ -->
+
+<g id="type-hard-bounce"
+   aria-label="Hard bounce: permanent delivery failure indicated by 5xx SMTP codes. Invalid address, domain not found, or mailbox disabled."
+   data-step="classify"
+   data-label="Hard Bounce"
+   data-description="Permanent SMTP failure — address will never accept mail">
+
+  <rect class="hard-box" x="60" y="306" width="360" height="220" rx="12"/>
+  <rect class="hard-inner" x="64" y="310" width="352" height="212" rx="10"/>
+
+  <rect class="hard-header" x="60" y="306" width="360" height="42" rx="12"/>
+  <rect class="hard-header" x="60" y="330" width="360" height="18"/>
+  <text class="cat-header-text" x="240" y="328">Hard Bounce</text>
+
+  <text class="cat-header-sub" x="240" y="362" style="fill:#FF3333; opacity:1;">5xx — Permanent Failure</text>
+
+  <text class="code code-hard" x="90" y="392">550</text>
+  <text class="desc-text" x="130" y="392">Invalid / nonexistent address</text>
+
+  <text class="code code-hard" x="90" y="414">551</text>
+  <text class="desc-text" x="130" y="414">User not found / not local</text>
+
+  <text class="code code-hard" x="90" y="436">552</text>
+  <text class="desc-text" x="130" y="436">Mailbox disabled or suspended</text>
+
+  <text class="code code-hard" x="90" y="458">553</text>
+  <text class="desc-text" x="130" y="458">Domain does not exist</text>
+
+  <text class="label" x="90" y="490">This address will never accept mail</text>
+
+</g>
+
+<!-- Arrow to action -->
+<line class="arrow-hard" x1="240" y1="526" x2="240" y2="560"/>
+
+<!-- SUPPRESS action -->
+<g id="action-suppress"
+   aria-label="Action: suppress the address immediately — do not retry, do not send again"
+   data-step="action"
+   data-label="Suppress Immediately"
+   data-description="Remove address from all future sends permanently">
+  <rect class="action-suppress" x="100" y="566" width="280" height="56" rx="10"/>
+  <text class="action-text" x="240" y="588">Suppress Immediately</text>
+  <text class="action-sub" x="240" y="606">Remove from all future sends</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- SOFT BOUNCE (center) -->
+<!-- ============================================================ -->
+
+<g id="type-soft-bounce"
+   aria-label="Soft bounce: temporary delivery failure indicated by 4xx SMTP codes. Mailbox full, rate limited, DNS timeout, or server unavailable."
+   data-step="classify"
+   data-label="Soft Bounce"
+   data-description="Temporary SMTP failure — may resolve on retry">
+
+  <rect class="soft-box" x="430" y="306" width="340" height="220" rx="12"/>
+  <rect class="soft-inner" x="434" y="310" width="332" height="212" rx="10"/>
+
+  <rect class="soft-header" x="430" y="306" width="340" height="42" rx="12"/>
+  <rect class="soft-header" x="430" y="330" width="340" height="18"/>
+  <text class="cat-header-text" x="600" y="328">Soft Bounce</text>
+
+  <text class="cat-header-sub" x="600" y="362" style="fill:#CC8800; opacity:1;">4xx — Temporary Failure</text>
+
+  <text class="code code-soft" x="460" y="392">452</text>
+  <text class="desc-text" x="500" y="392">Mailbox full</text>
+
+  <text class="code code-soft" x="460" y="414">421</text>
+  <text class="desc-text" x="500" y="414">Rate limited / too many connections</text>
+
+  <text class="code code-soft" x="460" y="436">450</text>
+  <text class="desc-text" x="500" y="436">DNS timeout / lookup failure</text>
+
+  <text class="code code-soft" x="460" y="458">451</text>
+  <text class="desc-text" x="500" y="458">Server temporarily unavailable</text>
+
+  <text class="label" x="460" y="490">May resolve — retry before suppressing</text>
+
+</g>
+
+<!-- Arrow to retry -->
+<line class="arrow-soft" x1="600" y1="526" x2="600" y2="560"/>
+
+<!-- RETRY action -->
+<g id="action-retry"
+   aria-label="Action: retry delivery up to 3 times over 72 hours"
+   data-step="action"
+   data-label="Retry Delivery"
+   data-description="Attempt redelivery up to 3 times over 72 hours before suppressing">
+  <rect class="action-retry" x="460" y="566" width="280" height="56" rx="10"/>
+  <text class="action-text" x="600" y="588">Retry Delivery</text>
+  <text class="action-sub" x="600" y="606">Up to 3 attempts over 72 hours</text>
+</g>
+
+<!-- Retry outcome -->
+<line class="arrow-soft" x1="600" y1="622" x2="600" y2="656"/>
+
+<g id="retry-outcome"
+   aria-label="After retries: if still failing, suppress the address"
+   data-step="retry-outcome"
+   data-label="Still Failing?"
+   data-description="If address continues to bounce after retry attempts, suppress it">
+  <rect class="retry-box" x="460" y="662" width="280" height="50" rx="8"/>
+  <text class="retry-label" x="600" y="682">Still failing after retries?</text>
+  <text class="retry-desc" x="600" y="700">Yes → suppress address</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- BLOCK BOUNCE (right) -->
+<!-- ============================================================ -->
+
+<g id="type-block-bounce"
+   aria-label="Block bounce: delivery rejected due to content, reputation, authentication policy, or rate throttling"
+   data-step="classify"
+   data-label="Block Bounce"
+   data-description="Policy or reputation-based rejection requiring investigation">
+
+  <rect class="block-box" x="780" y="306" width="360" height="220" rx="12"/>
+  <rect class="block-inner" x="784" y="310" width="352" height="212" rx="10"/>
+
+  <rect class="block-header" x="780" y="306" width="360" height="42" rx="12"/>
+  <rect class="block-header" x="780" y="330" width="360" height="18"/>
+  <text class="cat-header-text" x="960" y="328">Block Bounce</text>
+
+  <text class="cat-header-sub" x="960" y="362" style="fill:#0062FF; opacity:1;">Policy / Reputation Rejection</text>
+
+  <text class="label" x="810" y="392">Content rejected</text>
+  <text class="desc-text" x="810" y="410">Message flagged by content filters</text>
+
+  <text class="label" x="810" y="436">IP / domain blocklisted</text>
+  <text class="desc-text" x="810" y="454">Sender on a known blocklist</text>
+
+  <text class="label" x="810" y="480">DMARC p=reject</text>
+  <text class="desc-text" x="810" y="498">Authentication alignment failed</text>
+
+</g>
+
+<!-- Arrow to investigate -->
+<line class="arrow-block" x1="960" y1="526" x2="960" y2="560"/>
+
+<!-- INVESTIGATE action -->
+<g id="action-investigate"
+   aria-label="Action: investigate the specific block type and remediate"
+   data-step="action"
+   data-label="Investigate &amp; Remediate"
+   data-description="Determine the specific cause of the block and take corrective action">
+  <rect class="action-investigate" x="820" y="566" width="280" height="56" rx="10"/>
+  <text class="action-text" x="960" y="588">Investigate</text>
+  <text class="action-sub" x="960" y="606">Identify cause, remediate</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- REMEDIATION DETAILS (right side, below investigate) -->
+<!-- ============================================================ -->
+
+<g id="remediation-details"
+   aria-label="Remediation: content block — fix spam triggers. Blocklist — request delisting. DMARC — fix authentication. Throttle — reduce volume, warm up."
+   data-step="remediation"
+   data-label="Remediation Steps"
+   data-description="Specific corrective actions for each block type">
+
+  <rect class="rem-box" x="790" y="650" width="370" height="140" rx="10"/>
+
+  <text class="rem-title" x="820" y="676">Content block</text>
+  <text class="rem-text" x="820" y="694">Fix spam triggers, links, formatting</text>
+
+  <text class="rem-title" x="820" y="718">Blocklist hit</text>
+  <text class="rem-text" x="820" y="736">Request delisting, fix root cause</text>
+
+  <text class="rem-title" x="820" y="760">DMARC / auth failure</text>
+  <text class="rem-text" x="820" y="778">Fix SPF, DKIM, or alignment</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- REPUTATION IMPACT (bottom, spans full width) -->
+<!-- ============================================================ -->
+
+<g id="reputation-impact"
+   aria-label="All bounce types impact sender reputation. Hard bounce rates above 2% cause immediate damage. Persistent soft bounces signal list hygiene problems."
+   data-step="consequence"
+   data-label="Reputation Impact"
+   data-description="Bounce rates directly affect sender reputation and inbox placement">
+
+  <rect class="rep-box" x="60" y="830" width="1080" height="100" rx="12"/>
+
+  <circle class="badge" cx="100" cy="858" r="12"/>
+  <text class="badge-text" x="100" y="859">!</text>
+
+  <text class="rep-title" x="600" y="858">Every Bounce Impacts Sender Reputation</text>
+
+  <text class="rep-text" x="310" y="890">Hard bounce rate &gt;2%</text>
+  <text class="rep-text" x="310" y="908">= immediate reputation damage</text>
+
+  <text class="rep-text" x="600" y="890">Persistent soft bounces</text>
+  <text class="rep-text" x="600" y="908">= list hygiene problems</text>
+
+  <text class="rep-text" x="890" y="890">High block rate</text>
+  <text class="rep-text" x="890" y="908">= content or auth issues</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- KEY RULE -->
+<!-- ============================================================ -->
+
+<g id="key-rule"
+   aria-label="Key rule: maintain total bounce rate below 2% to protect inbox placement">
+  <rect class="entry-box" x="340" y="960" width="520" height="48" rx="8"/>
+  <text class="entry-text" x="600" y="980" style="font-size:16px;">Keep total bounce rate below 2%</text>
+  <text class="entry-sub" x="600" y="996">Critical threshold for maintaining inbox placement</text>
+</g>
+
+<!-- Consequence connection is implied by the full-width reputation box below -->
+
+<!-- ============================================================ -->
+<!-- ATTRIBUTION -->
+<!-- ============================================================ -->
+
+<a href="https://www.inboxally.com">
+  <text class="attribution" x="36" y="1220">Source: InboxAlly · inboxally.com</text>
+</a>
+<text class="attribution" x="1164" y="1220" text-anchor="end">CC BY 4.0</text>
+
+</svg>
