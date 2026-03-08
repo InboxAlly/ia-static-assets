@@ -1,0 +1,398 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     width="100%"
+     viewBox="0 0 1200 520"
+     xml:lang="en"
+     preserveAspectRatio="xMidYMid meet"
+     role="img"
+     aria-labelledby="title desc"
+     data-source="InboxAlly Deliverability Research">
+
+<title id="title">Email Deliverability Flow</title>
+
+<desc id="desc">
+Email deliverability pipeline: an email sender transmits a message that mailbox providers first
+authenticate using SPF, DKIM, and DMARC. The provider then evaluates the sender's historical
+reputation. Spam filtering algorithms analyze message content, links, authentication alignment,
+and reputation signals. Based on these signals the message is placed in the inbox, the promotions
+tab, or the spam folder. Recipient engagement signals such as opens, clicks, and spam complaints
+feed back into the sender reputation system and influence future filtering decisions.
+</desc>
+
+<metadata>
+<rdf:RDF>
+  <cc:Work rdf:about="">
+    <dc:title>Email Deliverability Flow Diagram</dc:title>
+    <dc:creator>InboxAlly</dc:creator>
+    <dc:source>https://www.inboxally.com</dc:source>
+    <dc:subject>Email deliverability, spam filtering, sender reputation, SPF, DKIM, DMARC, inbox placement, email engagement, spam complaints, promotions tab</dc:subject>
+    <dc:description>
+      Diagram illustrating the flow of an email through authentication, reputation evaluation,
+      spam filtering, and final placement outcomes with engagement feedback loop.
+    </dc:description>
+    <cc:license rdf:resource="https://creativecommons.org/licenses/by/4.0/" />
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Email Deliverability Flow",
+  "description": "How mailbox providers authenticate senders, evaluate reputation, filter messages, determine placement, and use engagement feedback.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "InboxAlly",
+    "url": "https://www.inboxally.com"
+  },
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Email Sender",
+      "text": "An email sender transmits a message using its sending infrastructure and domain."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Authentication",
+      "text": "Mailbox providers authenticate the sender using SPF, DKIM, and DMARC to verify identity and alignment."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Sender Reputation",
+      "text": "Mailbox providers evaluate the sender's historical reputation using signals such as engagement, complaints, and sending behavior."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "Spam Filtering",
+      "text": "Spam filtering algorithms analyze message content, links, authentication alignment, and reputation signals to score the email."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 5,
+      "name": "Placement Outcomes",
+      "text": "Based on filtering signals the message is delivered to the inbox, promotions tab, or spam folder."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 6,
+      "name": "Recipient Engagement Feedback",
+      "text": "Opens, clicks, and spam complaints feed back into sender reputation and influence future filtering decisions."
+    }
+  ]
+}
+</script>
+
+<style>
+  /* === Base light mode === */
+  .bg { fill: #F1F0ED; }
+  .header-bar { fill: #292929; }
+  .header-text { font-family: Georgia, 'Times New Roman', serif; fill: #FFFFFF; font-size: 24px; letter-spacing: 0.5px; }
+  .header-sub { font-family: Arial, Helvetica, Calibri, sans-serif; fill: #FFFFFF; font-size: 13px; opacity: 0.5; letter-spacing: 1px; }
+  .stage-box { fill: #DDEFFF; stroke: #292929; stroke-width: 1.5; }
+  .stage-box-inner { fill: none; stroke: #0062FF; stroke-width: 1; opacity: 0.15; }
+  .label { font-family: Arial, Helvetica, Calibri, sans-serif; fill: #292929; font-size: 18px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .sublabel { font-family: Arial, Helvetica, Calibri, sans-serif; fill: #292929; font-size: 13px; text-anchor: middle; dominant-baseline: middle; opacity: 0.6; }
+  .step-num { font-family: Arial, Helvetica, Calibri, sans-serif; fill: #0062FF; font-size: 14px; font-weight: 600; text-anchor: middle; dominant-baseline: middle; }
+  .icon-shape { fill: #0062FF; opacity: 0.12; }
+  .arrow-line { stroke: #0062FF; stroke-width: 2; marker-end: url(#arrow); }
+  .arrow-line-muted { stroke: #292929; stroke-width: 1.5; stroke-dasharray: 6 3; opacity: 0.25; }
+  .outcome-box { fill: #FFFFFF; stroke: #292929; stroke-width: 1.5; }
+  .outcome-inbox { fill: #DDEFFF; stroke: #0062FF; stroke-width: 2; }
+  .outcome-label { font-family: Arial, Helvetica, Calibri, sans-serif; fill: #292929; font-size: 18px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .outcome-sublabel { font-family: Arial, Helvetica, Calibri, sans-serif; fill: #292929; font-size: 13px; text-anchor: middle; dominant-baseline: middle; opacity: 0.45; }
+  .spam-box { fill: #FFF0F0; stroke: #FF3333; stroke-width: 2; }
+  .spam-label { font-family: Arial, Helvetica, Calibri, sans-serif; fill: #FF3333; font-size: 18px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .engagement-box { fill: #DDEFFF; stroke: #0062FF; stroke-width: 1.5; stroke-dasharray: 6 3; }
+  .feedback-path { stroke: #0062FF; stroke-width: 2; fill: none; stroke-dasharray: 8 4; marker-end: url(#arrow); opacity: 0.7; }
+  .loop-label { font-family: Arial, Helvetica, Calibri, sans-serif; fill: #0062FF; font-size: 12px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .diag-line { stroke: #0062FF; stroke-width: 0.5; opacity: 0.06; }
+  .attribution { font-family: Arial, Helvetica, Calibri, sans-serif; font-size: 11px; fill: #292929; opacity: 0.4; }
+  .badge-circle { fill: #FF3333; }
+  .badge-text { font-family: Arial, Helvetica, Calibri, sans-serif; fill: #FFFFFF; font-size: 10px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .connector-dot { fill: #0062FF; }
+  .pipeline-axis { stroke: #D8D8D5; stroke-width: 2; opacity: 0.6; }
+  .decision-node { fill: #0062FF; }
+  .decision-label { font-family: Arial, Helvetica, Calibri, sans-serif; fill: #292929; font-size: 12px; text-anchor: middle; dominant-baseline: middle; opacity: 0.5; }
+
+  /* === Dark mode === */
+  @media (prefers-color-scheme: dark) {
+    .bg { fill: #1A1A1A; }
+    .header-bar { fill: #0D0D0D; }
+    .stage-box { fill: #1A2A3A; stroke: #4D9AFF; stroke-width: 1; }
+    .stage-box-inner { stroke: #4D9AFF; opacity: 0.08; }
+    .label { fill: #E8E8E8; }
+    .sublabel { fill: #A0A0A0; }
+    .step-num { fill: #4D9AFF; }
+    .icon-shape { fill: #4D9AFF; opacity: 0.1; }
+    .arrow-line { stroke: #4D9AFF; }
+    .arrow-line-muted { stroke: #666666; }
+    .outcome-box { fill: #2A2A2A; stroke: #666666; }
+    .outcome-inbox { fill: #1A2A3A; stroke: #4D9AFF; }
+    .outcome-label { fill: #E8E8E8; }
+    .outcome-sublabel { fill: #888888; }
+    .spam-box { fill: #3A1A1A; stroke: #FF6666; }
+    .spam-label { fill: #FF6666; }
+    .engagement-box { fill: #1A2A3A; stroke: #4D9AFF; }
+    .feedback-path { stroke: #4D9AFF; }
+    .loop-label { fill: #4D9AFF; }
+    .diag-line { stroke: #4D9AFF; opacity: 0.04; }
+    .attribution { fill: #888888; }
+    .connector-dot { fill: #4D9AFF; }
+    .pipeline-axis { stroke: #333333; }
+    .decision-node { fill: #4D9AFF; }
+    .decision-label { fill: #888888; }
+  }
+</style>
+
+<defs>
+  <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <polygon points="0 0, 8 3, 0 6" fill="#0062FF"/>
+  </marker>
+  <clipPath id="clip-canvas">
+    <rect x="0" y="0" width="1200" height="520" rx="0"/>
+  </clipPath>
+</defs>
+
+<!-- Background -->
+<rect class="bg" x="0" y="0" width="1200" height="520" rx="0"/>
+
+<!-- Diagonal line motif — subtle brand texture -->
+<g clip-path="url(#clip-canvas)" aria-hidden="true">
+  <line class="diag-line" x1="-50" y1="520" x2="350" y2="0"/>
+  <line class="diag-line" x1="50" y1="520" x2="450" y2="0"/>
+  <line class="diag-line" x1="150" y1="520" x2="550" y2="0"/>
+  <line class="diag-line" x1="250" y1="520" x2="650" y2="0"/>
+  <line class="diag-line" x1="350" y1="520" x2="750" y2="0"/>
+  <line class="diag-line" x1="450" y1="520" x2="850" y2="0"/>
+  <line class="diag-line" x1="550" y1="520" x2="950" y2="0"/>
+  <line class="diag-line" x1="650" y1="520" x2="1050" y2="0"/>
+  <line class="diag-line" x1="750" y1="520" x2="1150" y2="0"/>
+  <line class="diag-line" x1="850" y1="520" x2="1250" y2="0"/>
+  <line class="diag-line" x1="950" y1="520" x2="1350" y2="0"/>
+</g>
+
+<!-- Header bar -->
+<rect class="header-bar" x="0" y="0" width="1200" height="52"/>
+<text class="header-text" x="40" y="30">Email Deliverability Flow</text>
+<text class="header-sub" x="1160" y="30" text-anchor="end">INBOXALLY DELIVERABILITY RESEARCH</text>
+
+<!-- ============================================================ -->
+<!-- PIPELINE STAGES -->
+<!-- ============================================================ -->
+
+<!-- Pipeline axis — faint guide line anchoring the process flow -->
+<line class="pipeline-axis" x1="128" y1="235" x2="928" y2="235" aria-hidden="true"/>
+
+<!-- Step 1: Sender -->
+<g id="sender"
+   aria-label="Step 1: Email sender transmits message"
+   data-step="1"
+   data-label="Email Sender"
+   data-description="Originating sending infrastructure"
+   data-next="authentication">
+
+  <rect class="stage-box" x="48" y="190" width="160" height="90" rx="10"/>
+  <rect class="stage-box-inner" x="52" y="194" width="152" height="82" rx="8"/>
+
+  <!-- Envelope icon -->
+  <g class="icon-shape" aria-hidden="true">
+    <rect x="100" y="200" width="36" height="24" rx="3"/>
+    <polygon points="100,200 118,216 136,200"/>
+  </g>
+
+  <text class="step-num" x="128" y="210">01</text>
+  <text class="label" x="128" y="240">Email Sender</text>
+  <text class="sublabel" x="128" y="258">Sending infrastructure</text>
+</g>
+
+<!-- Step 2: Authentication -->
+<g id="authentication"
+   aria-label="Step 2: Authentication checks including SPF, DKIM, and DMARC"
+   data-step="2"
+   data-label="Authentication"
+   data-description="Mailbox provider verifies sender identity"
+   data-next="reputation">
+
+  <rect class="stage-box" x="268" y="190" width="180" height="90" rx="10"/>
+  <rect class="stage-box-inner" x="272" y="194" width="172" height="82" rx="8"/>
+
+  <!-- Shield icon -->
+  <g class="icon-shape" aria-hidden="true">
+    <path d="M348,198 L362,204 L362,216 C362,224 356,230 348,232 C340,230 334,224 334,216 L334,204 Z"/>
+  </g>
+
+  <text class="step-num" x="358" y="210">02</text>
+  <text class="label" x="358" y="237">Authentication</text>
+  <text class="sublabel" x="358" y="255">SPF · DKIM · DMARC</text>
+</g>
+
+<!-- Step 3: Reputation -->
+<g id="reputation"
+   aria-label="Step 3: Sender reputation evaluation"
+   data-step="3"
+   data-label="Sender Reputation"
+   data-description="Mailbox providers assess trust signals"
+   data-next="filtering">
+
+  <rect class="stage-box" x="508" y="190" width="180" height="90" rx="10"/>
+  <rect class="stage-box-inner" x="512" y="194" width="172" height="82" rx="8"/>
+
+  <!-- Star icon -->
+  <g class="icon-shape" aria-hidden="true">
+    <polygon points="598,198 602,210 614,210 604,218 608,230 598,222 588,230 592,218 582,210 594,210"/>
+  </g>
+
+  <text class="step-num" x="598" y="210">03</text>
+  <text class="label" x="598" y="237">Sender Reputation</text>
+  <text class="sublabel" x="598" y="255">Trust signal evaluation</text>
+</g>
+
+<!-- Step 4: Filtering -->
+<g id="filtering"
+   aria-label="Step 4: Spam filtering analysis"
+   data-step="4"
+   data-label="Spam Filtering"
+   data-description="Algorithms analyze message signals">
+
+  <rect class="stage-box" x="748" y="190" width="180" height="90" rx="10"/>
+  <rect class="stage-box-inner" x="752" y="194" width="172" height="82" rx="8"/>
+
+  <!-- Funnel icon -->
+  <g class="icon-shape" aria-hidden="true">
+    <polygon points="824,200 852,200 844,216 840,228 836,228 832,216"/>
+  </g>
+
+  <text class="step-num" x="838" y="210">04</text>
+  <text class="label" x="838" y="237">Spam Filtering</text>
+  <text class="sublabel" x="838" y="255">Content &amp; signal analysis</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- FLOW ARROWS -->
+<!-- ============================================================ -->
+
+<!-- Sender → Authentication -->
+<circle class="connector-dot" cx="208" cy="235" r="3"/>
+<line class="arrow-line" x1="211" y1="235" x2="268" y2="235"/>
+
+<!-- Authentication → Reputation -->
+<circle class="connector-dot" cx="448" cy="235" r="3"/>
+<line class="arrow-line" x1="451" y1="235" x2="508" y2="235"/>
+
+<!-- Reputation → Filtering -->
+<circle class="connector-dot" cx="688" cy="235" r="3"/>
+<line class="arrow-line" x1="691" y1="235" x2="748" y2="235"/>
+
+<!-- Filtering → Decision node -->
+<circle class="connector-dot" cx="928" cy="235" r="3"/>
+<line class="arrow-line" x1="931" y1="235" x2="949" y2="235"/>
+
+<!-- Classification decision node -->
+<g id="decision-placement"
+   aria-label="Decision: message placement classification"
+   data-step="decision"
+   data-label="Placement"
+   data-description="Classification decision routing message to final destination">
+
+  <circle class="decision-node" cx="958" cy="235" r="8"/>
+  <text class="decision-label" x="958" y="258">Placement</text>
+</g>
+
+<!-- Decision → Outcomes (branching) -->
+<line class="arrow-line" x1="966" y1="232" x2="998" y2="125"/>
+<line class="arrow-line" x1="966" y1="235" x2="998" y2="235"/>
+<line class="arrow-line" x1="966" y1="238" x2="998" y2="345"/>
+
+<!-- ============================================================ -->
+<!-- OUTCOMES -->
+<!-- ============================================================ -->
+
+<!-- Inbox -->
+<g id="outcome-inbox"
+   aria-label="Outcome: Message delivered to inbox"
+   data-step="outcome"
+   data-label="Inbox"
+   data-description="Message delivered to the primary inbox">
+
+  <rect class="outcome-inbox" x="998" y="83" width="170" height="85" rx="10"/>
+  <text class="outcome-label" x="1083" y="118">Inbox</text>
+  <text class="outcome-sublabel" x="1083" y="138">Primary delivery</text>
+</g>
+
+<!-- Promotions -->
+<g id="outcome-promotions"
+   aria-label="Outcome: Message delivered to promotions tab"
+   data-step="outcome"
+   data-label="Promotions"
+   data-description="Marketing message categorized into promotions tab">
+
+  <rect class="outcome-box" x="998" y="193" width="170" height="85" rx="10"/>
+  <text class="outcome-label" x="1083" y="228">Promotions</text>
+  <text class="outcome-sublabel" x="1083" y="248">Marketing tab</text>
+</g>
+
+<!-- Spam (with notification badge) -->
+<g id="outcome-spam"
+   aria-label="Outcome: Message delivered to spam folder"
+   data-step="outcome"
+   data-label="Spam"
+   data-description="Message classified as spam and routed to the spam folder">
+
+  <rect class="spam-box" x="998" y="303" width="170" height="85" rx="10"/>
+  <text class="spam-label" x="1083" y="338">Spam</text>
+  <text class="outcome-sublabel" x="1083" y="358">Spam folder</text>
+
+  <!-- Brand notification badge -->
+  <circle class="badge-circle" cx="1160" cy="310" r="9"/>
+  <text class="badge-text" x="1160" y="311">!</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- ENGAGEMENT + FEEDBACK LOOP -->
+<!-- ============================================================ -->
+
+<!-- Engagement node -->
+<g id="engagement"
+   aria-label="Feedback: Recipient engagement signals feed back into sender reputation"
+   data-step="feedback"
+   data-label="Recipient Engagement"
+   data-description="User behavior signals affecting reputation"
+   data-feeds="reputation">
+
+  <rect class="engagement-box" x="488" y="380" width="220" height="75" rx="10"/>
+  <text class="label" x="598" y="408">Recipient Engagement</text>
+  <text class="sublabel" x="598" y="428">Opens · Clicks · Complaints</text>
+</g>
+
+<!-- Feedback loop -->
+<g id="loop-feedback-reputation"
+   aria-label="Feedback loop: engagement signals feed into sender reputation">
+
+  <path class="feedback-path"
+        d="M488 405
+           C460 395, 455 330, 462 300
+           C469 270, 485 250, 508 242"/>
+  <text class="loop-label" x="448" y="345">Feeds into</text>
+  <text class="loop-label" x="448" y="358">reputation</text>
+</g>
+
+<!-- Guide line from outcomes area down to engagement -->
+<line class="arrow-line-muted" x1="998" y1="388" x2="708" y2="418"/>
+
+<!-- ============================================================ -->
+<!-- ATTRIBUTION -->
+<!-- ============================================================ -->
+
+<a href="https://www.inboxally.com">
+  <text x="40" y="505" class="attribution">Source: InboxAlly · inboxally.com</text>
+</a>
+<text x="1160" y="505" class="attribution" text-anchor="end">CC BY 4.0</text>
+
+</svg>

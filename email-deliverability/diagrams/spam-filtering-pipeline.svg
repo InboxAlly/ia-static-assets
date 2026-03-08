@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     width="100%"
+     viewBox="0 0 1460 680"
+     xml:lang="en"
+     preserveAspectRatio="xMidYMid meet"
+     role="img"
+     aria-labelledby="title desc"
+     data-source="InboxAlly Deliverability Research">
+<title id="title">Spam Filtering Pipeline</title>
+<desc id="desc">
+Spam filtering pipeline: mailbox providers evaluate an email using several signal categories. Authentication alignment verifies SPF, DKIM, and DMARC. Content analysis examines copy, structure, and formatting. Link reputation checks the trustworthiness of URLs and domains. Sender reputation evaluates historical trust based on engagement, complaints, and sending behavior. Spam trap and complaint signals indicate potential abusive or low-quality sending. These inputs combine into a spam score and placement decision, which routes the message to the inbox, promotions tab, or spam folder.
+</desc>
+<metadata>
+<rdf:RDF>
+  <cc:Work rdf:about="">
+    <dc:title>Spam Filtering Pipeline Diagram</dc:title>
+    <dc:creator>InboxAlly</dc:creator>
+    <dc:source>https://www.inboxally.com</dc:source>
+    <dc:subject>spam filtering, email deliverability, SPF, DKIM, DMARC, content analysis, link reputation, sender reputation, spam traps, complaint rate, inbox placement, promotions tab, spam folder</dc:subject>
+    <dc:description>Diagram illustrating the signal inputs mailbox providers evaluate during spam filtering and how those signals feed into message placement outcomes.</dc:description>
+    <cc:license rdf:resource="https://creativecommons.org/licenses/by/4.0/" />
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Spam Filtering Pipeline",
+  "description": "How mailbox providers evaluate authentication, content, links, reputation, and abuse signals to determine inbox placement.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "InboxAlly",
+    "url": "https://www.inboxally.com"
+  },
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Authentication Alignment",
+      "text": "Mailbox providers check SPF, DKIM, and DMARC alignment to verify sender identity and domain legitimacy."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Content Analysis",
+      "text": "Message copy, formatting, structure, and headers are analyzed for suspicious or low-quality patterns."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Link Reputation",
+      "text": "URLs and linked domains are evaluated for trust, historical abuse, and redirect behavior."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "Sender Reputation",
+      "text": "Historical signals such as engagement, complaint rate, and sending consistency are used to assess sender trust."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 5,
+      "name": "Spam Trap and Complaint Signals",
+      "text": "Spam traps, abuse complaints, and other negative indicators increase risk and can heavily influence filtering."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 6,
+      "name": "Spam Score and Placement",
+      "text": "These signals combine into an overall filtering decision that routes the message to the inbox, promotions tab, or spam folder."
+    }
+  ]
+}
+</script>
+<style>
+  /* === Light mode === */
+  .bg { fill: #F1F0ED; }
+  .header-bar { fill: #292929; }
+  .header-text { font-family: Georgia, "Times New Roman", serif; font-size: 24px; fill: #FFFFFF; dominant-baseline: middle; }
+  .header-sub { font-family: Arial, Helvetica, sans-serif; font-size: 13px; fill: #DDEFFF; letter-spacing: 1px; dominant-baseline: middle; }
+  .pipeline-axis { stroke: #D8D6D0; stroke-width: 2; }
+  .box { fill: #DDEFFF; stroke: #292929; stroke-width: 2; rx: 14; }
+  .box-inner { fill: none; stroke: #0062FF; stroke-opacity: 0.14; stroke-width: 2; rx: 10; }
+  .outcome { fill: #FFFFFF; stroke: #292929; stroke-width: 2; rx: 12; }
+  .spam-outcome { fill: #FFF0F0; stroke: #FF3333; stroke-width: 2; rx: 12; }
+  .decision-node { fill: #0062FF; }
+  .connector-dot { fill: #0062FF; }
+  .arrow { stroke: #0062FF; stroke-width: 3; marker-end: url(#arrowhead); }
+  .arrow-muted { stroke: #292929; stroke-opacity: 0.2; stroke-width: 1.5; stroke-dasharray: 6 3; fill: none; }
+  .text { font-family: Arial, Helvetica, sans-serif; fill: #292929; text-anchor: middle; dominant-baseline: middle; }
+  .stepnum { font-size: 14px; font-weight: 700; fill: #0062FF; }
+  .primary { font-size: 18px; }
+  .sub { font-size: 13px; opacity: 0.6; }
+  .tertiary { font-size: 12px; fill: #292929; }
+  .attribution { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #292929; opacity: 0.4; }
+  .badge { fill: #FF3333; }
+  .badge-text { font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: 700; fill: #FFFFFF; text-anchor: middle; dominant-baseline: middle; }
+  .icon { fill: #0062FF; opacity: 0.12; stroke: none; }
+  .diag-line { stroke: #0062FF; stroke-width: 0.5; opacity: 0.06; }
+  .feedback-label { font-family: Arial, Helvetica, sans-serif; font-size: 12px; fill: #0062FF; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+
+  /* === Dark mode === */
+  @media (prefers-color-scheme: dark) {
+    .bg { fill: #1A1A1A; }
+    .header-bar { fill: #0D0D0D; }
+    .box { fill: #1A2A3A; stroke: #4D9AFF; stroke-width: 1; }
+    .box-inner { stroke: #4D9AFF; stroke-opacity: 0.08; }
+    .text { fill: #E8E8E8; }
+    .sub { fill: #A0A0A0; }
+    .stepnum { fill: #4D9AFF; }
+    .icon { fill: #4D9AFF; opacity: 0.1; }
+    .arrow { stroke: #4D9AFF; }
+    .arrow-muted { stroke: #666666; }
+    .outcome { fill: #2A2A2A; stroke: #666666; }
+    .spam-outcome { fill: #3A1A1A; stroke: #FF6666; }
+    .primary { fill: #E8E8E8; }
+    .tertiary { fill: #888888; }
+    .decision-node { fill: #4D9AFF; }
+    .connector-dot { fill: #4D9AFF; }
+    .pipeline-axis { stroke: #333333; }
+    .diag-line { stroke: #4D9AFF; opacity: 0.04; }
+    .attribution { fill: #888888; }
+    .feedback-label { fill: #4D9AFF; }
+  }
+</style>
+<defs>
+  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <polygon points="0 0, 10 3.5, 0 7" fill="#0062FF"/>
+  </marker>
+  <clipPath id="clip-canvas">
+    <rect x="0" y="0" width="1460" height="680"/>
+  </clipPath>
+</defs>
+
+<!-- Background -->
+<rect class="bg" x="0" y="0" width="1460" height="680"/>
+
+<!-- Diagonal line motif -->
+<g clip-path="url(#clip-canvas)" aria-hidden="true">
+  <line class="diag-line" x1="-50" y1="680" x2="350" y2="0"/>
+  <line class="diag-line" x1="50" y1="680" x2="450" y2="0"/>
+  <line class="diag-line" x1="150" y1="680" x2="550" y2="0"/>
+  <line class="diag-line" x1="250" y1="680" x2="650" y2="0"/>
+  <line class="diag-line" x1="350" y1="680" x2="750" y2="0"/>
+  <line class="diag-line" x1="450" y1="680" x2="850" y2="0"/>
+  <line class="diag-line" x1="550" y1="680" x2="950" y2="0"/>
+  <line class="diag-line" x1="650" y1="680" x2="1050" y2="0"/>
+  <line class="diag-line" x1="750" y1="680" x2="1150" y2="0"/>
+  <line class="diag-line" x1="850" y1="680" x2="1250" y2="0"/>
+  <line class="diag-line" x1="950" y1="680" x2="1350" y2="0"/>
+  <line class="diag-line" x1="1050" y1="680" x2="1450" y2="0"/>
+</g>
+
+<!-- Header bar -->
+<rect class="header-bar" x="0" y="0" width="1460" height="54"/>
+<text class="header-text" x="36" y="29">Spam Filtering Pipeline</text>
+<text class="header-sub" x="1424" y="29" text-anchor="end">INBOXALLY DELIVERABILITY RESEARCH</text>
+
+<!-- Pipeline axis — aligned with arrow centerline at y=240 -->
+<line class="pipeline-axis" x1="110" y1="240" x2="1100" y2="240" aria-hidden="true"/>
+
+<!-- ============================================================ -->
+<!-- PIPELINE STAGES -->
+<!-- ============================================================ -->
+
+<!-- Step 1: Authentication Alignment -->
+<g id="stage-authentication"
+   aria-label="Step 1: Authentication alignment checks SPF, DKIM, and DMARC"
+   data-step="1"
+   data-label="Authentication Alignment"
+   data-description="Mailbox provider verifies SPF, DKIM, and DMARC alignment"
+   data-next="stage-content-analysis">
+  <rect class="box" x="40" y="180" width="220" height="120"/>
+  <rect class="box-inner" x="46" y="186" width="208" height="108"/>
+  <text class="text stepnum" x="74" y="206">01</text>
+  <rect class="icon" x="170" y="198" width="54" height="34" rx="4" aria-hidden="true"/>
+  <polygon class="icon" points="170,198 197,220 224,198" aria-hidden="true"/>
+  <text class="text primary" x="150" y="236">Authentication</text>
+  <text class="text primary" x="150" y="258">Alignment</text>
+  <text class="text sub" x="150" y="284">SPF • DKIM • DMARC</text>
+</g>
+
+<!-- Step 2: Content Analysis -->
+<g id="stage-content-analysis"
+   aria-label="Step 2: Content analysis evaluates message copy, structure, and formatting"
+   data-step="2"
+   data-label="Content Analysis"
+   data-description="Mailbox providers analyze message content and formatting"
+   data-next="stage-link-reputation">
+  <rect class="box" x="300" y="180" width="220" height="120"/>
+  <rect class="box-inner" x="306" y="186" width="208" height="108"/>
+  <text class="text stepnum" x="334" y="206">02</text>
+  <rect class="icon" x="438" y="194" width="46" height="44" rx="4" aria-hidden="true"/>
+  <line x1="447" y1="208" x2="474" y2="208" stroke="#0062FF" stroke-opacity="0.12" stroke-width="5" aria-hidden="true"/>
+  <line x1="447" y1="221" x2="474" y2="221" stroke="#0062FF" stroke-opacity="0.12" stroke-width="5" aria-hidden="true"/>
+  <text class="text primary" x="410" y="246">Content Analysis</text>
+  <text class="text sub" x="410" y="274">Copy • Structure • Headers</text>
+</g>
+
+<!-- Step 3: Link Reputation -->
+<g id="stage-link-reputation"
+   aria-label="Step 3: Link reputation checks the trustworthiness of URLs and domains"
+   data-step="3"
+   data-label="Link Reputation"
+   data-description="Mailbox providers assess URLs and linked domains"
+   data-next="stage-sender-reputation">
+  <rect class="box" x="560" y="180" width="220" height="120"/>
+  <rect class="box-inner" x="566" y="186" width="208" height="108"/>
+  <text class="text stepnum" x="594" y="206">03</text>
+  <circle class="icon" cx="724" cy="213" r="16" aria-hidden="true"/>
+  <circle class="icon" cx="705" cy="232" r="16" aria-hidden="true"/>
+  <text class="text primary" x="670" y="246">Link Reputation</text>
+  <text class="text sub" x="670" y="274">URLs • Domains • Redirects</text>
+</g>
+
+<!-- Step 4: Sender Reputation -->
+<g id="stage-sender-reputation"
+   aria-label="Step 4: Sender reputation measures historical trust signals"
+   data-step="4"
+   data-label="Sender Reputation"
+   data-description="Mailbox providers assess sender trust based on historical behavior"
+   data-next="stage-abuse-signals">
+  <rect class="box" x="820" y="180" width="220" height="120"/>
+  <rect class="box-inner" x="826" y="186" width="208" height="108"/>
+  <text class="text stepnum" x="854" y="206">04</text>
+  <polygon class="icon" points="973,195 988,225 958,225" aria-hidden="true"/>
+  <rect class="icon" x="950" y="228" width="31" height="18" rx="3" aria-hidden="true"/>
+  <text class="text primary" x="930" y="246">Sender Reputation</text>
+  <text class="text sub" x="930" y="274">Engagement • Complaints</text>
+</g>
+
+<!-- Step 5: Spam Trap & Complaint Signals -->
+<g id="stage-abuse-signals"
+   aria-label="Step 5: Spam trap and complaint signals indicate elevated risk"
+   data-step="5"
+   data-label="Spam Trap Signals"
+   data-description="Spam traps and complaints increase spam filtering risk"
+   data-next="decision-placement">
+  <rect class="box" x="1080" y="180" width="220" height="120"/>
+  <rect class="box-inner" x="1086" y="186" width="208" height="108"/>
+  <text class="text stepnum" x="1114" y="206">05</text>
+  <circle class="icon" cx="1240" cy="214" r="18" aria-hidden="true"/>
+  <text class="text primary" x="1190" y="236">Spam Trap &amp;</text>
+  <text class="text primary" x="1190" y="258">Complaint Signals</text>
+  <text class="text sub" x="1190" y="284">Abuse • Risk • Negatives</text>
+  <circle class="badge" cx="1274" cy="192" r="11"/>
+  <text class="badge-text" x="1274" y="193">!</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- FLOW ARROWS -->
+<!-- ============================================================ -->
+
+<!-- Authentication → Content Analysis -->
+<circle class="connector-dot" cx="260" cy="240" r="3" aria-hidden="true"/>
+<line class="arrow" x1="263" y1="240" x2="300" y2="240"/>
+
+<!-- Content Analysis → Link Reputation -->
+<circle class="connector-dot" cx="520" cy="240" r="3" aria-hidden="true"/>
+<line class="arrow" x1="523" y1="240" x2="560" y2="240"/>
+
+<!-- Link Reputation → Sender Reputation -->
+<circle class="connector-dot" cx="780" cy="240" r="3" aria-hidden="true"/>
+<line class="arrow" x1="783" y1="240" x2="820" y2="240"/>
+
+<!-- Sender Reputation → Abuse Signals -->
+<circle class="connector-dot" cx="1040" cy="240" r="3" aria-hidden="true"/>
+<line class="arrow" x1="1043" y1="240" x2="1080" y2="240"/>
+
+<!-- Abuse Signals → Decision node -->
+<line class="arrow" x1="1190" y1="300" x2="1190" y2="409"/>
+
+<!-- ============================================================ -->
+<!-- DECISION NODE -->
+<!-- ============================================================ -->
+
+<g id="decision-placement"
+   aria-label="Decision: spam score and placement classification"
+   data-step="decision"
+   data-label="Spam Score"
+   data-description="Filtering decision routes message to final destination">
+  <circle class="decision-node" cx="1190" cy="420" r="11"/>
+  <text class="text tertiary" x="1190" y="446">Spam Score</text>
+</g>
+
+<!-- Decision → Outcomes -->
+<line class="arrow" x1="1190" y1="431" x2="1030" y2="500"/>
+<line class="arrow" x1="1190" y1="431" x2="1190" y2="500"/>
+<line class="arrow" x1="1190" y1="431" x2="1350" y2="500"/>
+
+<!-- ============================================================ -->
+<!-- OUTCOMES (all 160px wide) -->
+<!-- ============================================================ -->
+
+<!-- Inbox -->
+<g id="outcome-inbox"
+   aria-label="Outcome: Message delivered to inbox"
+   data-step="outcome"
+   data-label="Inbox"
+   data-description="Message delivered to the primary inbox">
+  <rect class="outcome" x="950" y="500" width="160" height="76"/>
+  <text class="text primary" x="1030" y="528">Inbox</text>
+  <text class="text sub" x="1030" y="550">Primary delivery</text>
+</g>
+
+<!-- Promotions -->
+<g id="outcome-promotions"
+   aria-label="Outcome: Message delivered to promotions tab"
+   data-step="outcome"
+   data-label="Promotions"
+   data-description="Message categorized into the promotions tab">
+  <rect class="outcome" x="1110" y="500" width="160" height="76"/>
+  <text class="text primary" x="1190" y="528">Promotions</text>
+  <text class="text sub" x="1190" y="550">Marketing tab</text>
+</g>
+
+<!-- Spam -->
+<g id="outcome-spam"
+   aria-label="Outcome: Message delivered to spam folder"
+   data-step="outcome"
+   data-label="Spam"
+   data-description="Message routed to the spam folder">
+  <rect class="spam-outcome" x="1270" y="500" width="160" height="76"/>
+  <text class="text primary" x="1350" y="528" style="fill:#FF3333;">Spam</text>
+  <text class="text sub" x="1350" y="550">Spam folder</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- FEEDBACK RELATIONSHIP -->
+<!-- ============================================================ -->
+
+<g id="loop-feedback-signals"
+   aria-label="Feedback: placement outcomes influence future filtering signals">
+  <line class="arrow-muted" x1="950" y1="550" x2="670" y2="318"/>
+  <text class="feedback-label" x="780" y="440">Influences future</text>
+  <text class="feedback-label" x="780" y="453">signal evaluation</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- ATTRIBUTION -->
+<!-- ============================================================ -->
+
+<a href="https://www.inboxally.com">
+  <text class="attribution" x="26" y="660">Source: InboxAlly · inboxally.com</text>
+</a>
+<text class="attribution" x="1434" y="660" text-anchor="end">CC BY 4.0</text>
+
+</svg>
