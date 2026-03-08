@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     width="100%"
+     viewBox="0 0 1200 1130"
+     xml:lang="en"
+     preserveAspectRatio="xMidYMid meet"
+     role="img"
+     aria-labelledby="title desc"
+     data-source="InboxAlly Deliverability Research">
+
+<title id="title">Email Authentication Chain</title>
+
+<desc id="desc">
+Email authentication chain showing how SPF, DKIM, and DMARC work together to verify sender identity.
+When an email arrives, SPF checks whether the sending IP is authorized by the domain's DNS records, producing
+a pass, softfail, or fail result. DKIM validates a cryptographic signature in the message header against a
+public key published in DNS, confirming the message was not altered in transit, producing a pass, fail, or
+none result. DMARC then evaluates domain alignment — whether the domain in the visible From header matches
+the domain that passed SPF or DKIM. If alignment fails, DMARC applies the sender's published policy: p=none
+allows delivery and generates a report, p=quarantine routes the message to the spam folder, and p=reject
+bounces the message entirely. When authentication passes, results are forwarded to the mailbox provider's
+filtering system as one signal among many, contributing to inbox, promotions, or spam placement decisions.
+DMARC also generates aggregate (rua) and forensic (ruf) reports back to the sender, enabling continuous
+monitoring and correction of authentication issues.
+</desc>
+
+<metadata>
+<rdf:RDF>
+  <cc:Work rdf:about="">
+    <dc:title>Email Authentication Chain Diagram</dc:title>
+    <dc:creator>InboxAlly</dc:creator>
+    <dc:source>https://www.inboxally.com</dc:source>
+    <dc:subject>SPF, DKIM, DMARC, email authentication, domain alignment, envelope sender, cryptographic signature, DNS TXT record, public key, DMARC policy, p=none, p=quarantine, p=reject, rua, ruf, DMARC reports, email deliverability, inbox placement, spam filtering</dc:subject>
+    <dc:description>Detailed flow showing SPF and DKIM verification feeding into DMARC alignment evaluation, policy enforcement, and reporting, with authentication results contributing to filtering decisions.</dc:description>
+    <cc:license rdf:resource="https://creativecommons.org/licenses/by/4.0/" />
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Email Authentication Chain",
+  "description": "How SPF, DKIM, and DMARC work together to authenticate email, enforce policy, and report results.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "InboxAlly",
+    "url": "https://www.inboxally.com"
+  },
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "SPF Verification",
+      "text": "The receiving mail server checks whether the sending IP address is authorized to send on behalf of the domain by querying the domain's SPF record in DNS. Results: pass (IP authorized), softfail (IP not authorized but not explicitly rejected), or fail (IP explicitly unauthorized)."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "DKIM Verification",
+      "text": "The receiving server validates a cryptographic signature embedded in the email header by retrieving the corresponding public key from the sender's DNS records. This confirms the message was not altered after signing. Results: pass (signature valid), fail (signature invalid or tampered), or none (no signature present)."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "DMARC Alignment Evaluation",
+      "text": "DMARC checks whether the domain in the visible From header aligns with the domain that passed SPF or DKIM. If either protocol passes with proper domain alignment, DMARC passes. If alignment fails, DMARC applies the sender's published policy."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "DMARC Policy Enforcement",
+      "text": "When DMARC alignment fails, the sender's published policy determines the action: p=none allows delivery and generates a report for monitoring, p=quarantine routes the message to the spam folder, and p=reject instructs the receiving server to bounce the message entirely."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 5,
+      "name": "Authentication Results in Filtering",
+      "text": "When authentication passes, the results are forwarded to the mailbox provider's filtering system as one signal among many, contributing to the final placement decision alongside reputation, content, and other signals."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 6,
+      "name": "DMARC Reporting",
+      "text": "DMARC generates aggregate reports (rua) summarizing authentication results across all messages, and forensic reports (ruf) with details on individual failures. These reports are sent back to the domain owner for monitoring and troubleshooting."
+    }
+  ]
+}
+</script>
+
+<style>
+  /* === Light mode === */
+  .bg { fill: #F1F0ED; }
+  .header-bar { fill: #292929; }
+  .header-text { font-family: Georgia, "Times New Roman", serif; font-size: 24px; fill: #FFFFFF; dominant-baseline: middle; }
+  .header-sub { font-family: Arial, Helvetica, sans-serif; font-size: 13px; fill: #DDEFFF; letter-spacing: 1px; dominant-baseline: middle; }
+
+  /* Entry point */
+  .entry-box { fill: #292929; stroke: none; }
+  .entry-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 16px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+
+  /* Protocol cards */
+  .proto-box { fill: #DDEFFF; stroke: #292929; stroke-width: 1.5; }
+  .proto-box-inner { fill: none; stroke: #0062FF; stroke-width: 1; opacity: 0.15; }
+  .proto-header { fill: #0062FF; }
+  .proto-header-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 22px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .proto-question { font-family: Georgia, "Times New Roman", serif; fill: #292929; font-size: 14px; font-style: italic; text-anchor: middle; dominant-baseline: middle; }
+  .proto-mechanic { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 13px; text-anchor: middle; dominant-baseline: middle; opacity: 0.65; }
+  .proto-label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; font-weight: bold; text-anchor: start; dominant-baseline: middle; letter-spacing: 0.5px; opacity: 0.4; }
+  .result-pass { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 13px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+  .result-warn { font-family: Arial, Helvetica, sans-serif; fill: #CC8800; font-size: 13px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+  .result-fail { font-family: Arial, Helvetica, sans-serif; fill: #FF3333; font-size: 13px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+
+  /* DMARC card */
+  .dmarc-box { fill: #DDEFFF; stroke: #0062FF; stroke-width: 2; }
+  .dmarc-box-inner { fill: none; stroke: #0062FF; stroke-width: 1; opacity: 0.12; }
+
+  /* Policy boxes */
+  .policy-none { fill: #FFFFFF; stroke: #292929; stroke-width: 1.5; }
+  .policy-quarantine { fill: #FFF8E0; stroke: #CC8800; stroke-width: 1.5; }
+  .policy-reject { fill: #FFF0F0; stroke: #FF3333; stroke-width: 1.5; }
+  .policy-label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 14px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .policy-sub { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: middle; dominant-baseline: middle; opacity: 0.55; }
+  .policy-label-warn { fill: #CC8800; }
+  .policy-label-reject { fill: #FF3333; }
+
+  /* Auth result pass-through */
+  .auth-pass-box { fill: #0062FF; stroke: none; }
+  .auth-pass-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 15px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .auth-pass-sub { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 11px; text-anchor: middle; dominant-baseline: middle; opacity: 0.7; }
+
+  /* Outcomes */
+  .outcome-box { fill: #FFFFFF; stroke: #292929; stroke-width: 1.5; }
+  .outcome-inbox { fill: #DDEFFF; stroke: #0062FF; stroke-width: 2; }
+  .spam-outcome { fill: #FFF0F0; stroke: #FF3333; stroke-width: 2; }
+  .outcome-group { fill: none; stroke: #292929; stroke-width: 1; stroke-dasharray: 4 3; opacity: 0.2; }
+  .outcome-group-label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: end; dominant-baseline: middle; opacity: 0.35; }
+  .outcome-label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 18px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .outcome-sub { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 13px; text-anchor: middle; dominant-baseline: middle; opacity: 0.45; }
+  .spam-label { font-family: Arial, Helvetica, sans-serif; fill: #FF3333; font-size: 18px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+
+  /* Reporting */
+  .report-box { fill: #DDEFFF; stroke: #0062FF; stroke-width: 1.5; stroke-dasharray: 6 3; }
+  .report-label { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 14px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .report-sub { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: middle; dominant-baseline: middle; opacity: 0.55; }
+  .feedback-path { stroke: #0062FF; stroke-width: 2; fill: none; stroke-dasharray: 8 4; marker-end: url(#arrow-blue); opacity: 0.6; }
+  .feedback-label { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 11px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+
+  /* Arrows and connectors */
+  .arrow { stroke: #0062FF; stroke-width: 2; marker-end: url(#arrow-blue); }
+  .arrow-warn { stroke: #CC8800; stroke-width: 2; marker-end: url(#arrow-amber); }
+  .arrow-fail { stroke: #FF3333; stroke-width: 2; marker-end: url(#arrow-red); }
+  .connector-dot { fill: #0062FF; }
+  .diag-line { stroke: #0062FF; stroke-width: 0.5; opacity: 0.06; }
+  .attribution { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #292929; opacity: 0.4; }
+  .badge { fill: #FF3333; }
+  .badge-text { font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: 700; fill: #FFFFFF; text-anchor: middle; dominant-baseline: middle; }
+  .step-tag { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 11px; font-weight: 600; text-anchor: middle; dominant-baseline: middle; }
+  .section-divider { stroke: #292929; stroke-width: 0.5; opacity: 0.08; }
+
+  /* === Dark mode === */
+  @media (prefers-color-scheme: dark) {
+    .bg { fill: #1A1A1A; }
+    .header-bar { fill: #0D0D0D; }
+    .entry-box { fill: #333333; }
+    .proto-box { fill: #1A2A3A; stroke: #4D9AFF; stroke-width: 1; }
+    .proto-box-inner { stroke: #4D9AFF; opacity: 0.08; }
+    .proto-header { fill: #4D9AFF; }
+    .proto-question { fill: #E8E8E8; }
+    .proto-mechanic { fill: #A0A0A0; }
+    .proto-label { fill: #888888; }
+    .result-pass { fill: #4D9AFF; }
+    .result-warn { fill: #DDAA00; }
+    .result-fail { fill: #FF6666; }
+    .dmarc-box { fill: #1A2A3A; stroke: #4D9AFF; }
+    .dmarc-box-inner { stroke: #4D9AFF; opacity: 0.06; }
+    .policy-none { fill: #2A2A2A; stroke: #666666; }
+    .policy-quarantine { fill: #3A3A1A; stroke: #DDAA00; }
+    .policy-reject { fill: #3A1A1A; stroke: #FF6666; }
+    .policy-label { fill: #E8E8E8; }
+    .policy-sub { fill: #A0A0A0; }
+    .policy-label-warn { fill: #DDAA00; }
+    .policy-label-reject { fill: #FF6666; }
+    .auth-pass-box { fill: #4D9AFF; }
+    .outcome-box { fill: #2A2A2A; stroke: #666666; }
+    .outcome-inbox { fill: #1A2A3A; stroke: #4D9AFF; }
+    .spam-outcome { fill: #3A1A1A; stroke: #FF6666; }
+    .outcome-group { stroke: #555555; }
+    .outcome-group-label { fill: #666666; }
+    .outcome-label { fill: #E8E8E8; }
+    .outcome-sub { fill: #888888; }
+    .spam-label { fill: #FF6666; }
+    .report-box { fill: #1A2A3A; stroke: #4D9AFF; }
+    .report-label { fill: #4D9AFF; }
+    .report-sub { fill: #A0A0A0; }
+    .feedback-path { stroke: #4D9AFF; }
+    .feedback-label { fill: #4D9AFF; }
+    .arrow { stroke: #4D9AFF; }
+    .arrow-warn { stroke: #DDAA00; }
+    .arrow-fail { stroke: #FF6666; }
+    .connector-dot { fill: #4D9AFF; }
+    .diag-line { stroke: #4D9AFF; opacity: 0.04; }
+    .attribution { fill: #888888; }
+    .step-tag { fill: #4D9AFF; }
+    .section-divider { stroke: #555555; }
+  }
+</style>
+
+<defs>
+  <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <polygon points="0 0, 8 3, 0 6" fill="#0062FF"/>
+  </marker>
+  <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <polygon points="0 0, 8 3, 0 6" fill="#FF3333"/>
+  </marker>
+  <marker id="arrow-amber" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <polygon points="0 0, 8 3, 0 6" fill="#CC8800"/>
+  </marker>
+  <clipPath id="clip-canvas">
+    <rect x="0" y="0" width="1200" height="1130"/>
+  </clipPath>
+</defs>
+
+<!-- Background -->
+<rect class="bg" x="0" y="0" width="1200" height="1130"/>
+
+<!-- Diagonal line motif -->
+<g clip-path="url(#clip-canvas)" aria-hidden="true">
+  <line class="diag-line" x1="-50" y1="1130" x2="750" y2="0"/>
+  <line class="diag-line" x1="50" y1="1130" x2="850" y2="0"/>
+  <line class="diag-line" x1="150" y1="1130" x2="950" y2="0"/>
+  <line class="diag-line" x1="250" y1="1130" x2="1050" y2="0"/>
+  <line class="diag-line" x1="350" y1="1130" x2="1150" y2="0"/>
+  <line class="diag-line" x1="450" y1="1130" x2="1250" y2="0"/>
+</g>
+
+<!-- Header bar -->
+<rect class="header-bar" x="0" y="0" width="1200" height="54"/>
+<text class="header-text" x="36" y="29">Email Authentication Chain</text>
+<text class="header-sub" x="1164" y="29" text-anchor="end">INBOXALLY DELIVERABILITY RESEARCH</text>
+
+<!-- ============================================================ -->
+<!-- INCOMING EMAIL ENTRY POINT -->
+<!-- ============================================================ -->
+
+<g id="entry-incoming-email"
+   aria-label="An incoming email arrives and is evaluated by two authentication protocols in parallel">
+  <rect class="entry-box" x="480" y="76" width="240" height="44" rx="8"/>
+  <text class="entry-text" x="600" y="98">Incoming Email</text>
+</g>
+
+<!-- Branching arrows to SPF and DKIM -->
+<circle class="connector-dot" cx="600" cy="120" r="3" aria-hidden="true"/>
+<line class="arrow" x1="600" y1="123" x2="310" y2="162"/>
+<line class="arrow" x1="600" y1="123" x2="890" y2="162"/>
+
+<!-- ============================================================ -->
+<!-- SPF CARD (left) -->
+<!-- ============================================================ -->
+
+<g id="stage-spf"
+   aria-label="Step 1: SPF checks whether the sending IP is authorized by the domain's DNS records. Results: pass, softfail, or fail."
+   data-step="1"
+   data-label="SPF"
+   data-description="Sender Policy Framework verifies the sending IP is authorized by the envelope sender domain's DNS TXT record"
+   data-next="stage-dmarc">
+
+  <rect class="proto-box" x="100" y="168" width="420" height="280" rx="12"/>
+  <rect class="proto-box-inner" x="104" y="172" width="412" height="272" rx="10"/>
+
+  <!-- Header -->
+  <rect class="proto-header" x="100" y="168" width="420" height="48" rx="12"/>
+  <rect class="proto-header" x="100" y="196" width="420" height="20"/>
+  <text class="proto-header-text" x="310" y="194">SPF</text>
+
+  <text class="step-tag" x="310" y="238">STEP 1 · PARALLEL</text>
+
+  <!-- Question -->
+  <text class="proto-question" x="310" y="268">"Is this IP allowed to send</text>
+  <text class="proto-question" x="310" y="286">for this domain?"</text>
+
+  <!-- Mechanic -->
+  <text class="proto-label" x="140" y="316">MECHANISM</text>
+  <text class="proto-mechanic" x="310" y="336">Envelope sender IP checked against</text>
+  <text class="proto-mechanic" x="310" y="354">domain's DNS TXT record</text>
+
+  <!-- Results -->
+  <text class="proto-label" x="140" y="384">RESULTS</text>
+  <text class="result-pass" x="140" y="404">✓ Pass — IP authorized</text>
+  <text class="result-warn" x="140" y="422">~ Softfail — not authorized, not rejected</text>
+  <text class="result-fail" x="140" y="440">✗ Fail — IP explicitly unauthorized</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- DKIM CARD (right) -->
+<!-- ============================================================ -->
+
+<g id="stage-dkim"
+   aria-label="Step 2: DKIM validates a cryptographic signature in the email header against a public key in DNS. Results: pass, fail, or none."
+   data-step="2"
+   data-label="DKIM"
+   data-description="DomainKeys Identified Mail validates a cryptographic signature in the message header against a public key published in the signing domain's DNS records"
+   data-next="stage-dmarc">
+
+  <rect class="proto-box" x="680" y="168" width="420" height="280" rx="12"/>
+  <rect class="proto-box-inner" x="684" y="172" width="412" height="272" rx="10"/>
+
+  <!-- Header -->
+  <rect class="proto-header" x="680" y="168" width="420" height="48" rx="12"/>
+  <rect class="proto-header" x="680" y="196" width="420" height="20"/>
+  <text class="proto-header-text" x="890" y="194">DKIM</text>
+
+  <text class="step-tag" x="890" y="238">STEP 2 · PARALLEL</text>
+
+  <!-- Question -->
+  <text class="proto-question" x="890" y="268">"Was this message altered</text>
+  <text class="proto-question" x="890" y="286">in transit?"</text>
+
+  <!-- Mechanic -->
+  <text class="proto-label" x="720" y="316">MECHANISM</text>
+  <text class="proto-mechanic" x="890" y="336">Cryptographic signature in header</text>
+  <text class="proto-mechanic" x="890" y="354">validated against DNS public key</text>
+
+  <!-- Results -->
+  <text class="proto-label" x="720" y="384">RESULTS</text>
+  <text class="result-pass" x="720" y="404">✓ Pass — signature valid, unaltered</text>
+  <text class="result-fail" x="720" y="422">✗ Fail — signature invalid or tampered</text>
+  <text class="result-warn" x="720" y="440">— None — no DKIM signature present</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- CONVERGENCE TO DMARC -->
+<!-- ============================================================ -->
+
+<circle class="connector-dot" cx="310" cy="448" r="3" aria-hidden="true"/>
+<line class="arrow" x1="310" y1="451" x2="420" y2="506"/>
+
+<circle class="connector-dot" cx="890" cy="448" r="3" aria-hidden="true"/>
+<line class="arrow" x1="890" y1="451" x2="780" y2="506"/>
+
+<!-- ============================================================ -->
+<!-- DMARC CARD (center) -->
+<!-- ============================================================ -->
+
+<g id="stage-dmarc"
+   aria-label="Step 3: DMARC checks whether the From header domain aligns with the domain that passed SPF or DKIM. If aligned, authentication passes. If not aligned, the sender's pre-published DNS policy determines the action."
+   data-step="3"
+   data-label="DMARC"
+   data-description="Domain-based Message Authentication, Reporting and Conformance evaluates domain alignment and enforces the sender's published policy when alignment fails"
+   data-next="filtering">
+
+  <rect class="dmarc-box" x="260" y="506" width="680" height="290" rx="12"/>
+  <rect class="dmarc-box-inner" x="264" y="510" width="672" height="282" rx="10"/>
+
+  <!-- Header -->
+  <rect class="proto-header" x="260" y="506" width="680" height="48" rx="12"/>
+  <rect class="proto-header" x="260" y="534" width="680" height="20"/>
+  <text class="proto-header-text" x="600" y="532">DMARC</text>
+
+  <text class="step-tag" x="600" y="576">STEP 3 · ALIGNMENT CHECK</text>
+
+  <!-- Question -->
+  <text class="proto-question" x="600" y="600">"Does the From: domain match the domain</text>
+  <text class="proto-question" x="600" y="618">that passed SPF or DKIM?"</text>
+
+  <!-- Alignment explanation -->
+  <text class="proto-mechanic" x="600" y="644">Alignment means the domain your recipients see in the From: header</text>
+  <text class="proto-mechanic" x="600" y="660">is the same domain that passed authentication — not just any domain</text>
+
+  <!-- Aligned -->
+  <text class="proto-label" x="430" y="690" style="text-anchor:middle;">✓ ALIGNED</text>
+  <text class="proto-mechanic" x="430" y="706">From: you@yourbrand.com</text>
+  <text class="proto-mechanic" x="430" y="720">SPF/DKIM passed for yourbrand.com</text>
+  <text class="result-pass" x="380" y="742">Results forwarded to filtering</text>
+
+  <!-- Not aligned -->
+  <text class="proto-label" x="750" y="690" style="text-anchor:middle;">✗ NOT ALIGNED</text>
+  <text class="proto-mechanic" x="750" y="706">From: you@yourbrand.com</text>
+  <text class="proto-mechanic" x="750" y="720">but SPF passed for esp-provider.com</text>
+  <text class="result-pass" x="700" y="742">p=none — deliver + report</text>
+  <text class="result-warn" x="700" y="760">p=quarantine — route to spam</text>
+  <text class="result-fail" x="700" y="778">p=reject — bounce message</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- DMARC → PLACEMENT OUTCOMES (center path) -->
+<!-- ============================================================ -->
+<circle class="connector-dot" cx="600" cy="796" r="3" aria-hidden="true"/>
+<line class="arrow" x1="600" y1="799" x2="250" y2="880"/>
+<line class="arrow" x1="600" y1="799" x2="460" y2="880"/>
+<line class="arrow" x1="600" y1="799" x2="670" y2="880"/>
+
+<rect class="outcome-group" x="140" y="870" width="640" height="94" rx="14" aria-hidden="true"/>
+
+<g id="outcome-inbox"
+   aria-label="Outcome: Message delivered to inbox"
+   data-step="outcome"
+   data-label="Inbox"
+   data-description="Authenticated message delivered to primary inbox">
+  <rect class="outcome-inbox" x="152" y="882" width="195" height="68" rx="10"/>
+  <text class="outcome-label" x="250" y="908">Inbox</text>
+  <text class="outcome-sub" x="250" y="928">Primary delivery</text>
+</g>
+
+<g id="outcome-promotions"
+   aria-label="Outcome: Message delivered to promotions tab"
+   data-step="outcome"
+   data-label="Promotions"
+   data-description="Authenticated message categorized into promotions tab">
+  <rect class="outcome-box" x="362" y="882" width="195" height="68" rx="10"/>
+  <text class="outcome-label" x="460" y="908">Promotions</text>
+  <text class="outcome-sub" x="460" y="928">Marketing tab</text>
+</g>
+
+<g id="outcome-spam"
+   aria-label="Outcome: Message delivered to spam folder"
+   data-step="outcome"
+   data-label="Spam"
+   data-description="Message routed to spam folder">
+  <rect class="spam-outcome" x="572" y="882" width="195" height="68" rx="10"/>
+  <text class="spam-label" x="670" y="908">Spam</text>
+  <text class="outcome-sub" x="670" y="928">Spam folder</text>
+  <circle class="badge" cx="759" cy="889" r="9"/>
+  <text class="badge-text" x="759" y="890">!</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- DMARC REPORTING (bottom) -->
+<!-- ============================================================ -->
+
+<g id="dmarc-reporting"
+   aria-label="DMARC reporting: aggregate (rua) and forensic (ruf) reports sent back to the domain owner for monitoring"
+   data-step="reporting"
+   data-label="DMARC Reports"
+   data-description="DMARC generates aggregate and forensic reports enabling senders to monitor authentication health and fix issues"
+   data-feeds="sender">
+
+  <rect class="report-box" x="220" y="1000" width="440" height="60" rx="10"/>
+  <text class="report-label" x="440" y="1023">DMARC Reports</text>
+  <text class="report-sub" x="440" y="1041">rua (aggregate) · ruf (forensic) → sent to domain owner</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- ATTRIBUTION -->
+<!-- ============================================================ -->
+
+<a href="https://www.inboxally.com">
+  <text class="attribution" x="36" y="1100">Source: InboxAlly · inboxally.com</text>
+</a>
+<text class="attribution" x="1164" y="1100" text-anchor="end">CC BY 4.0</text>
+
+</svg>
