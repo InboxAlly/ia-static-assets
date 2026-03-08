@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     width="100%"
+     viewBox="0 0 1200 1000"
+     xml:lang="en"
+     preserveAspectRatio="xMidYMid meet"
+     role="img"
+     aria-labelledby="title desc"
+     data-source="InboxAlly Deliverability Research">
+
+<title id="title">Email Warm-Up Ramp</title>
+
+<desc id="desc">
+Email warm-up ramp showing how to gradually increase sending volume as a percentage of target volume
+over six or more weeks. The process is stepped, not continuous — volume is held at each level while
+engagement is observed before increasing. Phase 1 (weeks 1–2) seeds initial trust at 2–5% of target
+volume, requiring open rates above 30%. Phase 2 (weeks 3–4) establishes reputation at 10–25% of target
+volume. Phase 3 (weeks 4–5) scales to 50–75% as reputation solidifies. Phase 4 (week 6+) reaches full
+target volume. At every step, volume should only increase when engagement metrics hold steady — if
+engagement drops, hold or reduce volume. Ramping too fast without engagement causes reputation collapse
+and spam folder placement that takes weeks to recover from. Seed engagement from tools like InboxAlly
+accelerates trust building during the critical early phases.
+</desc>
+
+<metadata>
+<rdf:RDF>
+  <cc:Work rdf:about="">
+    <dc:title>Email Warm-Up Ramp Diagram</dc:title>
+    <dc:creator>InboxAlly</dc:creator>
+    <dc:source>https://www.inboxally.com</dc:source>
+    <dc:subject>email warm-up, domain warm-up, IP warm-up, sending volume ramp, engagement rate, open rate, sender reputation, inbox placement, spam folder, reputation recovery, seed engagement, warm-up schedule, email deliverability</dc:subject>
+    <dc:description>Stepped ramp diagram showing phased volume increases during email warm-up, with engagement thresholds, phase goals, and warnings about ramping too fast.</dc:description>
+    <cc:license rdf:resource="https://creativecommons.org/licenses/by/4.0/" />
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Email Warm-Up Ramp",
+  "description": "How to gradually increase email sending volume during domain or IP warm-up, using engagement signals to guide each step.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "InboxAlly",
+    "url": "https://www.inboxally.com"
+  },
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Seed Phase (Weeks 1–2)",
+      "text": "Begin sending at 2–5% of target volume. Focus on your most engaged subscribers. Target open rates above 30%. The goal is to establish baseline trust with mailbox providers."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Establish Phase (Weeks 2–3)",
+      "text": "Increase to 10–20% of target volume. Expand to broader engaged segments. Maintain open rates above 25%. The goal is to build consistent positive engagement history."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Scale Phase (Weeks 4–5)",
+      "text": "Increase to 35–75% of target volume. Begin sending to full list segments. Maintain open rates above 20%. The goal is to prove consistent engagement at meaningful volume."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "Full Volume (Week 6+)",
+      "text": "Reach 100% of target volume. Monitor engagement continuously. If metrics drop, reduce volume and investigate. The goal is to maintain healthy sending reputation long term."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 5,
+      "name": "Ongoing Monitoring",
+      "text": "Warm-up is not a one-time process. Volume changes, new domains, and ESP migrations all require re-warming. Engagement must be monitored continuously to maintain reputation."
+    }
+  ]
+}
+</script>
+
+<style>
+  /* === Light mode === */
+  .bg { fill: #F1F0ED; }
+  .header-bar { fill: #292929; }
+  .header-text { font-family: Georgia, "Times New Roman", serif; font-size: 24px; fill: #FFFFFF; dominant-baseline: middle; }
+  .header-sub { font-family: Arial, Helvetica, sans-serif; font-size: 13px; fill: #DDEFFF; letter-spacing: 1px; dominant-baseline: middle; }
+
+  /* Chart */
+  .axis { stroke: #292929; stroke-width: 1.5; opacity: 0.2; }
+  .axis-label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; text-anchor: middle; dominant-baseline: middle; opacity: 0.4; }
+  .axis-label-y { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: end; dominant-baseline: middle; opacity: 0.35; }
+  .grid-line { stroke: #292929; stroke-width: 0.5; opacity: 0.06; }
+  .tick { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; text-anchor: middle; dominant-baseline: middle; opacity: 0.5; }
+
+  /* Steps */
+  .step-fill { fill: #DDEFFF; stroke: none; }
+  .step-outline { fill: none; stroke: #0062FF; stroke-width: 2; }
+  .step-pct { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 15px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+
+  /* Phases */
+  .phase-bar { fill: #0062FF; opacity: 0.08; }
+  .phase-label { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 13px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; letter-spacing: 0.5px; }
+  .phase-goal { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: middle; dominant-baseline: middle; opacity: 0.55; }
+
+  /* Engagement bars */
+  .eng-bar-bg { fill: #292929; opacity: 0.06; }
+  .eng-bar { fill: #0062FF; opacity: 0.6; }
+  .eng-label { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 11px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .eng-threshold { stroke: #0062FF; stroke-width: 1.5; stroke-dasharray: 4 3; opacity: 0.4; }
+
+  /* Danger zone */
+  .danger-area { fill: #FF3333; opacity: 0.04; }
+  .danger-curve { fill: none; stroke: #FF3333; stroke-width: 2; stroke-dasharray: 6 3; opacity: 0.5; }
+  .danger-label { font-family: Arial, Helvetica, sans-serif; fill: #FF3333; font-size: 12px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+  .danger-sub { font-family: Arial, Helvetica, sans-serif; fill: #FF3333; font-size: 11px; text-anchor: start; dominant-baseline: middle; opacity: 0.6; }
+  .danger-badge { fill: #FF3333; }
+  .danger-badge-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 10px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+
+  /* Rule callout */
+  .rule-box { fill: #DDEFFF; stroke: #0062FF; stroke-width: 1.5; }
+  .rule-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 13px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .rule-sub { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: middle; dominant-baseline: middle; opacity: 0.55; }
+
+  /* InboxAlly note */
+  .ia-box { fill: #DDEFFF; stroke: #0062FF; stroke-width: 1.5; stroke-dasharray: 6 3; }
+  .ia-label { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 13px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .ia-sub { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: middle; dominant-baseline: middle; opacity: 0.55; }
+
+  /* General */
+  .label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 18px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .sublabel { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 13px; text-anchor: middle; dominant-baseline: middle; opacity: 0.6; }
+  .diag-line { stroke: #0062FF; stroke-width: 0.5; opacity: 0.06; }
+  .attribution { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #292929; opacity: 0.4; }
+
+  /* === Dark mode === */
+  @media (prefers-color-scheme: dark) {
+    .bg { fill: #1A1A1A; }
+    .header-bar { fill: #0D0D0D; }
+    .axis { stroke: #666666; }
+    .axis-label { fill: #888888; }
+    .axis-label-y { fill: #888888; }
+    .grid-line { stroke: #444444; }
+    .tick { fill: #888888; }
+    .step-fill { fill: #1A2A3A; }
+    .step-outline { stroke: #4D9AFF; }
+    .step-pct { fill: #4D9AFF; }
+    .phase-bar { fill: #4D9AFF; opacity: 0.06; }
+    .phase-label { fill: #4D9AFF; }
+    .phase-goal { fill: #A0A0A0; }
+    .eng-bar-bg { fill: #444444; opacity: 0.3; }
+    .eng-bar { fill: #4D9AFF; }
+    .eng-label { fill: #4D9AFF; }
+    .eng-threshold { stroke: #4D9AFF; }
+    .danger-area { fill: #FF6666; opacity: 0.03; }
+    .danger-curve { stroke: #FF6666; }
+    .danger-label { fill: #FF6666; }
+    .danger-sub { fill: #FF6666; }
+    .rule-box { fill: #1A2A3A; stroke: #4D9AFF; }
+    .rule-text { fill: #E8E8E8; }
+    .rule-sub { fill: #A0A0A0; }
+    .ia-box { fill: #1A2A3A; stroke: #4D9AFF; }
+    .ia-label { fill: #4D9AFF; }
+    .ia-sub { fill: #A0A0A0; }
+    .label { fill: #E8E8E8; }
+    .sublabel { fill: #A0A0A0; }
+    .diag-line { stroke: #4D9AFF; opacity: 0.04; }
+    .attribution { fill: #888888; }
+  }
+</style>
+
+<defs>
+  <clipPath id="clip-canvas">
+    <rect x="0" y="0" width="1200" height="1000"/>
+  </clipPath>
+</defs>
+
+<!-- Background -->
+<rect class="bg" x="0" y="0" width="1200" height="1000"/>
+
+<!-- Diagonal line motif -->
+<g clip-path="url(#clip-canvas)" aria-hidden="true">
+  <line class="diag-line" x1="-50" y1="1000" x2="650" y2="0"/>
+  <line class="diag-line" x1="50" y1="1000" x2="750" y2="0"/>
+  <line class="diag-line" x1="150" y1="1000" x2="850" y2="0"/>
+  <line class="diag-line" x1="250" y1="1000" x2="950" y2="0"/>
+  <line class="diag-line" x1="350" y1="1000" x2="1050" y2="0"/>
+  <line class="diag-line" x1="450" y1="1000" x2="1150" y2="0"/>
+  <line class="diag-line" x1="550" y1="1000" x2="1250" y2="0"/>
+</g>
+
+<!-- Header bar -->
+<rect class="header-bar" x="0" y="0" width="1200" height="54"/>
+<text class="header-text" x="36" y="29">Email Warm-Up Ramp</text>
+<text class="header-sub" x="1164" y="29" text-anchor="end">INBOXALLY DELIVERABILITY RESEARCH</text>
+
+<!-- ============================================================ -->
+<!-- CHART AREA -->
+<!-- Chart: x=160 to x=1100, y=100 to y=520 -->
+<!-- ============================================================ -->
+
+<!-- Y axis -->
+<line class="axis" x1="160" y1="100" x2="160" y2="520"/>
+
+<!-- X axis -->
+<line class="axis" x1="160" y1="520" x2="1100" y2="520"/>
+
+<!-- Y axis labels -->
+<text class="axis-label-y" x="148" y="520">0%</text>
+<text class="axis-label-y" x="148" y="416">25%</text>
+<text class="axis-label-y" x="148" y="310">50%</text>
+<text class="axis-label-y" x="148" y="206">75%</text>
+<text class="axis-label-y" x="148" y="100">100%</text>
+
+<!-- Grid lines -->
+<line class="grid-line" x1="160" y1="416" x2="1100" y2="416" aria-hidden="true"/>
+<line class="grid-line" x1="160" y1="310" x2="1100" y2="310" aria-hidden="true"/>
+<line class="grid-line" x1="160" y1="206" x2="1100" y2="206" aria-hidden="true"/>
+<line class="grid-line" x1="160" y1="100" x2="1100" y2="100" aria-hidden="true"/>
+
+<!-- Y axis title -->
+<text class="axis-label" x="70" y="310" transform="rotate(-90 70 310)">% of Target Volume</text>
+
+<!-- X axis week labels -->
+<text class="tick" x="238" y="540">W1</text>
+<text class="tick" x="394" y="540">W2</text>
+<text class="tick" x="550" y="540">W3</text>
+<text class="tick" x="706" y="540">W4</text>
+<text class="tick" x="862" y="540">W5</text>
+<text class="tick" x="1022" y="540">W6+</text>
+
+<!-- ============================================================ -->
+<!-- STEPPED VOLUME RAMP -->
+<!-- Each step: x position = week column, height = % of target -->
+<!-- 420px range from 0% (y=520) to 100% (y=100) -->
+<!-- ============================================================ -->
+
+<g id="ramp-steps" aria-label="Stepped volume ramp showing gradual increase from 2% to 100% of target volume over 6 weeks">
+
+  <!-- W1: 2% → y=520 - (420 * 0.02) = 512 -->
+  <rect class="step-fill" x="160" y="512" width="156" height="8"/>
+  <rect class="step-outline" x="160" y="512" width="156" height="8" rx="0"/>
+  <text class="step-pct" x="238" y="502">2%</text>
+
+  <!-- W2: 5% → y=520 - (420 * 0.05) = 499 -->
+  <rect class="step-fill" x="316" y="499" width="156" height="21"/>
+  <rect class="step-outline" x="316" y="499" width="156" height="21" rx="0"/>
+  <text class="step-pct" x="394" y="489">5%</text>
+
+  <!-- W3: 15% → y=520 - (420 * 0.15) = 457 -->
+  <rect class="step-fill" x="472" y="457" width="156" height="63"/>
+  <rect class="step-outline" x="472" y="457" width="156" height="63" rx="0"/>
+  <text class="step-pct" x="550" y="447">15%</text>
+
+  <!-- W4: 35% → y=520 - (420 * 0.35) = 373 -->
+  <rect class="step-fill" x="628" y="373" width="156" height="147"/>
+  <rect class="step-outline" x="628" y="373" width="156" height="147" rx="0"/>
+  <text class="step-pct" x="706" y="363">35%</text>
+
+  <!-- W5: 65% → y=520 - (420 * 0.65) = 247 -->
+  <rect class="step-fill" x="784" y="247" width="156" height="273"/>
+  <rect class="step-outline" x="784" y="247" width="156" height="273" rx="0"/>
+  <text class="step-pct" x="862" y="237">65%</text>
+
+  <!-- W6+: 100% → y=520 - (420 * 1.0) = 100 -->
+  <rect class="step-fill" x="940" y="100" width="160" height="420"/>
+  <rect class="step-outline" x="940" y="100" width="160" height="420" rx="0"/>
+  <text class="step-pct" x="1022" y="90">100%</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- DANGER ZONE (ramp too fast curve) -->
+<!-- ============================================================ -->
+
+<g id="danger-zone" aria-label="Warning: ramping volume too fast without engagement causes reputation collapse">
+  <!-- Danger curve: spikes up fast then crashes -->
+  <path class="danger-curve"
+        d="M160 512
+           C240 500, 300 300, 380 180
+           C420 130, 460 140, 500 250
+           C540 380, 560 460, 600 490
+           L1100 490"/>
+
+  <!-- Danger annotation -->
+  <circle class="danger-badge" cx="392" cy="160" r="10"/>
+  <text class="danger-badge-text" x="392" y="161">!</text>
+  <text class="danger-label" x="412" y="155">Ramp too fast</text>
+  <text class="danger-sub" x="412" y="172">Volume spike without engagement</text>
+  <text class="danger-sub" x="412" y="189">→ reputation collapse → spam folder</text>
+  <text class="danger-sub" x="412" y="206">→ recovery takes weeks</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- PHASE LABELS -->
+<!-- ============================================================ -->
+
+<g aria-hidden="true">
+  <!-- Phase backgrounds -->
+  <rect class="phase-bar" x="160" y="555" width="312" height="50" rx="6"/>
+  <rect class="phase-bar" x="472" y="555" width="312" height="50" rx="6"/>
+  <rect class="phase-bar" x="784" y="555" width="316" height="50" rx="6"/>
+</g>
+
+<g id="phase-seed"
+   aria-label="Phase 1: Seed — weeks 1 and 2, establish baseline trust with most engaged subscribers"
+   data-step="phase"
+   data-label="Seed"
+   data-description="Send to most engaged subscribers at 2-5% of target volume to establish baseline trust">
+  <text class="phase-label" x="316" y="572">SEED</text>
+  <text class="phase-goal" x="316" y="592">Establish baseline trust</text>
+</g>
+
+<g id="phase-establish"
+   aria-label="Phase 2: Establish — weeks 3 and 4, build consistent engagement history"
+   data-step="phase"
+   data-label="Establish"
+   data-description="Expand to broader engaged segments at 15-35% to build consistent history">
+  <text class="phase-label" x="628" y="572">ESTABLISH</text>
+  <text class="phase-goal" x="628" y="592">Build engagement history</text>
+</g>
+
+<g id="phase-scale"
+   aria-label="Phase 3: Scale — weeks 5 and 6+, reach full target volume"
+   data-step="phase"
+   data-label="Scale"
+   data-description="Scale to full list at 65-100% once reputation is proven">
+  <text class="phase-label" x="942" y="572">SCALE</text>
+  <text class="phase-goal" x="942" y="592">Reach full volume</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- ENGAGEMENT THRESHOLD LAYER -->
+<!-- ============================================================ -->
+
+<text class="axis-label" x="630" y="628">Minimum Open Rate to Proceed</text>
+
+<!-- Engagement bars per week -->
+<g id="engagement-layer" aria-label="Engagement rate thresholds: open rate must stay above these levels before increasing volume">
+
+  <!-- W1: >30% -->
+  <rect class="eng-bar-bg" x="198" y="648" width="80" height="20" rx="3" aria-hidden="true"/>
+  <rect class="eng-bar" x="198" y="648" width="80" height="20" rx="3"/>
+  <text class="eng-label" x="238" y="682">&gt;30%</text>
+
+  <!-- W2: >30% -->
+  <rect class="eng-bar-bg" x="354" y="648" width="80" height="20" rx="3" aria-hidden="true"/>
+  <rect class="eng-bar" x="354" y="648" width="80" height="20" rx="3"/>
+  <text class="eng-label" x="394" y="682">&gt;30%</text>
+
+  <!-- W3: >25% -->
+  <rect class="eng-bar-bg" x="510" y="648" width="80" height="20" rx="3" aria-hidden="true"/>
+  <rect class="eng-bar" x="510" y="648" width="80" height="16" rx="3"/>
+  <text class="eng-label" x="550" y="682">&gt;25%</text>
+
+  <!-- W4: >25% -->
+  <rect class="eng-bar-bg" x="666" y="648" width="80" height="20" rx="3" aria-hidden="true"/>
+  <rect class="eng-bar" x="666" y="648" width="80" height="16" rx="3"/>
+  <text class="eng-label" x="706" y="682">&gt;25%</text>
+
+  <!-- W5: >20% -->
+  <rect class="eng-bar-bg" x="822" y="648" width="80" height="20" rx="3" aria-hidden="true"/>
+  <rect class="eng-bar" x="822" y="648" width="80" height="13" rx="3"/>
+  <text class="eng-label" x="862" y="682">&gt;20%</text>
+
+  <!-- W6+: >20% -->
+  <rect class="eng-bar-bg" x="982" y="648" width="80" height="20" rx="3" aria-hidden="true"/>
+  <rect class="eng-bar" x="982" y="648" width="80" height="13" rx="3"/>
+  <text class="eng-label" x="1022" y="682">&gt;20%</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- KEY RULE CALLOUT -->
+<!-- ============================================================ -->
+
+<g id="rule-callout"
+   aria-label="Key rule: only increase volume when engagement metrics hold steady. If engagement drops, hold or reduce volume.">
+  <rect class="rule-box" x="160" y="710" width="540" height="60" rx="10"/>
+  <text class="rule-text" x="430" y="734">Only increase when engagement holds</text>
+  <text class="rule-sub" x="430" y="754">If open rate drops → hold volume or reduce until it recovers</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- INBOXALLY ACCELERATOR NOTE -->
+<!-- ============================================================ -->
+
+<g id="inboxally-note"
+   aria-label="InboxAlly seed engagement accelerates trust building during early warm-up phases">
+  <rect class="ia-box" x="160" y="790" width="540" height="56" rx="10"/>
+  <text class="ia-label" x="430" y="812">Seed engagement accelerates early phases</text>
+  <text class="ia-sub" x="430" y="830">Consistent positive signals help establish trust faster during warm-up</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- WHAT HAPPENS AT EACH PHASE (right sidebar) -->
+<!-- ============================================================ -->
+
+<g id="phase-details" aria-label="Phase guidance: what to send to and what to watch for at each phase">
+  <text class="label" x="950" y="720" style="font-size:14px;">At each phase</text>
+
+  <text class="phase-label" x="920" y="748" style="text-anchor:start; font-size:11px;">SEED</text>
+  <text class="phase-goal" x="920" y="764" style="text-anchor:start;">Most engaged subscribers only</text>
+
+  <text class="phase-label" x="920" y="790" style="text-anchor:start; font-size:11px;">ESTABLISH</text>
+  <text class="phase-goal" x="920" y="806" style="text-anchor:start;">Broader engaged segments</text>
+
+  <text class="phase-label" x="920" y="832" style="text-anchor:start; font-size:11px;">SCALE</text>
+  <text class="phase-goal" x="920" y="848" style="text-anchor:start;">Full list, monitor closely</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- ATTRIBUTION -->
+<!-- ============================================================ -->
+
+<a href="https://www.inboxally.com">
+  <text class="attribution" x="36" y="980">Source: InboxAlly · inboxally.com</text>
+</a>
+<text class="attribution" x="1164" y="980" text-anchor="end">CC BY 4.0</text>
+
+</svg>
