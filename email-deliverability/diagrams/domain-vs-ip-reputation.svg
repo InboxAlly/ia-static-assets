@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     width="100%"
+     viewBox="0 0 1200 1060"
+     xml:lang="en"
+     preserveAspectRatio="xMidYMid meet"
+     role="img"
+     aria-labelledby="title desc"
+     data-source="InboxAlly Deliverability Research">
+
+<title id="title">Domain Reputation vs IP Reputation</title>
+
+<desc id="desc">
+Deep comparison of domain reputation and IP reputation in email deliverability. IP reputation is a legacy,
+secondary signal shared across all senders on the same IP address, influenced by complaint rates, spam trap
+hits, volume patterns, and blocklist status. It resets when switching ESPs and is diluted by other senders on
+shared infrastructure. Domain reputation is the primary modern signal, unique to the sender's domain and
+portable across ESPs. It is influenced by engagement rate, authentication alignment, content quality, complaint
+ratio, and domain age. Domain reputation carries increasing weight in modern filtering while IP reputation
+carries declining weight. Both signals combine into a reputation score that determines whether messages reach
+the inbox, promotions tab, or spam folder.
+</desc>
+
+<metadata>
+<rdf:RDF>
+  <cc:Work rdf:about="">
+    <dc:title>Domain Reputation vs IP Reputation Comparison</dc:title>
+    <dc:creator>InboxAlly</dc:creator>
+    <dc:source>https://www.inboxally.com</dc:source>
+    <dc:subject>domain reputation, IP reputation, email deliverability, shared IP, dedicated IP, ESP migration, SPF, DKIM, DMARC, engagement rate, complaint ratio, spam traps, blocklists, inbox placement, spam filtering, sender reputation</dc:subject>
+    <dc:description>Side-by-side comparison showing how domain reputation (primary, portable, sender-controlled) and IP reputation (secondary, shared, ESP-dependent) differ across five dimensions and combine into filtering decisions.</dc:description>
+    <cc:license rdf:resource="https://creativecommons.org/licenses/by/4.0/" />
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Domain Reputation vs IP Reputation",
+  "description": "How mailbox providers evaluate and weigh domain reputation against IP reputation when filtering email.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "InboxAlly",
+    "url": "https://www.inboxally.com"
+  },
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "IP Reputation Evaluation",
+      "text": "Mailbox providers assess IP reputation based on complaint rates, spam trap hits, volume patterns, and blocklist status. This signal is shared across all senders on the same IP, resets when switching ESPs, and carries declining weight in modern filtering."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Domain Reputation Evaluation",
+      "text": "Mailbox providers assess domain reputation based on engagement rate, authentication alignment (SPF, DKIM, DMARC), content quality, complaint ratio, and domain age. This signal is unique to the sender, follows across ESP changes, and carries increasing weight in modern filtering."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Combined Reputation Score",
+      "text": "Both reputation signals combine into an overall reputation score, with domain reputation typically weighted more heavily than IP reputation in modern filtering systems."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "Placement Decision",
+      "text": "The combined reputation score determines whether messages are placed in the inbox, promotions tab, or spam folder."
+    }
+  ]
+}
+</script>
+
+<style>
+  /* === Light mode === */
+  .bg { fill: #F1F0ED; }
+  .header-bar { fill: #292929; }
+  .header-text { font-family: Georgia, "Times New Roman", serif; font-size: 24px; fill: #FFFFFF; dominant-baseline: middle; }
+  .header-sub { font-family: Arial, Helvetica, sans-serif; font-size: 13px; fill: #DDEFFF; letter-spacing: 1px; dominant-baseline: middle; }
+
+  /* Column containers */
+  .col-ip { fill: #FFFFFF; stroke: #292929; stroke-width: 1; opacity: 0.5; }
+  .col-domain { fill: #DDEFFF; stroke: #0062FF; stroke-width: 1.5; }
+  .col-domain-inner { fill: none; stroke: #0062FF; stroke-width: 1; opacity: 0.12; }
+
+  /* Column headers */
+  .col-header-ip { fill: #292929; }
+  .col-header-domain { fill: #0062FF; }
+  .col-header-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 18px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .col-header-sub { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 12px; text-anchor: middle; dominant-baseline: middle; opacity: 0.7; }
+
+  /* Row labels */
+  .row-label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; letter-spacing: 1px; opacity: 0.35; }
+  .row-divider { stroke: #292929; stroke-width: 0.5; opacity: 0.1; }
+
+  /* Content text */
+  .cell-title { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 15px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .cell-desc { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; text-anchor: middle; dominant-baseline: middle; opacity: 0.55; }
+  .cell-title-domain { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 15px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+
+  /* Trend indicators */
+  .trend-declining { font-family: Arial, Helvetica, sans-serif; fill: #FF3333; font-size: 13px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .trend-increasing { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 13px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+
+  /* Score box */
+  .score-box { fill: #0062FF; stroke: none; }
+  .score-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 18px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .score-sub { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 11px; text-anchor: middle; dominant-baseline: middle; opacity: 0.7; }
+
+  /* Convergence labels */
+  .weight-label { font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .weight-secondary { fill: #292929; opacity: 0.4; }
+  .weight-primary { fill: #0062FF; }
+
+  /* Outcomes */
+  .outcome-box { fill: #FFFFFF; stroke: #292929; stroke-width: 1.5; }
+  .outcome-inbox { fill: #DDEFFF; stroke: #0062FF; stroke-width: 2; }
+  .spam-outcome { fill: #FFF0F0; stroke: #FF3333; stroke-width: 2; }
+  .outcome-group { fill: none; stroke: #292929; stroke-width: 1; stroke-dasharray: 4 3; opacity: 0.2; }
+  .outcome-group-label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: end; dominant-baseline: middle; opacity: 0.35; }
+  .outcome-label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 18px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .outcome-sub { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 13px; text-anchor: middle; dominant-baseline: middle; opacity: 0.45; }
+  .spam-label { font-family: Arial, Helvetica, sans-serif; fill: #FF3333; font-size: 18px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+
+  /* Arrows and connectors */
+  .arrow-secondary { stroke: #292929; stroke-width: 2; opacity: 0.35; marker-end: url(#arrow-gray); }
+  .arrow-primary { stroke: #0062FF; stroke-width: 3; marker-end: url(#arrow-blue); }
+  .arrow-branch { stroke: #0062FF; stroke-width: 2; marker-end: url(#arrow-blue); }
+  .connector-dot { fill: #0062FF; }
+  .connector-dot-muted { fill: #292929; opacity: 0.35; }
+
+  /* Decorative */
+  .diag-line { stroke: #0062FF; stroke-width: 0.5; opacity: 0.06; }
+  .attribution { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #292929; opacity: 0.4; }
+  .badge { fill: #FF3333; }
+  .badge-text { font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: 700; fill: #FFFFFF; text-anchor: middle; dominant-baseline: middle; }
+  .vs-text { font-family: Georgia, "Times New Roman", serif; fill: #292929; font-size: 28px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; opacity: 0.08; }
+
+  /* === Dark mode === */
+  @media (prefers-color-scheme: dark) {
+    .bg { fill: #1A1A1A; }
+    .header-bar { fill: #0D0D0D; }
+    .col-ip { fill: #222222; stroke: #555555; }
+    .col-domain { fill: #1A2A3A; stroke: #4D9AFF; }
+    .col-domain-inner { stroke: #4D9AFF; opacity: 0.06; }
+    .col-header-ip { fill: #333333; }
+    .col-header-domain { fill: #4D9AFF; }
+    .row-label { fill: #888888; }
+    .row-divider { stroke: #555555; }
+    .cell-title { fill: #E8E8E8; }
+    .cell-desc { fill: #A0A0A0; }
+    .cell-title-domain { fill: #4D9AFF; }
+    .trend-declining { fill: #FF6666; }
+    .trend-increasing { fill: #4D9AFF; }
+    .score-box { fill: #4D9AFF; }
+    .weight-secondary { fill: #888888; }
+    .weight-primary { fill: #4D9AFF; }
+    .outcome-box { fill: #2A2A2A; stroke: #666666; }
+    .outcome-inbox { fill: #1A2A3A; stroke: #4D9AFF; }
+    .spam-outcome { fill: #3A1A1A; stroke: #FF6666; }
+    .outcome-group { stroke: #555555; }
+    .outcome-group-label { fill: #666666; }
+    .outcome-label { fill: #E8E8E8; }
+    .outcome-sub { fill: #888888; }
+    .spam-label { fill: #FF6666; }
+    .arrow-secondary { stroke: #666666; }
+    .arrow-primary { stroke: #4D9AFF; }
+    .arrow-branch { stroke: #4D9AFF; }
+    .connector-dot { fill: #4D9AFF; }
+    .connector-dot-muted { fill: #666666; }
+    .diag-line { stroke: #4D9AFF; opacity: 0.04; }
+    .attribution { fill: #888888; }
+    .vs-text { fill: #555555; }
+  }
+</style>
+
+<defs>
+  <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <polygon points="0 0, 8 3, 0 6" fill="#0062FF"/>
+  </marker>
+  <marker id="arrow-gray" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <polygon points="0 0, 8 3, 0 6" fill="#292929" opacity="0.35"/>
+  </marker>
+  <clipPath id="clip-canvas">
+    <rect x="0" y="0" width="1200" height="1060"/>
+  </clipPath>
+</defs>
+
+<!-- Background -->
+<rect class="bg" x="0" y="0" width="1200" height="1060"/>
+
+<!-- Diagonal line motif -->
+<g clip-path="url(#clip-canvas)" aria-hidden="true">
+  <line class="diag-line" x1="-50" y1="1060" x2="650" y2="0"/>
+  <line class="diag-line" x1="50" y1="1060" x2="750" y2="0"/>
+  <line class="diag-line" x1="150" y1="1060" x2="850" y2="0"/>
+  <line class="diag-line" x1="250" y1="1060" x2="950" y2="0"/>
+  <line class="diag-line" x1="350" y1="1060" x2="1050" y2="0"/>
+  <line class="diag-line" x1="450" y1="1060" x2="1150" y2="0"/>
+  <line class="diag-line" x1="550" y1="1060" x2="1250" y2="0"/>
+</g>
+
+<!-- Header bar -->
+<rect class="header-bar" x="0" y="0" width="1200" height="54"/>
+<text class="header-text" x="36" y="29">Domain Reputation vs IP Reputation</text>
+<text class="header-sub" x="1164" y="29" text-anchor="end">INBOXALLY DELIVERABILITY RESEARCH</text>
+
+<!-- Large VS watermark -->
+<text class="vs-text" x="600" y="420" aria-hidden="true">VS</text>
+
+<!-- ============================================================ -->
+<!-- IP REPUTATION COLUMN (left — secondary, muted) -->
+<!-- ============================================================ -->
+
+<g id="column-ip-reputation"
+   aria-label="IP Reputation: secondary signal, shared across senders, declining weight in modern filtering"
+   data-step="comparison"
+   data-label="IP Reputation"
+   data-description="Legacy reputation signal based on sending IP address, shared across all senders on the same infrastructure">
+
+  <!-- Column container -->
+  <rect class="col-ip" x="60" y="78" width="500" height="650" rx="14"/>
+
+  <!-- Column header -->
+  <rect class="col-header-ip" x="60" y="78" width="500" height="60" rx="14"/>
+  <rect class="col-header-ip" x="60" y="108" width="500" height="30"/>
+  <text class="col-header-text" x="310" y="102">IP Reputation</text>
+  <text class="col-header-sub" x="310" y="126">Secondary Signal</text>
+
+  <!-- Row 1: Scope -->
+  <text class="cell-title" x="310" y="176">Shared across all senders on IP</text>
+  <text class="cell-desc" x="310" y="196">Multiple senders share the same IP reputation</text>
+
+  <line class="row-divider" x1="90" y1="218" x2="530" y2="218" aria-hidden="true"/>
+
+  <!-- Row 2: Key Signals -->
+  <text class="cell-title" x="310" y="244">Complaint Rate · Spam Traps</text>
+  <text class="cell-title" x="310" y="266">Volume Patterns · Blocklists</text>
+  <text class="cell-desc" x="310" y="290">Aggregate behavior across all senders on IP</text>
+
+  <line class="row-divider" x1="90" y1="312" x2="530" y2="312" aria-hidden="true"/>
+
+  <!-- Row 3: Portability -->
+  <text class="cell-title" x="310" y="342">Resets when you switch ESP</text>
+  <text class="cell-desc" x="310" y="362">New IP = new reputation to build from scratch</text>
+
+  <line class="row-divider" x1="90" y1="384" x2="530" y2="384" aria-hidden="true"/>
+
+  <!-- Row 4: Control -->
+  <text class="cell-title" x="310" y="414">Diluted by other senders</text>
+  <text class="cell-desc" x="310" y="434">Shared IPs mean others can damage your reputation</text>
+
+  <line class="row-divider" x1="90" y1="456" x2="530" y2="456" aria-hidden="true"/>
+
+  <!-- Row 5: Trend -->
+  <text class="trend-declining" x="310" y="486">↓ Declining weight</text>
+  <text class="cell-desc" x="310" y="506">Modern providers de-prioritize IP-based signals</text>
+
+  <line class="row-divider" x1="90" y1="528" x2="530" y2="528" aria-hidden="true"/>
+
+  <!-- Row 6: Implication -->
+  <text class="cell-title" x="310" y="560">Switching ESPs can reset IP reputation</text>
+  <text class="cell-desc" x="310" y="580">but does not fix underlying sending problems</text>
+
+  <!-- Faint icon watermark -->
+  <circle class="icon-pos" cx="490" cy="660" r="40" aria-hidden="true" style="fill:#292929; opacity:0.03;"/>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- DOMAIN REPUTATION COLUMN (right — primary, prominent) -->
+<!-- ============================================================ -->
+
+<g id="column-domain-reputation"
+   aria-label="Domain Reputation: primary signal, unique to sender, increasing weight in modern filtering"
+   data-step="comparison"
+   data-label="Domain Reputation"
+   data-description="Primary modern reputation signal based on sending domain, unique to the sender and portable across infrastructure">
+
+  <!-- Column container -->
+  <rect class="col-domain" x="640" y="78" width="500" height="650" rx="14"/>
+  <rect class="col-domain-inner" x="644" y="82" width="492" height="642" rx="12"/>
+
+  <!-- Column header -->
+  <rect class="col-header-domain" x="640" y="78" width="500" height="60" rx="14"/>
+  <rect class="col-header-domain" x="640" y="108" width="500" height="30"/>
+  <text class="col-header-text" x="890" y="102">Domain Reputation</text>
+  <text class="col-header-sub" x="890" y="126">Primary Signal</text>
+
+  <!-- Row 1: Scope -->
+  <text class="cell-title-domain" x="890" y="176">Unique to your sending domain</text>
+  <text class="cell-desc" x="890" y="196">Your domain, your reputation — nobody else's</text>
+
+  <line class="row-divider" x1="670" y1="218" x2="1110" y2="218" aria-hidden="true"/>
+
+  <!-- Row 2: Key Signals -->
+  <text class="cell-title-domain" x="890" y="244">Engagement · Auth Alignment</text>
+  <text class="cell-title-domain" x="890" y="266">Content Quality · Complaint Ratio</text>
+  <text class="cell-desc" x="890" y="290">Signals you directly control through sending practices</text>
+
+  <line class="row-divider" x1="670" y1="312" x2="1110" y2="312" aria-hidden="true"/>
+
+  <!-- Row 3: Portability -->
+  <text class="cell-title-domain" x="890" y="342">Follows you across every ESP</text>
+  <text class="cell-desc" x="890" y="362">Switching providers does not reset domain reputation</text>
+
+  <line class="row-divider" x1="670" y1="384" x2="1110" y2="384" aria-hidden="true"/>
+
+  <!-- Row 4: Control -->
+  <text class="cell-title-domain" x="890" y="414">100% yours to build or damage</text>
+  <text class="cell-desc" x="890" y="434">No other sender can affect your domain reputation</text>
+
+  <line class="row-divider" x1="670" y1="456" x2="1110" y2="456" aria-hidden="true"/>
+
+  <!-- Row 5: Trend -->
+  <text class="trend-increasing" x="890" y="486">↑ Increasing weight</text>
+  <text class="cell-desc" x="890" y="506">Google, Microsoft, Yahoo increasingly prioritize domain signals</text>
+
+  <line class="row-divider" x1="670" y1="528" x2="1110" y2="528" aria-hidden="true"/>
+
+  <!-- Row 6: Implication -->
+  <text class="cell-title-domain" x="890" y="560">A damaged domain follows you everywhere</text>
+  <text class="cell-desc" x="890" y="580">Fixing domain reputation requires fixing sending behavior</text>
+
+  <!-- Faint icon watermark -->
+  <circle class="icon-pos" cx="1070" cy="660" r="40" aria-hidden="true"/>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- ROW LABELS (center gutter) -->
+<!-- ============================================================ -->
+
+<g aria-hidden="true">
+  <text class="row-label" x="600" y="186">SCOPE</text>
+  <text class="row-label" x="600" y="266">KEY SIGNALS</text>
+  <text class="row-label" x="600" y="352">PORTABILITY</text>
+  <text class="row-label" x="600" y="424">CONTROL</text>
+  <text class="row-label" x="600" y="496">TREND</text>
+  <text class="row-label" x="600" y="570">IMPLICATION</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- CONVERGENCE ARROWS -->
+<!-- ============================================================ -->
+
+<!-- IP → Score (secondary, muted) -->
+<circle class="connector-dot-muted" cx="310" cy="728" r="3" aria-hidden="true"/>
+<line class="arrow-secondary" x1="310" y1="731" x2="500" y2="790"/>
+<text class="weight-label weight-secondary" x="370" y="775">Secondary</text>
+
+<!-- Domain → Score (primary, prominent) -->
+<circle class="connector-dot" cx="890" cy="728" r="3" aria-hidden="true"/>
+<line class="arrow-primary" x1="890" y1="731" x2="700" y2="790"/>
+<text class="weight-label weight-primary" x="830" y="775">Primary</text>
+
+<!-- ============================================================ -->
+<!-- REPUTATION SCORE -->
+<!-- ============================================================ -->
+
+<g id="reputation-score"
+   aria-label="Reputation score: combined from domain reputation (primary weight) and IP reputation (secondary weight)"
+   data-step="decision"
+   data-label="Reputation Score"
+   data-description="Combined reputation score weighted toward domain reputation">
+
+  <rect class="score-box" x="470" y="785" width="260" height="80" rx="12"/>
+  <text class="score-text" x="600" y="818">Reputation Score</text>
+  <text class="score-sub" x="600" y="842">Domain-weighted composite</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- BRANCHING TO OUTCOMES -->
+<!-- ============================================================ -->
+
+<circle class="connector-dot" cx="600" cy="865" r="3" aria-hidden="true"/>
+<line class="arrow-branch" x1="600" y1="868" x2="370" y2="902"/>
+<line class="arrow-branch" x1="600" y1="868" x2="600" y2="902"/>
+<line class="arrow-branch" x1="600" y1="868" x2="830" y2="902"/>
+
+<!-- ============================================================ -->
+<!-- OUTCOMES (grouped) -->
+<!-- ============================================================ -->
+
+<rect class="outcome-group" x="260" y="895" width="680" height="90" rx="14" aria-hidden="true"/>
+<text class="outcome-group-label" x="932" y="910">Placement outcomes</text>
+
+<g id="outcome-inbox"
+   aria-label="Outcome: Message delivered to inbox"
+   data-step="outcome"
+   data-label="Inbox"
+   data-description="Strong reputation results in inbox placement">
+  <rect class="outcome-inbox" x="275" y="910" width="195" height="64" rx="10"/>
+  <text class="outcome-label" x="372" y="935">Inbox</text>
+  <text class="outcome-sub" x="372" y="955">Primary delivery</text>
+</g>
+
+<g id="outcome-promotions"
+   aria-label="Outcome: Message delivered to promotions tab"
+   data-step="outcome"
+   data-label="Promotions"
+   data-description="Marketing content categorized into promotions tab">
+  <rect class="outcome-box" x="502" y="910" width="195" height="64" rx="10"/>
+  <text class="outcome-label" x="600" y="935">Promotions</text>
+  <text class="outcome-sub" x="600" y="955">Marketing tab</text>
+</g>
+
+<g id="outcome-spam"
+   aria-label="Outcome: Message delivered to spam folder"
+   data-step="outcome"
+   data-label="Spam"
+   data-description="Poor reputation results in spam folder placement">
+  <rect class="spam-outcome" x="730" y="910" width="195" height="64" rx="10"/>
+  <text class="spam-label" x="828" y="935">Spam</text>
+  <text class="outcome-sub" x="828" y="955">Spam folder</text>
+  <circle class="badge" cx="917" cy="917" r="9"/>
+  <text class="badge-text" x="917" y="918">!</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- ATTRIBUTION -->
+<!-- ============================================================ -->
+
+<a href="https://www.inboxally.com">
+  <text class="attribution" x="36" y="1040">Source: InboxAlly · inboxally.com</text>
+</a>
+<text class="attribution" x="1164" y="1040" text-anchor="end">CC BY 4.0</text>
+
+</svg>
