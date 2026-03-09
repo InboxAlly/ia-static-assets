@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     width="100%"
+     viewBox="0 0 1200 1200"
+     xml:lang="en"
+     preserveAspectRatio="xMidYMid meet"
+     role="img"
+     aria-labelledby="title desc"
+     data-source="InboxAlly Deliverability Research">
+
+<title id="title">Blocklist Remediation Flow</title>
+
+<desc id="desc">
+Blocklist remediation workflow for email deliverability. When a deliverability drop is detected,
+check major blocklists. If not listed, investigate other causes. If listed, identify which blocklist
+and severity, investigate the root cause, fix it before requesting removal, request delisting, verify
+removal, and monitor for relisting. If still listed after removal request, return to investigation.
+If relisted after clearing, the root cause was not fully resolved. The critical rule: never request
+removal until the root cause is fixed.
+</desc>
+
+<metadata>
+<rdf:RDF>
+  <cc:Work rdf:about="">
+    <dc:title>Blocklist Remediation Flow Diagram</dc:title>
+    <dc:creator>InboxAlly</dc:creator>
+    <dc:source>https://www.inboxally.com</dc:source>
+    <dc:subject>blocklist remediation, Spamhaus SBL, Spamhaus DBL, Spamcop, Barracuda, blocklist removal, delisting, spam traps, complaint rate, email deliverability, sender reputation, MXToolbox</dc:subject>
+    <dc:description>Operational workflow for detecting, diagnosing, and resolving blocklist listings with severity ratings, root cause investigation, and verification steps.</dc:description>
+    <cc:license rdf:resource="https://creativecommons.org/licenses/by/4.0/" />
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Blocklist Remediation Flow",
+  "description": "How to detect, diagnose, and resolve blocklist listings affecting email deliverability.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "InboxAlly",
+    "url": "https://www.inboxally.com"
+  },
+  "step": [
+    { "@type": "HowToStep", "position": 1, "name": "Detect Deliverability Drop", "text": "Identify symptoms: inbox placement drops, SMTP blocks increase, bounce rates spike." },
+    { "@type": "HowToStep", "position": 2, "name": "Check Blocklists", "text": "Use MXToolbox or multirbl.valli.org to check if your IP or domain is listed." },
+    { "@type": "HowToStep", "position": 3, "name": "Identify Blocklist and Severity", "text": "Determine which blocklist and assess severity. Spamhaus SBL/DBL are severe. Spamcop and Barracuda are moderate." },
+    { "@type": "HowToStep", "position": 4, "name": "Investigate Root Cause", "text": "Determine why: spam traps, high complaints, compromised account, or purchased list." },
+    { "@type": "HowToStep", "position": 5, "name": "Fix Root Cause First", "text": "Resolve the issue before requesting removal. Premature removal leads to relisting." },
+    { "@type": "HowToStep", "position": 6, "name": "Request Removal", "text": "Auto-expire (24-48h) or manual request with evidence." },
+    { "@type": "HowToStep", "position": 7, "name": "Verify and Monitor", "text": "Verify delisting. If still listed, return to investigation. If clear, monitor for relisting." }
+  ]
+}
+</script>
+
+<style>
+  .bg { fill: #F1F0ED; }
+  .header-bar { fill: #292929; }
+  .header-text { font-family: Georgia, "Times New Roman", serif; font-size: 24px; fill: #FFFFFF; dominant-baseline: middle; }
+  .header-sub { font-family: Arial, Helvetica, sans-serif; font-size: 13px; fill: #DDEFFF; letter-spacing: 1px; dominant-baseline: middle; }
+  .alert-box { fill: #FF3333; stroke: none; }
+  .alert-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 18px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .alert-sub { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 12px; text-anchor: middle; dominant-baseline: middle; opacity: 0.7; }
+  .step-box { fill: #DDEFFF; stroke: #292929; stroke-width: 1.5; }
+  .step-inner { fill: none; stroke: #0062FF; stroke-width: 1; opacity: 0.15; }
+  .step-num { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 12px; font-weight: 600; text-anchor: middle; dominant-baseline: middle; }
+  .diamond { fill: #FFFFFF; stroke: #292929; stroke-width: 1.5; }
+  .diamond-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 16px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .redirect-box { fill: #FFFFFF; stroke: #292929; stroke-width: 1; stroke-dasharray: 6 3; }
+  .bl-card { fill: #FFFFFF; stroke: #292929; stroke-width: 1; }
+  .bl-name { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 13px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+  .bl-type { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: start; dominant-baseline: middle; opacity: 0.5; }
+  .severity-high { fill: #FF3333; }
+  .severity-med { fill: #CC8800; }
+  .severity-label { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 9px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .warn-box { fill: #FFF0F0; stroke: #FF3333; stroke-width: 2; }
+  .warn-text { font-family: Arial, Helvetica, sans-serif; fill: #FF3333; font-size: 15px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .warn-sub { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; text-anchor: middle; dominant-baseline: middle; opacity: 0.6; }
+  .outcome-clear { fill: #DDEFFF; stroke: #0062FF; stroke-width: 1.5; }
+  .outcome-fail { fill: #FFF0F0; stroke: #FF3333; stroke-width: 1.5; }
+  .outcome-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 14px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .outcome-sub { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: middle; dominant-baseline: middle; opacity: 0.5; }
+  .outcome-text-fail { fill: #FF3333; }
+  .outcome-text-pass { fill: #0062FF; }
+  .return-text { font-family: Arial, Helvetica, sans-serif; fill: #FF3333; font-size: 11px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 15px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .sublabel { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; text-anchor: middle; dominant-baseline: middle; opacity: 0.55; }
+  .cause-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 13px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+  .cause-sub { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: start; dominant-baseline: middle; opacity: 0.5; }
+  .rem-label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 13px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+  .rem-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: start; dominant-baseline: middle; opacity: 0.55; }
+  .arrow { stroke: #0062FF; stroke-width: 2; marker-end: url(#arrow-blue); }
+  .arrow-muted { stroke: #292929; stroke-width: 1.5; opacity: 0.3; marker-end: url(#arrow-dark); }
+  .connector-dot { fill: #0062FF; }
+  .branch-label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; opacity: 0.5; }
+  .diag-line { stroke: #0062FF; stroke-width: 0.5; opacity: 0.06; }
+  .attribution { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #292929; opacity: 0.4; }
+  .badge { fill: #FF3333; }
+  .badge-text { font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: 700; fill: #FFFFFF; text-anchor: middle; dominant-baseline: middle; }
+  .section-line { stroke: #292929; stroke-width: 0.5; opacity: 0.08; }
+
+  @media (prefers-color-scheme: dark) {
+    .bg { fill: #1A1A1A; }
+    .header-bar { fill: #0D0D0D; }
+    .alert-box { fill: #CC2222; }
+    .step-box { fill: #1A2A3A; stroke: #4D9AFF; stroke-width: 1; }
+    .step-inner { stroke: #4D9AFF; opacity: 0.08; }
+    .step-num { fill: #4D9AFF; }
+    .diamond { fill: #2A2A2A; stroke: #666666; }
+    .diamond-text { fill: #E8E8E8; }
+    .redirect-box { fill: #2A2A2A; stroke: #666666; }
+    .bl-card { fill: #2A2A2A; stroke: #555555; }
+    .bl-name { fill: #E8E8E8; }
+    .bl-type { fill: #888888; }
+    .severity-high { fill: #FF6666; }
+    .severity-med { fill: #DDAA00; }
+    .warn-box { fill: #3A1A1A; stroke: #FF6666; }
+    .warn-text { fill: #FF6666; }
+    .warn-sub { fill: #A0A0A0; }
+    .outcome-clear { fill: #1A2A3A; stroke: #4D9AFF; }
+    .outcome-fail { fill: #3A1A1A; stroke: #FF6666; }
+    .outcome-text { fill: #E8E8E8; }
+    .outcome-sub { fill: #888888; }
+    .outcome-text-fail { fill: #FF6666; }
+    .outcome-text-pass { fill: #4D9AFF; }
+    .return-text { fill: #FF6666; }
+    .label { fill: #E8E8E8; }
+    .sublabel { fill: #A0A0A0; }
+    .cause-text { fill: #E8E8E8; }
+    .cause-sub { fill: #888888; }
+    .rem-label { fill: #E8E8E8; }
+    .rem-text { fill: #888888; }
+    .arrow { stroke: #4D9AFF; }
+    .arrow-muted { stroke: #666666; }
+    .connector-dot { fill: #4D9AFF; }
+    .branch-label { fill: #888888; }
+    .diag-line { stroke: #4D9AFF; opacity: 0.04; }
+    .attribution { fill: #888888; }
+    .section-line { stroke: #555555; }
+  }
+</style>
+
+<defs>
+  <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <polygon points="0 0, 8 3, 0 6" fill="#0062FF"/>
+  </marker>
+  <marker id="arrow-dark" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <polygon points="0 0, 8 3, 0 6" fill="#292929" opacity="0.3"/>
+  </marker>
+  <clipPath id="clip-canvas">
+    <rect x="0" y="0" width="1200" height="1200"/>
+  </clipPath>
+</defs>
+
+<rect class="bg" x="0" y="0" width="1200" height="1200"/>
+
+<g clip-path="url(#clip-canvas)" aria-hidden="true">
+  <line class="diag-line" x1="-50" y1="1200" x2="750" y2="0"/>
+  <line class="diag-line" x1="50" y1="1200" x2="850" y2="0"/>
+  <line class="diag-line" x1="150" y1="1200" x2="950" y2="0"/>
+  <line class="diag-line" x1="250" y1="1200" x2="1050" y2="0"/>
+  <line class="diag-line" x1="350" y1="1200" x2="1150" y2="0"/>
+</g>
+
+<rect class="header-bar" x="0" y="0" width="1200" height="54"/>
+<text class="header-text" x="36" y="29">Blocklist Remediation Flow</text>
+<text class="header-sub" x="1164" y="29" text-anchor="end">INBOXALLY DELIVERABILITY RESEARCH</text>
+
+<!-- ============================================================ -->
+<!-- ALERT + CHECK + DECISION -->
+<!-- ============================================================ -->
+
+<g id="step-detect" aria-label="Deliverability drop detected" data-step="1" data-label="Deliverability Drop">
+  <rect class="alert-box" x="360" y="78" width="480" height="48" rx="10"/>
+  <text class="alert-text" x="600" y="96">Deliverability Drop Detected</text>
+  <text class="alert-sub" x="600" y="114">Inbox rate drops · SMTP blocks · Bounce spikes</text>
+</g>
+
+<circle class="connector-dot" cx="600" cy="126" r="3" aria-hidden="true"/>
+<line class="arrow" x1="600" y1="129" x2="600" y2="148"/>
+
+<g id="step-check" aria-label="Check blocklists" data-step="2" data-label="Check Blocklists">
+  <rect class="step-box" x="420" y="154" width="360" height="50" rx="10"/>
+  <rect class="step-inner" x="424" y="158" width="352" height="42" rx="8"/>
+  <text class="label" x="600" y="174">Check Blocklists</text>
+  <text class="sublabel" x="600" y="192">MXToolbox · multirbl.valli.org</text>
+</g>
+
+<circle class="connector-dot" cx="600" cy="204" r="3" aria-hidden="true"/>
+<line class="arrow" x1="600" y1="207" x2="600" y2="224"/>
+
+<g id="decision-listed" aria-label="Is IP or domain listed?">
+  <polygon class="diamond" points="600,228 680,266 600,304 520,266"/>
+  <text class="diamond-text" x="600" y="266">Listed?</text>
+</g>
+
+<text class="branch-label" x="440" y="252">NO</text>
+<line class="arrow-muted" x1="520" y1="266" x2="350" y2="266"/>
+
+<g id="not-listed" aria-label="Not listed: check auth, content, engagement">
+  <rect class="redirect-box" x="150" y="240" width="190" height="54" rx="8"/>
+  <text class="sublabel" x="245" y="260" style="font-weight:bold; opacity:1;">Not a blocklist issue</text>
+  <text class="sublabel" x="245" y="278">Check auth, content, engagement</text>
+</g>
+
+<text class="branch-label" x="730" y="252">YES</text>
+<line class="arrow" x1="680" y1="266" x2="780" y2="266"/>
+<line class="arrow" x1="780" y1="266" x2="780" y2="322"/>
+
+<!-- ============================================================ -->
+<!-- IDENTIFY + SEVERITY CARD (full width row) -->
+<!-- ============================================================ -->
+
+<line class="section-line" x1="60" y1="316" x2="1140" y2="316" aria-hidden="true"/>
+
+<g id="step-identify" aria-label="Identify blocklist and severity" data-step="3" data-label="Identify Blocklist">
+  <rect class="step-box" x="120" y="330" width="380" height="56" rx="10"/>
+  <rect class="step-inner" x="124" y="334" width="372" height="48" rx="8"/>
+  <text class="step-num" x="310" y="348">STEP 1 — IDENTIFY</text>
+  <text class="label" x="310" y="370">Which blocklist? How severe?</text>
+</g>
+
+<g id="blocklist-reference" aria-label="Blocklist severity reference">
+  <rect class="bl-card" x="540" y="330" width="600" height="120" rx="8"/>
+
+  <rect class="severity-high" x="564" y="344" width="56" height="18" rx="4"/>
+  <text class="severity-label" x="592" y="354">SEVERE</text>
+  <text class="bl-name" x="632" y="354">Spamhaus SBL</text>
+  <text class="bl-type" x="810" y="354">IP-based · used by all major providers</text>
+
+  <rect class="severity-high" x="564" y="370" width="56" height="18" rx="4"/>
+  <text class="severity-label" x="592" y="380">SEVERE</text>
+  <text class="bl-name" x="632" y="380">Spamhaus DBL</text>
+  <text class="bl-type" x="810" y="380">Domain-based · follows you across ESPs</text>
+
+  <rect class="severity-med" x="564" y="402" width="44" height="18" rx="4"/>
+  <text class="severity-label" x="586" y="412">MOD</text>
+  <text class="bl-name" x="620" y="412">Spamcop</text>
+  <text class="bl-type" x="810" y="412">IP-based · auto-expires if abuse stops</text>
+
+  <rect class="severity-med" x="564" y="428" width="44" height="18" rx="4"/>
+  <text class="severity-label" x="586" y="438">MOD</text>
+  <text class="bl-name" x="620" y="438">Barracuda BRBL</text>
+  <text class="bl-type" x="810" y="438">IP-based · manual removal available</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- INVESTIGATE + FIX WARNING (side by side) -->
+<!-- ============================================================ -->
+
+<line class="arrow" x1="310" y1="386" x2="310" y2="478"/>
+
+<g id="step-investigate" aria-label="Investigate root cause" data-step="4" data-label="Investigate Root Cause">
+  <rect class="step-box" x="120" y="484" width="460" height="110" rx="10"/>
+  <rect class="step-inner" x="124" y="488" width="452" height="102" rx="8"/>
+  <text class="step-num" x="350" y="502">STEP 2 — INVESTIGATE</text>
+  <text class="label" x="350" y="524">Root Cause</text>
+
+  <text class="cause-text" x="150" y="550">Spam trap hits</text>
+  <text class="cause-sub" x="150" y="566">Recycled or pristine traps</text>
+
+  <text class="cause-text" x="380" y="550">High complaint rate</text>
+  <text class="cause-sub" x="380" y="566">Reports exceeding 0.1%</text>
+
+  <text class="cause-text" x="150" y="582" style="font-size:12px;">Compromised account</text>
+
+  <text class="cause-text" x="380" y="582" style="font-size:12px;">Purchased / scraped list</text>
+</g>
+
+<line class="arrow" x1="580" y1="540" x2="640" y2="540"/>
+
+<g id="step-fix" aria-label="Fix root cause FIRST" data-step="5" data-label="Fix Root Cause First">
+  <rect class="warn-box" x="650" y="498" width="480" height="80" rx="10"/>
+  <circle class="badge" cx="682" cy="528" r="12"/>
+  <text class="badge-text" x="682" y="529">!</text>
+  <text class="warn-text" x="895" y="528">Fix Root Cause FIRST</text>
+  <text class="warn-sub" x="895" y="548">Do not request removal until the issue is resolved</text>
+  <text class="warn-sub" x="895" y="564">Premature removal → relisting → longer ban</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- REQUEST REMOVAL + VERIFY (side by side) -->
+<!-- ============================================================ -->
+
+<line class="section-line" x1="60" y1="620" x2="1140" y2="620" aria-hidden="true"/>
+
+<line class="arrow" x1="350" y1="594" x2="350" y2="646"/>
+
+<g id="step-removal" aria-label="Request removal" data-step="6" data-label="Request Removal">
+  <rect class="step-box" x="120" y="652" width="460" height="76" rx="10"/>
+  <rect class="step-inner" x="124" y="656" width="452" height="68" rx="8"/>
+  <text class="step-num" x="350" y="670">STEP 3 — REQUEST REMOVAL</text>
+
+  <text class="rem-label" x="150" y="696">Auto-expire</text>
+  <text class="rem-text" x="150" y="712">24–48h if abuse stops (Spamcop)</text>
+
+  <text class="rem-label" x="380" y="696">Manual request</text>
+  <text class="rem-text" x="380" y="712">Submit evidence of fix (Spamhaus)</text>
+</g>
+
+<line class="arrow" x1="580" y1="690" x2="650" y2="690"/>
+
+<g id="step-verify" aria-label="Verify delisting" data-step="7" data-label="Verify Delisting">
+  <rect class="step-box" x="660" y="664" width="280" height="56" rx="10"/>
+  <rect class="step-inner" x="664" y="668" width="272" height="48" rx="8"/>
+  <text class="step-num" x="800" y="680">STEP 4</text>
+  <text class="label" x="800" y="700">Verify Delisting</text>
+</g>
+
+<!-- Verify outcomes -->
+<circle class="connector-dot" cx="800" cy="720" r="3" aria-hidden="true"/>
+<line class="arrow" x1="800" y1="723" x2="700" y2="766"/>
+<line class="arrow" x1="800" y1="723" x2="920" y2="766"/>
+
+<g id="verify-clear">
+  <rect class="outcome-clear" x="600" y="772" width="200" height="50" rx="8"/>
+  <text class="outcome-text outcome-text-pass" x="700" y="792">Clear</text>
+  <text class="outcome-sub" x="700" y="810">Listing removed</text>
+</g>
+
+<g id="verify-still-listed">
+  <rect class="outcome-fail" x="830" y="772" width="200" height="60" rx="8"/>
+  <text class="outcome-text outcome-text-fail" x="930" y="790">Still Listed</text>
+  <text class="outcome-sub" x="930" y="808">Request not yet processed</text>
+  <text class="return-text" x="930" y="824">↩ Return to Step 2</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- MONITOR FOR RELISTING -->
+<!-- ============================================================ -->
+
+<line class="section-line" x1="60" y1="850" x2="1140" y2="850" aria-hidden="true"/>
+
+<line class="arrow" x1="700" y1="822" x2="700" y2="870"/>
+
+<g id="step-monitor" aria-label="Monitor for relisting" data-step="8" data-label="Monitor for Relisting">
+  <rect class="step-box" x="520" y="876" width="360" height="56" rx="10"/>
+  <rect class="step-inner" x="524" y="880" width="352" height="48" rx="8"/>
+  <text class="step-num" x="700" y="892">STEP 5</text>
+  <text class="label" x="700" y="912">Monitor for Relisting</text>
+</g>
+
+<!-- Monitor outcomes -->
+<circle class="connector-dot" cx="700" cy="932" r="3" aria-hidden="true"/>
+<line class="arrow" x1="700" y1="935" x2="540" y2="970"/>
+<line class="arrow" x1="700" y1="935" x2="880" y2="970"/>
+
+<g id="monitor-stable">
+  <rect class="outcome-clear" x="420" y="978" width="240" height="50" rx="8"/>
+  <text class="outcome-text outcome-text-pass" x="540" y="998">Stable</text>
+  <text class="outcome-sub" x="540" y="1016">Remediation successful</text>
+</g>
+
+<g id="monitor-relisted">
+  <rect class="outcome-fail" x="770" y="978" width="240" height="60" rx="8"/>
+  <text class="outcome-text outcome-text-fail" x="890" y="996">Relisted</text>
+  <text class="outcome-sub" x="890" y="1014">Root cause not fully fixed</text>
+  <text class="return-text" x="890" y="1030">↩ Return to Step 2</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- CRITICAL RULE -->
+<!-- ============================================================ -->
+
+<g id="key-rule" aria-label="Never request removal until the root cause is fixed">
+  <rect class="alert-box" x="250" y="1070" width="700" height="42" rx="8" style="opacity:0.9;"/>
+  <text class="alert-text" x="600" y="1088" style="font-size:15px;">Never request removal until the root cause is fixed</text>
+  <text class="alert-sub" x="600" y="1104">Or relisting is inevitable</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- ATTRIBUTION -->
+<!-- ============================================================ -->
+
+<a href="https://www.inboxally.com">
+  <text class="attribution" x="36" y="1180">Source: InboxAlly · inboxally.com</text>
+</a>
+<text class="attribution" x="1164" y="1180" text-anchor="end">CC BY 4.0</text>
+
+</svg>
