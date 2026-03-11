@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     width="100%"
+     viewBox="0 0 1200 980"
+     xml:lang="en"
+     preserveAspectRatio="xMidYMid meet"
+     role="img"
+     aria-labelledby="title desc"
+     data-source="InboxAlly Deliverability Research">
+
+<title id="title">Provider Email Authentication Requirements</title>
+
+<desc id="desc">
+Side-by-side comparison of bulk sender authentication requirements enforced by Google Gmail,
+Microsoft Outlook, and Yahoo Mail. All three providers require SPF, DKIM, and DMARC authentication
+with at least p=none policy and alignment with SPF or DKIM for senders sending 5,000 or more
+messages per day. Google enforces a spam complaint rate below 0.1% with a hard maximum of 0.3%.
+Microsoft and Yahoo both set the threshold at 0.3%. Google and Yahoo require one-click unsubscribe
+via RFC 8058 for marketing messages; Microsoft recommends it. Google began enforcement in February
+2024 and escalated to strict 5xx rejection in November 2025. Microsoft began routing non-compliant mail to Junk in May 2025 with full rejection to follow.
+Yahoo began gradual enforcement in February 2024. Non-compliant messages face rejection at the
+gateway or filtering to spam, depending on provider and violation severity. All data sourced directly from official provider
+documentation.
+</desc>
+
+<metadata>
+<rdf:RDF>
+  <cc:Work rdf:about="">
+    <dc:title>Provider Email Authentication Requirements Comparison</dc:title>
+    <dc:creator>InboxAlly</dc:creator>
+    <dc:source>https://www.inboxally.com</dc:source>
+    <dc:subject>bulk sender requirements, email authentication, SPF, DKIM, DMARC, Google Gmail requirements, Microsoft Outlook requirements, Yahoo Mail requirements, spam complaint threshold, one-click unsubscribe, RFC 8058, email deliverability, sender compliance, 5000 emails per day</dc:subject>
+    <dc:description>Comparison of Google, Microsoft, and Yahoo bulk sender authentication requirements, sourced from official provider documentation. Covers SPF, DKIM, DMARC, alignment, spam rate thresholds, one-click unsubscribe, enforcement dates, and non-compliance consequences.</dc:description>
+    <cc:license rdf:resource="https://creativecommons.org/licenses/by/4.0/" />
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Table",
+  "name": "Provider Email Authentication Requirements",
+  "description": "Comparison of bulk sender requirements from Google Gmail, Microsoft Outlook, and Yahoo Mail. All require SPF, DKIM, DMARC with p=none minimum for senders of 5,000+ emails/day. Google enforces 0.1% spam rate target with 0.3% maximum. Non-compliant mail faces rejection or spam filtering.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "InboxAlly",
+    "url": "https://www.inboxally.com"
+  },
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Google Gmail Bulk Sender Requirements",
+      "description": "SPF, DKIM, DMARC required. Spam rate below 0.1%, max 0.3%. One-click unsubscribe required. Enforced Feb 2024, strict 5xx rejection Nov 2025.",
+      "url": "https://support.google.com/a/answer/81126"
+    },
+    {
+      "@type": "Thing",
+      "name": "Microsoft Outlook Bulk Sender Requirements",
+      "description": "SPF, DKIM, DMARC required. Spam rate below 0.3%. One-click unsubscribe strongly recommended. Enforced May 2025 with Junk routing first, then rejection.",
+      "url": "https://techcommunity.microsoft.com/blog/microsoftdefenderforoffice365blog/strengthening-email-ecosystem-outlook%E2%80%99s-new-requirements-for-high%E2%80%90volume-senders/4399730"
+    },
+    {
+      "@type": "Thing",
+      "name": "Yahoo Mail Bulk Sender Requirements",
+      "description": "SPF, DKIM, DMARC required. Spam rate below 0.3%. One-click unsubscribe required. Enforced Feb 2024 with gradual rollout.",
+      "url": "https://senders.yahooinc.com/best-practices/"
+    }
+  ]
+}
+</script>
+
+<style>
+  .bg { fill: #F1F0ED; }
+  .header-bar { fill: #292929; }
+  .header-text { font-family: Georgia, "Times New Roman", serif; font-size: 24px; fill: #FFFFFF; dominant-baseline: middle; }
+  .header-sub { font-family: Arial, Helvetica, sans-serif; font-size: 13px; fill: #DDEFFF; letter-spacing: 1px; dominant-baseline: middle; }
+
+  /* Column headers */
+  .col-header { fill: #0062FF; }
+  .col-header-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 20px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .col-header-sub { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 11px; text-anchor: middle; dominant-baseline: middle; opacity: 0.7; }
+
+  /* Row labels */
+  .row-label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 14px; font-weight: bold; text-anchor: end; dominant-baseline: middle; }
+  .row-label-sub { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; font-weight: normal; text-anchor: end; dominant-baseline: middle; opacity: 0.5; }
+  .row-bg-alt { fill: #FFFFFF; opacity: 0.4; }
+
+  /* Cell content */
+  .cell-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 14px; text-anchor: middle; dominant-baseline: middle; }
+  .cell-sub { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: middle; dominant-baseline: middle; opacity: 0.5; }
+  .cell-check { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 16px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .cell-rec { font-family: Arial, Helvetica, sans-serif; fill: #CC8800; font-size: 13px; text-anchor: middle; dominant-baseline: middle; }
+  .cell-bold { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 14px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .cell-code { font-family: "Courier New", monospace; fill: #0062FF; font-size: 11px; text-anchor: middle; dominant-baseline: middle; }
+  .cell-emphasis { font-family: Arial, Helvetica, sans-serif; fill: #FF3333; font-size: 13px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+
+  /* Threshold highlight */
+  .threshold-box { fill: #FFF0F0; stroke: #FF3333; stroke-width: 1; }
+  .threshold-text { font-family: Arial, Helvetica, sans-serif; fill: #FF3333; font-size: 13px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .target-box { fill: #DDEFFF; stroke: #0062FF; stroke-width: 1; }
+  .target-text { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 13px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+
+  /* Takeaway bar */
+  .takeaway-bar { fill: #292929; }
+  .takeaway-text { font-family: Arial, Helvetica, sans-serif; font-size: 15px; fill: #FFFFFF; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .takeaway-sub { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #FFFFFF; text-anchor: middle; dominant-baseline: middle; opacity: 0.6; }
+
+  /* Sources */
+  .source-label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; font-weight: bold; text-anchor: start; dominant-baseline: middle; opacity: 0.5; }
+  .source-text { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 11px; text-anchor: start; dominant-baseline: middle; }
+
+  /* Grid */
+  .grid-line { stroke: #292929; stroke-width: 0.5; opacity: 0.08; }
+  .col-divider { stroke: #292929; stroke-width: 0.5; opacity: 0.12; }
+
+  .diag-line { stroke: #0062FF; stroke-width: 0.5; opacity: 0.06; }
+  .attribution { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #292929; opacity: 0.4; }
+
+  @media (prefers-color-scheme: dark) {
+    .bg { fill: #1A1A1A; }
+    .header-bar { fill: #0D0D0D; }
+    .col-header { fill: #4D9AFF; }
+    .row-label { fill: #E8E8E8; }
+    .row-label-sub { fill: #E8E8E8; }
+    .row-bg-alt { fill: #252525; opacity: 0.6; }
+    .cell-text { fill: #D0D0D0; }
+    .cell-sub { fill: #888888; }
+    .cell-check { fill: #4D9AFF; }
+    .cell-rec { fill: #DDAA00; }
+    .cell-bold { fill: #E8E8E8; }
+    .cell-code { fill: #4D9AFF; }
+    .cell-emphasis { fill: #FF6666; }
+    .threshold-box { fill: #3A1A1A; stroke: #FF6666; }
+    .threshold-text { fill: #FF6666; }
+    .target-box { fill: #1A2A3A; stroke: #4D9AFF; }
+    .target-text { fill: #4D9AFF; }
+    .takeaway-bar { fill: #0D0D0D; }
+    .takeaway-text { fill: #E8E8E8; }
+    .takeaway-sub { fill: #E8E8E8; }
+    .source-label { fill: #888888; }
+    .source-text { fill: #4D9AFF; }
+    .grid-line { stroke: #444444; }
+    .col-divider { stroke: #444444; }
+    .diag-line { stroke: #4D9AFF; opacity: 0.04; }
+    .attribution { fill: #888888; }
+  }
+</style>
+
+<defs>
+  <clipPath id="clip-canvas">
+    <rect x="0" y="0" width="1200" height="980"/>
+  </clipPath>
+</defs>
+
+<rect class="bg" x="0" y="0" width="1200" height="980"/>
+
+<g clip-path="url(#clip-canvas)" aria-hidden="true">
+  <line class="diag-line" x1="-50" y1="980" x2="650" y2="0"/>
+  <line class="diag-line" x1="50" y1="980" x2="750" y2="0"/>
+  <line class="diag-line" x1="150" y1="980" x2="850" y2="0"/>
+  <line class="diag-line" x1="250" y1="980" x2="950" y2="0"/>
+  <line class="diag-line" x1="350" y1="980" x2="1050" y2="0"/>
+  <line class="diag-line" x1="450" y1="980" x2="1150" y2="0"/>
+</g>
+
+<rect class="header-bar" x="0" y="0" width="1200" height="54"/>
+<text class="header-text" x="36" y="29">Provider Email Authentication Requirements</text>
+<text class="header-sub" x="1164" y="29" text-anchor="end">INBOXALLY DELIVERABILITY RESEARCH</text>
+
+<!-- ============================================================ -->
+<!-- COLUMN HEADERS                                                -->
+<!-- ============================================================ -->
+
+<g id="col-google"
+   aria-label="Column: Google Gmail requirements for bulk senders"
+   data-column="1"
+   data-label="Google"
+   data-description="Gmail bulk sender authentication requirements">
+  <rect class="col-header" x="240" y="74" width="270" height="70" rx="10"/>
+  <text class="col-header-text" x="375" y="100">Google</text>
+  <text class="col-header-sub" x="375" y="122">Gmail · @gmail.com</text>
+</g>
+
+<g id="col-microsoft"
+   aria-label="Column: Microsoft Outlook requirements for bulk senders"
+   data-column="2"
+   data-label="Microsoft"
+   data-description="Outlook, Hotmail, and Live bulk sender authentication requirements">
+  <rect class="col-header" x="524" y="74" width="270" height="70" rx="10"/>
+  <text class="col-header-text" x="659" y="100">Microsoft</text>
+  <text class="col-header-sub" x="659" y="122">Outlook · Hotmail · Live</text>
+</g>
+
+<g id="col-yahoo"
+   aria-label="Column: Yahoo Mail requirements for bulk senders"
+   data-column="3"
+   data-label="Yahoo"
+   data-description="Yahoo Mail and AOL bulk sender authentication requirements">
+  <rect class="col-header" x="808" y="74" width="270" height="70" rx="10"/>
+  <text class="col-header-text" x="943" y="100">Yahoo</text>
+  <text class="col-header-sub" x="943" y="122">Yahoo Mail · AOL</text>
+</g>
+
+<!-- Column dividers -->
+<line class="col-divider" x1="518" y1="160" x2="518" y2="810" aria-hidden="true"/>
+<line class="col-divider" x1="802" y1="160" x2="802" y2="810" aria-hidden="true"/>
+
+<!-- ============================================================ -->
+<!-- ROW 1: Applies to (y=160-220)                                 -->
+<!-- ============================================================ -->
+<g id="row-applies-to"
+   aria-label="Applies to: Google requires 5,000+ emails per day to personal Gmail accounts. Microsoft requires 5,000+ emails per day to Outlook.com, Hotmail, and Live. Yahoo applies to bulk senders to Yahoo Mail addresses."
+   data-row="1"
+   data-label="Applies to"
+   data-description="Volume thresholds and recipient domains triggering bulk sender requirements">
+  <rect class="row-bg-alt" x="40" y="160" width="1100" height="60" rx="4" aria-hidden="true"/>
+  <text class="row-label" x="220" y="190">Applies to</text>
+  <text class="cell-bold" x="375" y="182">5,000+ emails/day</text>
+  <text class="cell-sub" x="375" y="200">to personal Gmail accounts</text>
+  <text class="cell-bold" x="659" y="182">5,000+ emails/day</text>
+  <text class="cell-sub" x="659" y="200">to Outlook.com, Hotmail, Live</text>
+  <text class="cell-bold" x="943" y="182">Bulk senders</text>
+  <text class="cell-sub" x="943" y="200">to Yahoo Mail addresses</text>
+</g>
+
+<line class="grid-line" x1="40" y1="220" x2="1140" y2="220" aria-hidden="true"/>
+
+<!-- ============================================================ -->
+<!-- ROW 2: SPF (y=220-270)                                        -->
+<!-- ============================================================ -->
+<g id="row-spf"
+   aria-label="SPF: Required by Google, Microsoft, and Yahoo"
+   data-row="2"
+   data-label="SPF"
+   data-description="Sender Policy Framework authentication required by all three providers">
+  <text class="row-label" x="220" y="245">SPF</text>
+  <text class="cell-check" x="375" y="245">&#x2713; Required</text>
+  <text class="cell-check" x="659" y="245">&#x2713; Required</text>
+  <text class="cell-check" x="943" y="245">&#x2713; Required</text>
+</g>
+
+<line class="grid-line" x1="40" y1="270" x2="1140" y2="270" aria-hidden="true"/>
+
+<!-- ============================================================ -->
+<!-- ROW 3: DKIM (y=270-320)                                       -->
+<!-- ============================================================ -->
+<g id="row-dkim"
+   aria-label="DKIM: Required by Google, Microsoft, and Yahoo"
+   data-row="3"
+   data-label="DKIM"
+   data-description="DomainKeys Identified Mail authentication required by all three providers">
+  <rect class="row-bg-alt" x="40" y="270" width="1100" height="50" rx="4" aria-hidden="true"/>
+  <text class="row-label" x="220" y="295">DKIM</text>
+  <text class="cell-check" x="375" y="295">&#x2713; Required</text>
+  <text class="cell-check" x="659" y="295">&#x2713; Required</text>
+  <text class="cell-check" x="943" y="295">&#x2713; Required</text>
+</g>
+
+<line class="grid-line" x1="40" y1="320" x2="1140" y2="320" aria-hidden="true"/>
+
+<!-- ============================================================ -->
+<!-- ROW 4: DMARC (y=320-380)                                      -->
+<!-- ============================================================ -->
+<g id="row-dmarc"
+   aria-label="DMARC: Required by all three providers with p=none minimum policy"
+   data-row="4"
+   data-label="DMARC"
+   data-description="Domain-based Message Authentication required with at least p=none policy">
+  <text class="row-label" x="220" y="342">DMARC</text>
+  <text class="cell-check" x="375" y="336">&#x2713; Required</text>
+  <text class="cell-sub" x="375" y="356">p=none minimum</text>
+  <text class="cell-check" x="659" y="336">&#x2713; Required</text>
+  <text class="cell-sub" x="659" y="356">p=none minimum</text>
+  <text class="cell-check" x="943" y="336">&#x2713; Required</text>
+  <text class="cell-sub" x="943" y="356">p=none minimum</text>
+</g>
+
+<line class="grid-line" x1="40" y1="380" x2="1140" y2="380" aria-hidden="true"/>
+
+<!-- ============================================================ -->
+<!-- ROW 5: DMARC Alignment (y=380-430)                            -->
+<!-- ============================================================ -->
+<g id="row-alignment"
+   aria-label="DMARC Alignment: Google and Yahoo require SPF or DKIM alignment. Microsoft prefers both aligned."
+   data-row="5"
+   data-label="DMARC Alignment"
+   data-description="Whether SPF or DKIM must align with the From domain for DMARC to pass">
+  <rect class="row-bg-alt" x="40" y="380" width="1100" height="50" rx="4" aria-hidden="true"/>
+  <text class="row-label" x="220" y="405">DMARC Alignment</text>
+  <text class="cell-text" x="375" y="405">SPF or DKIM</text>
+  <text class="cell-text" x="659" y="398">SPF or DKIM</text>
+  <text class="cell-sub" x="659" y="416">(preferably both)</text>
+  <text class="cell-text" x="943" y="405">SPF or DKIM</text>
+</g>
+
+<line class="grid-line" x1="40" y1="430" x2="1140" y2="430" aria-hidden="true"/>
+
+<!-- ============================================================ -->
+<!-- ROW 6: Spam Rate (y=430-510) — the key differentiator         -->
+<!-- ============================================================ -->
+<g id="row-spam-rate"
+   aria-label="Spam Rate: Google enforces a two-tier system with 0.1% target and 0.3% hard maximum. Microsoft and Yahoo enforce 0.3% maximum."
+   data-row="6"
+   data-label="Spam Rate"
+   data-description="Maximum spam complaint rate thresholds enforced by each provider">
+  <text class="row-label" x="220" y="470">Spam Rate</text>
+
+  <!-- Google: two thresholds -->
+  <rect class="target-box" x="310" y="442" width="130" height="24" rx="6"/>
+  <text class="target-text" x="375" y="455">&lt;0.1% target</text>
+  <rect class="threshold-box" x="310" y="474" width="130" height="24" rx="6"/>
+  <text class="threshold-text" x="375" y="487">&lt;0.3% maximum</text>
+
+  <!-- Microsoft -->
+  <rect class="threshold-box" x="594" y="458" width="130" height="24" rx="6"/>
+  <text class="threshold-text" x="659" y="471">&lt;0.3%</text>
+
+  <!-- Yahoo -->
+  <rect class="threshold-box" x="878" y="458" width="130" height="24" rx="6"/>
+  <text class="threshold-text" x="943" y="471">&lt;0.3%</text>
+</g>
+
+<line class="grid-line" x1="40" y1="510" x2="1140" y2="510" aria-hidden="true"/>
+
+<!-- ============================================================ -->
+<!-- ROW 7: One-Click Unsubscribe (y=510-570)                      -->
+<!-- ============================================================ -->
+<g id="row-unsubscribe"
+   aria-label="One-Click Unsubscribe: Required by Google and Yahoo via RFC 8058 for marketing messages. Recommended but not mandatory by Microsoft."
+   data-row="7"
+   data-label="One-Click Unsubscribe"
+   data-description="RFC 8058 one-click unsubscribe header requirement for marketing and promotional email">
+  <rect class="row-bg-alt" x="40" y="510" width="1100" height="60" rx="4" aria-hidden="true"/>
+  <text class="row-label" x="220" y="533">One-Click</text>
+  <text class="row-label-sub" x="220" y="551">Unsubscribe</text>
+  <text class="cell-check" x="375" y="533">&#x2713; Required</text>
+  <text class="cell-sub" x="375" y="553">RFC 8058 · marketing only</text>
+  <text class="cell-rec" x="659" y="533">Strongly recommended</text>
+  <text class="cell-sub" x="659" y="553">not yet mandatory</text>
+  <text class="cell-check" x="943" y="533">&#x2713; Required</text>
+  <text class="cell-sub" x="943" y="553">RFC 8058 · marketing only</text>
+</g>
+
+<line class="grid-line" x1="40" y1="570" x2="1140" y2="570" aria-hidden="true"/>
+
+<!-- ============================================================ -->
+<!-- ROW 8: Enforcement Date (y=570-640)                           -->
+<!-- ============================================================ -->
+<g id="row-enforcement"
+   aria-label="Enforcement: Google began February 2024, ramping to strict rejection from November 2025. Microsoft began May 2025 with Junk routing first, then rejection. Yahoo began February 2024 with gradual rollout."
+   data-row="8"
+   data-label="Enforcement"
+   data-description="When each provider began enforcing bulk sender requirements and the enforcement mechanism">
+  <text class="row-label" x="220" y="598">Enforcement</text>
+  <text class="cell-bold" x="375" y="588">Feb 2024</text>
+  <text class="cell-sub" x="375" y="606">Ramping to strict</text>
+  <text class="cell-sub" x="375" y="622">rejection from Nov 2025</text>
+  <text class="cell-bold" x="659" y="588">May 2025</text>
+  <text class="cell-sub" x="659" y="606">Junk folder first,</text>
+  <text class="cell-sub" x="659" y="622">then rejection</text>
+  <text class="cell-bold" x="943" y="588">Feb 2024</text>
+  <text class="cell-sub" x="943" y="606">Gradual rollout</text>
+  <text class="cell-sub" x="943" y="622">Q1 2024 onward</text>
+</g>
+
+<line class="grid-line" x1="40" y1="645" x2="1140" y2="645" aria-hidden="true"/>
+
+<!-- ============================================================ -->
+<!-- ROW 9: Non-compliance action (y=645-710)                      -->
+<!-- ============================================================ -->
+<g id="row-non-compliance"
+   aria-label="Non-compliance action: Google rejects at the gateway. Microsoft routes to Junk folder first, then rejects. Yahoo filters or rejects depending on violation."
+   data-row="9"
+   data-label="Non-compliance action"
+   data-description="What happens to bulk mail that does not meet authentication requirements">
+  <rect class="row-bg-alt" x="40" y="645" width="1100" height="60" rx="4" aria-hidden="true"/>
+  <text class="row-label" x="220" y="668">Non-compliant</text>
+  <text class="row-label-sub" x="220" y="686">action</text>
+  <text class="cell-emphasis" x="375" y="668">Rejected</text>
+  <text class="cell-sub" x="375" y="688">at the gateway</text>
+  <text class="cell-emphasis" x="659" y="668">Junk → Rejection</text>
+  <text class="cell-sub" x="659" y="688">phased enforcement</text>
+  <text class="cell-emphasis" x="943" y="668">Filtered / rejected</text>
+  <text class="cell-sub" x="943" y="688">varies by violation</text>
+</g>
+
+<line class="grid-line" x1="40" y1="710" x2="1140" y2="710" aria-hidden="true"/>
+
+<!-- ============================================================ -->
+<!-- ROW 10: Monitoring Tool (y=710-770)                           -->
+<!-- ============================================================ -->
+<g id="row-monitoring"
+   aria-label="Monitoring tools: Google Postmaster Tools, Microsoft SNDS and JMRP, Yahoo Sender Hub with Complaint Feedback Loop"
+   data-row="10"
+   data-label="Monitoring"
+   data-description="Free tools provided by each mailbox provider for senders to monitor reputation and deliverability">
+  <text class="row-label" x="220" y="740">Monitoring</text>
+  <text class="cell-text" x="375" y="732">Google Postmaster</text>
+  <text class="cell-sub" x="375" y="750">Tools</text>
+  <text class="cell-text" x="659" y="732">SNDS + JMRP</text>
+  <text class="cell-sub" x="659" y="750">Smart Network Data Services</text>
+  <text class="cell-text" x="943" y="732">Yahoo Sender Hub</text>
+  <text class="cell-sub" x="943" y="750">Complaint Feedback Loop</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- KEY TAKEAWAY                                                  -->
+<!-- ============================================================ -->
+<g id="takeaway"
+   aria-label="Key takeaway: All three providers now require SPF, DKIM, and DMARC for bulk senders. Non-compliant mail faces rejection or spam filtering."
+   data-row="takeaway"
+   data-label="Key Takeaway"
+   data-description="Summary conclusion of the comparison">
+  <rect class="takeaway-bar" x="120" y="785" width="960" height="46" rx="8"/>
+  <text class="takeaway-text" x="600" y="802">All three providers now require SPF + DKIM + DMARC for bulk senders</text>
+  <text class="takeaway-sub" x="600" y="822">Non-compliant mail faces rejection or spam filtering — authenticate or lose delivery</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- SOURCES                                                       -->
+<!-- ============================================================ -->
+
+<text class="source-text" x="600" y="864" style="text-anchor: middle;">Data from support.google.com/a/answer/81126 (Oct 2023, updated Dec 2024) · techcommunity.microsoft.com (Apr 2025) · senders.yahooinc.com (Feb 2024)</text>
+
+<!-- ============================================================ -->
+<!-- ATTRIBUTION                                                   -->
+<!-- ============================================================ -->
+
+<a href="https://www.inboxally.com">
+  <text class="attribution" x="36" y="960">Source: InboxAlly · inboxally.com</text>
+</a>
+<text class="attribution" x="1164" y="960" text-anchor="end">CC BY 4.0</text>
+
+</svg>
