@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     width="100%"
+     viewBox="0 0 1200 1160"
+     xml:lang="en"
+     preserveAspectRatio="xMidYMid meet"
+     role="img"
+     aria-labelledby="title desc"
+     data-source="InboxAlly Deliverability Research">
+
+<title id="title">Gmail by the Numbers</title>
+
+<desc id="desc">
+Gmail statistics sourced exclusively from Google's official blog posts and documentation. Gmail has
+3 billion active users as of January 2026, up from 2.5 billion in December 2024 and 1.5 billion
+in April 2019. Gmail's AI-powered defenses block more than 99.9% of spam, phishing, and malware,
+stopping approximately 15 billion unwanted emails every day. Gmail blocks more than 100 million
+phishing emails daily and scans over 300 billion email attachments weekly for malware, with 63%
+of malicious documents being different from day to day. A new large language model deployed in 2024
+blocks 20% more spam than previous models and reviews 1,000 times more user-reported spam daily.
+After Google required sender authentication in 2023, unauthenticated messages dropped 75%. Users
+reported 35% fewer scams hitting their inboxes during the 2024 holiday season compared to 2023.
+During a two-week holiday period in 2022, Gmail blocked 231 billion spam and phishing messages.
+Google requires bulk senders of 5,000 or more messages per day to maintain a spam complaint rate
+below 0.1% (target) and never exceed 0.3%, authenticate with SPF, DKIM, and DMARC, and support
+one-click unsubscribe. Non-compliant mail has been rejected with 5xx codes since November 2025.
+</desc>
+
+<metadata>
+<rdf:RDF>
+  <cc:Work rdf:about="">
+    <dc:title>Gmail by the Numbers</dc:title>
+    <dc:creator>InboxAlly</dc:creator>
+    <dc:source>https://www.inboxally.com</dc:source>
+    <dc:subject>Gmail statistics, Gmail users, 3 billion, spam blocked, phishing blocked, 99.9 percent, 15 billion, sender requirements, bulk sender, spam rate threshold, authentication, SPF, DKIM, DMARC, email deliverability, Gmail security, AI spam filtering, LLM</dc:subject>
+    <dc:description>Official Gmail statistics organized into four tiers — scale (3B users, 15B blocked/day, 300B attachments/week), protection (99.9% block rate, 100M+ phishing/day, LLM improvements), sender requirement impact (75% auth drop, 35% fewer scams), and compliance thresholds (spam rate, authentication, unsubscribe).</dc:description>
+    <cc:license rdf:resource="https://creativecommons.org/licenses/by/4.0/" />
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Gmail by the Numbers",
+  "description": "Gmail statistics sourced from Google's official blog posts and documentation, covering user scale, security protection metrics, policy impact, and sender requirements.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "InboxAlly",
+    "url": "https://www.inboxally.com"
+  },
+  "creator": {
+    "@type": "Organization",
+    "name": "Google",
+    "url": "https://www.google.com"
+  },
+  "url": "https://www.inboxally.com",
+  "temporalCoverage": "2019/2026",
+  "variableMeasured": [
+    { "@type": "PropertyValue", "name": "Gmail active users", "value": "3 billion", "unitText": "users", "measurementTechnique": "Google official statement, January 2026" },
+    { "@type": "PropertyValue", "name": "Spam/phishing/malware block rate", "value": "99.9%", "unitText": "percent", "measurementTechnique": "Google official statement, confirmed multiple times 2023-2025" },
+    { "@type": "PropertyValue", "name": "Unwanted emails blocked daily", "value": "15 billion", "unitText": "emails per day", "measurementTechnique": "Google official statement, confirmed multiple times 2022-2024" },
+    { "@type": "PropertyValue", "name": "Unauthenticated message reduction", "value": "75%", "unitText": "percent decrease", "measurementTechnique": "Google official statement, October 2023" },
+    { "@type": "PropertyValue", "name": "Holiday scam reports reduction", "value": "35%", "unitText": "percent decrease", "measurementTechnique": "Google official statement, December 2024" }
+  ]
+}
+</script>
+
+<style>
+  .bg { fill: #F1F0ED; }
+  .header-bar { fill: #292929; }
+  .header-text { font-family: Georgia, "Times New Roman", serif; font-size: 24px; fill: #FFFFFF; dominant-baseline: middle; }
+  .header-sub { font-family: Arial, Helvetica, sans-serif; font-size: 13px; fill: #DDEFFF; letter-spacing: 1px; dominant-baseline: middle; }
+
+  /* Section headers */
+  .section-bar { fill: #0062FF; }
+  .section-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 14px; font-weight: bold; text-anchor: start; dominant-baseline: middle; letter-spacing: 1px; }
+
+  /* Big numbers */
+  .big-num { font-family: Georgia, "Times New Roman", serif; fill: #0062FF; font-size: 48px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .big-num-dark { font-family: Georgia, "Times New Roman", serif; fill: #292929; font-size: 48px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .big-label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 14px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .big-sub { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; text-anchor: middle; dominant-baseline: middle; opacity: 0.5; }
+  .big-date { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 10px; text-anchor: middle; dominant-baseline: middle; opacity: 0.6; }
+
+  /* Stat cards */
+  .stat-card { fill: #FFFFFF; stroke: #292929; stroke-width: 1; }
+  .stat-num { font-family: Georgia, "Times New Roman", serif; fill: #0062FF; font-size: 36px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .stat-label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 13px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .stat-sub { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: middle; dominant-baseline: middle; opacity: 0.5; }
+  .stat-date { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 10px; text-anchor: middle; dominant-baseline: middle; opacity: 0.6; }
+
+  /* Growth timeline */
+  .growth-line { stroke: #0062FF; stroke-width: 3; }
+  .growth-dot { fill: #0062FF; }
+  .growth-dot-outline { fill: #FFFFFF; stroke: #0062FF; stroke-width: 2; }
+  .growth-num { font-family: Georgia, "Times New Roman", serif; fill: #0062FF; font-size: 22px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .growth-year { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; text-anchor: middle; dominant-baseline: middle; opacity: 0.5; }
+  .growth-label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: middle; dominant-baseline: middle; opacity: 0.4; }
+  .growth-accent { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 12px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+
+  /* Impact stats (blue tinted) */
+  .impact-card { fill: #DDEFFF; stroke: #0062FF; stroke-width: 1.5; }
+  .impact-num { font-family: Georgia, "Times New Roman", serif; fill: #0062FF; font-size: 40px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+
+  /* Threshold bars */
+  .thresh-good { fill: #DDEFFF; stroke: #0062FF; stroke-width: 1; }
+  .thresh-bad { fill: #FFF0F0; stroke: #FF3333; stroke-width: 1; }
+  .thresh-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 13px; text-anchor: start; dominant-baseline: middle; }
+  .thresh-num-good { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 15px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+  .thresh-num-bad { font-family: Arial, Helvetica, sans-serif; fill: #FF3333; font-size: 15px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+
+  /* General */
+  .label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 13px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+  .text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; text-anchor: start; dominant-baseline: middle; }
+  .text-muted { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: start; dominant-baseline: middle; opacity: 0.5; }
+  .diag-line { stroke: #0062FF; stroke-width: 0.5; opacity: 0.06; }
+  .attribution { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #292929; opacity: 0.4; }
+  .source-text { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 11px; text-anchor: middle; dominant-baseline: middle; }
+  .section-line { stroke: #292929; stroke-width: 0.5; opacity: 0.08; }
+
+  @media (prefers-color-scheme: dark) {
+    .bg { fill: #1A1A1A; }
+    .header-bar { fill: #0D0D0D; }
+    .section-bar { fill: #4D9AFF; }
+    .big-num { fill: #4D9AFF; }
+    .big-num-dark { fill: #E8E8E8; }
+    .big-label { fill: #E8E8E8; }
+    .big-sub { fill: #888888; }
+    .big-date { fill: #4D9AFF; }
+    .stat-card { fill: #242424; stroke: #444444; }
+    .stat-num { fill: #4D9AFF; }
+    .stat-label { fill: #E8E8E8; }
+    .stat-sub { fill: #888888; }
+    .stat-date { fill: #4D9AFF; }
+    .growth-line { stroke: #4D9AFF; }
+    .growth-dot { fill: #4D9AFF; }
+    .growth-dot-outline { fill: #1A1A1A; stroke: #4D9AFF; }
+    .growth-num { fill: #4D9AFF; }
+    .growth-year { fill: #888888; }
+    .growth-label { fill: #666666; }
+    .growth-accent { fill: #4D9AFF; }
+    .impact-card { fill: #1A2A3A; stroke: #4D9AFF; }
+    .impact-num { fill: #4D9AFF; }
+    .thresh-good { fill: #1A2A3A; stroke: #4D9AFF; }
+    .thresh-bad { fill: #3A1A1A; stroke: #FF6666; }
+    .thresh-num-good { fill: #4D9AFF; }
+    .thresh-num-bad { fill: #FF6666; }
+    .label { fill: #E8E8E8; }
+    .text { fill: #D0D0D0; }
+    .text-muted { fill: #888888; }
+    .diag-line { stroke: #4D9AFF; opacity: 0.04; }
+    .attribution { fill: #888888; }
+    .source-text { fill: #4D9AFF; }
+    .section-line { stroke: #555555; }
+  }
+</style>
+
+<defs>
+  <clipPath id="clip-canvas">
+    <rect x="0" y="0" width="1200" height="1160"/>
+  </clipPath>
+</defs>
+
+<rect class="bg" x="0" y="0" width="1200" height="1160"/>
+
+<g clip-path="url(#clip-canvas)" aria-hidden="true">
+  <line class="diag-line" x1="-50" y1="1160" x2="750" y2="0"/>
+  <line class="diag-line" x1="50" y1="1160" x2="850" y2="0"/>
+  <line class="diag-line" x1="150" y1="1160" x2="950" y2="0"/>
+  <line class="diag-line" x1="250" y1="1160" x2="1050" y2="0"/>
+  <line class="diag-line" x1="350" y1="1160" x2="1150" y2="0"/>
+  <line class="diag-line" x1="450" y1="1160" x2="1250" y2="0"/>
+</g>
+
+<rect class="header-bar" x="0" y="0" width="1200" height="54"/>
+<text class="header-text" x="36" y="29">Gmail by the Numbers</text>
+<text class="header-sub" x="1164" y="29" text-anchor="end">INBOXALLY DELIVERABILITY RESEARCH</text>
+
+<!-- ============================================================ -->
+<!-- SECTION 1: SCALE -->
+<!-- ============================================================ -->
+
+<g id="tier-scale"
+   aria-label="Tier 1: Scale — Gmail's size and growth, establishing why these numbers matter"
+   data-step="1"
+   data-label="Scale"
+   data-description="Gmail platform scale: 3 billion active users, 15 billion unwanted emails blocked per day, 300 billion attachments scanned weekly, and user growth from 1.5B to 3B between 2019 and 2026">
+
+<rect class="section-bar" x="40" y="74" width="1120" height="28" rx="6"/>
+<text class="section-text" x="60" y="90">SCALE</text>
+
+<!-- Hero stat: 3 billion -->
+<g id="stat-users"
+   aria-label="3 billion active Gmail users as of January 2026, making it the world's largest email provider"
+   data-step="1a"
+   data-label="Active Users"
+   data-description="3 billion active Gmail users. Source: blog.google, January 2026.">
+<rect class="stat-card" x="40" y="116" width="360" height="140" rx="10"/>
+<text class="big-num" x="220" y="168">3B</text>
+<text class="big-label" x="220" y="206">Active Users</text>
+<text class="big-sub" x="220" y="224">World's largest email provider</text>
+<text class="big-date" x="220" y="244">blog.google · Jan 2026</text>
+</g>
+
+<!-- 15 billion blocked -->
+<g id="stat-blocked"
+   aria-label="Approximately 15 billion unwanted emails blocked per day including spam, phishing, and malware"
+   data-step="1b"
+   data-label="Unwanted Emails Blocked"
+   data-description="~15 billion unwanted emails blocked per day — spam, phishing, and malware. Source: blog.google, October 2023.">
+<rect class="stat-card" x="420" y="116" width="360" height="140" rx="10"/>
+<text class="big-num" x="600" y="168">~15B</text>
+<text class="big-label" x="600" y="206">Unwanted Emails Blocked</text>
+<text class="big-sub" x="600" y="224">Per day — spam, phishing, and malware</text>
+<text class="big-date" x="600" y="244">blog.google · Oct 2023</text>
+</g>
+
+<!-- 300 billion attachments -->
+<g id="stat-attachments"
+   aria-label="300 billion email attachments scanned weekly for malware"
+   data-step="1c"
+   data-label="Attachments Scanned"
+   data-description="300 billion email attachments scanned per week for malware. Source: blog.google, April 2020.">
+<rect class="stat-card" x="800" y="116" width="360" height="140" rx="10"/>
+<text class="big-num-dark" x="980" y="168">300B</text>
+<text class="big-label" x="980" y="206">Attachments Scanned</text>
+<text class="big-sub" x="980" y="224">Per week — for malware</text>
+<text class="big-date" x="980" y="244">blog.google · Apr 2020</text>
+</g>
+
+<!-- User growth timeline -->
+<g id="growth-timeline"
+   aria-label="Gmail user growth timeline: 1.5 billion in 2019, 2.5 billion in December 2024, 3 billion in January 2026 — adding 500 million users in roughly one year"
+   data-step="1d"
+   data-label="User Growth Timeline"
+   data-description="Gmail user growth: 1.5B (2019) → 2.5B (Dec 2024) → 3B (Jan 2026). Added 500 million users in approximately one year.">
+<rect class="stat-card" x="40" y="272" width="1120" height="80" rx="10"/>
+
+<text class="growth-label" x="130" y="298">USER GROWTH</text>
+
+<!-- 1.5B dot -->
+<circle class="growth-dot-outline" cx="280" cy="314" r="8"/>
+<text class="growth-num" x="280" y="298">1.5B</text>
+<text class="growth-year" x="280" y="340">2019</text>
+
+<!-- line -->
+<line class="growth-line" x1="310" y1="314" x2="530" y2="314"/>
+
+<!-- 2.5B dot -->
+<circle class="growth-dot-outline" cx="560" cy="314" r="8"/>
+<text class="growth-num" x="560" y="298">2.5B</text>
+<text class="growth-year" x="560" y="340">Dec 2024</text>
+
+<!-- line -->
+<line class="growth-line" x1="590" y1="314" x2="810" y2="314"/>
+
+<!-- 3B dot (filled, current) -->
+<circle class="growth-dot" cx="840" cy="314" r="10"/>
+<text class="growth-num" x="840" y="298" style="font-size:26px;">3B</text>
+<text class="growth-year" x="840" y="340">Jan 2026</text>
+
+<!-- Accent -->
+<text class="growth-accent" x="1020" y="308">+500M users</text>
+<text class="growth-label" x="1020" y="324">in ~1 year</text>
+</g>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- SECTION 2: PROTECTION -->
+<!-- ============================================================ -->
+
+<g id="tier-protection"
+   aria-label="Tier 2: Protection — what Gmail blocks, the filtering environment senders operate in"
+   data-step="2"
+   data-label="Protection"
+   data-description="Gmail's protection capabilities: 99.9% of spam, phishing, and malware blocked; 100M+ phishing emails blocked daily; 63% of malicious documents are different day to day; new LLM blocks 20% more spam and reviews 1,000× more user-reported spam">
+
+<rect class="section-bar" x="40" y="372" width="1120" height="28" rx="6"/>
+<text class="section-text" x="60" y="388">PROTECTION</text>
+
+<!-- 99.9% blocked -->
+<g id="stat-block-rate"
+   aria-label="99.9% of spam, phishing, and malware blocked before reaching inboxes"
+   data-step="2a"
+   data-label="Spam Block Rate"
+   data-description="99.9% of spam, phishing, and malware blocked before reaching inboxes. Confirmed across multiple Google posts 2023–2025.">
+<rect class="stat-card" x="40" y="414" width="350" height="130" rx="10"/>
+<text class="stat-num" x="215" y="458">99.9%</text>
+<text class="stat-label" x="215" y="490">of spam, phishing, and</text>
+<text class="stat-label" x="215" y="506">malware blocked</text>
+<text class="stat-date" x="215" y="530">Confirmed 2023, 2024, 2025</text>
+</g>
+
+<!-- 100M+ phishing -->
+<g id="stat-phishing"
+   aria-label="More than 100 million phishing emails blocked daily"
+   data-step="2b"
+   data-label="Phishing Blocked"
+   data-description="100M+ phishing emails blocked daily. Source: blog.google, April 2020.">
+<rect class="stat-card" x="410" y="414" width="350" height="130" rx="10"/>
+<text class="stat-num" x="585" y="458">100M+</text>
+<text class="stat-label" x="585" y="490">Phishing emails</text>
+<text class="stat-label" x="585" y="506">blocked daily</text>
+<text class="stat-date" x="585" y="530">blog.google · Apr 2020</text>
+</g>
+
+<!-- 63% new daily -->
+<g id="stat-malicious-docs"
+   aria-label="63% of malicious documents are different from day to day, requiring AI-based detection"
+   data-step="2c"
+   data-label="Malicious Document Variability"
+   data-description="63% of malicious documents are different from day to day. Source: blog.google, April 2020.">
+<rect class="stat-card" x="780" y="414" width="380" height="130" rx="10"/>
+<text class="stat-num" x="970" y="458">63%</text>
+<text class="stat-label" x="970" y="490">of malicious docs are</text>
+<text class="stat-label" x="970" y="506">different from day to day</text>
+<text class="stat-date" x="970" y="530">blog.google · Apr 2020</text>
+</g>
+
+<!-- LLM improvement row -->
+<g id="stat-llm-spam"
+   aria-label="New LLM deployed in 2024 blocks 20% more spam than previous models"
+   data-step="2d"
+   data-label="LLM Spam Improvement"
+   data-description="20% more spam blocked by a new large language model deployed in 2024. Source: blog.google, December 2024.">
+<rect class="stat-card" x="40" y="558" width="545" height="90" rx="10"/>
+<text class="stat-num" x="100" y="596" style="font-size:30px; text-anchor:start;">20%</text>
+<text class="stat-label" x="190" y="588" style="text-anchor:start;">more spam blocked</text>
+<text class="stat-sub" x="190" y="606" style="text-anchor:start;">by new LLM deployed in 2024</text>
+<text class="stat-date" x="190" y="632" style="text-anchor:start;">blog.google · Dec 2024</text>
+</g>
+
+<g id="stat-llm-review"
+   aria-label="New LLM reviews 1,000 times more user-reported spam daily than previous models"
+   data-step="2e"
+   data-label="LLM Review Capacity"
+   data-description="1,000× more user-reported spam reviewed daily by the new LLM. Source: blog.google, December 2024.">
+<rect class="stat-card" x="605" y="558" width="555" height="90" rx="10"/>
+<text class="stat-num" x="665" y="596" style="font-size:30px; text-anchor:start;">1,000×</text>
+<text class="stat-label" x="790" y="588" style="text-anchor:start;">more user-reported spam</text>
+<text class="stat-sub" x="790" y="606" style="text-anchor:start;">reviewed daily by new LLM</text>
+<text class="stat-date" x="790" y="632" style="text-anchor:start;">blog.google · Dec 2024</text>
+</g>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- SECTION 3: IMPACT OF 2024 REQUIREMENTS -->
+<!-- ============================================================ -->
+
+<g id="tier-impact"
+   aria-label="Tier 3: Impact of Sender Requirements — measurable results after Google imposed the 2024 bulk sender rules"
+   data-step="3"
+   data-label="Impact of Sender Requirements"
+   data-description="Measurable impact of Google's sender requirements: 75% drop in unauthenticated messages, 35% fewer scams reported during 2024 holiday season vs 2023, and 231 billion spam/phishing messages blocked in two weeks during 2022 holiday season">
+
+<rect class="section-bar" x="40" y="668" width="1120" height="28" rx="6"/>
+<text class="section-text" x="60" y="684">IMPACT OF SENDER REQUIREMENTS</text>
+
+<g id="stat-auth-drop"
+   aria-label="75% drop in unauthenticated messages reaching Gmail users after authentication requirements"
+   data-step="3a"
+   data-label="Unauthenticated Message Drop"
+   data-description="75% drop in unauthenticated messages reaching Gmail users after Google required sender authentication. Source: blog.google, October 2023.">
+<rect class="impact-card" x="40" y="710" width="350" height="130" rx="10"/>
+<text class="impact-num" x="215" y="756">75%</text>
+<text class="stat-label" x="215" y="790">drop in unauthenticated</text>
+<text class="stat-label" x="215" y="806">messages to Gmail users</text>
+<text class="stat-date" x="215" y="828">blog.google · Oct 2023</text>
+</g>
+
+<g id="stat-fewer-scams"
+   aria-label="35% fewer scams reported by users during the 2024 holiday season compared to 2023"
+   data-step="3b"
+   data-label="Holiday Scam Reduction"
+   data-description="35% fewer scams reported by users during the first month of the 2024 holiday season compared to 2023. Source: blog.google, December 2024.">
+<rect class="impact-card" x="410" y="710" width="350" height="130" rx="10"/>
+<text class="impact-num" x="585" y="756">35%</text>
+<text class="stat-label" x="585" y="790">fewer scams reported by</text>
+<text class="stat-label" x="585" y="806">users (holiday 2024 vs 2023)</text>
+<text class="stat-date" x="585" y="828">blog.google · Dec 2024</text>
+</g>
+
+<g id="stat-holiday-blocked"
+   aria-label="231 billion spam and phishing messages blocked in just two weeks during the 2022 holiday season"
+   data-step="3c"
+   data-label="Holiday Spam Blocked"
+   data-description="231 billion spam and phishing messages blocked in a two-week holiday period. Source: blog.google, December 2022.">
+<rect class="impact-card" x="780" y="710" width="380" height="130" rx="10"/>
+<text class="impact-num" x="970" y="756">231B</text>
+<text class="stat-label" x="970" y="790">spam and phishing messages</text>
+<text class="stat-label" x="970" y="806">blocked in just 2 weeks</text>
+<text class="stat-date" x="970" y="828">blog.google · Dec 2022</text>
+</g>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- SECTION 4: SENDER THRESHOLDS -->
+<!-- ============================================================ -->
+
+<g id="tier-thresholds"
+   aria-label="Tier 4: Sender Thresholds — what bulk senders must comply with to reach Gmail inboxes"
+   data-step="4"
+   data-label="Sender Thresholds"
+   data-description="Google's bulk sender requirements: 5,000+ messages/day threshold, spam complaint rate below 0.1% target and below 0.3% maximum, SPF + DKIM + DMARC authentication required, one-click unsubscribe required. Soft enforcement from February 2024, strict 5xx rejection from November 2025.">
+
+<rect class="section-bar" x="40" y="860" width="1120" height="28" rx="6"/>
+<text class="section-text" x="60" y="876">SENDER THRESHOLDS</text>
+
+<rect class="stat-card" x="40" y="902" width="1120" height="110" rx="10"/>
+
+<text class="label" x="70" y="926">Bulk sender</text>
+<text class="text" x="70" y="944">5,000+ messages/day to personal Gmail accounts</text>
+
+<rect class="thresh-good" x="70" y="960" width="180" height="24" rx="5"/>
+<text class="thresh-num-good" x="82" y="973">&lt;0.1% spam rate target</text>
+
+<rect class="thresh-bad" x="268" y="960" width="220" height="24" rx="5"/>
+<text class="thresh-num-bad" x="280" y="973">&lt;0.3% spam rate maximum</text>
+
+<text class="label" x="540" y="926">Authentication required</text>
+<text class="text" x="540" y="944">SPF + DKIM + DMARC (p=none minimum)</text>
+<text class="text" x="540" y="962">One-click unsubscribe (RFC 8058)</text>
+
+<text class="label" x="880" y="926">Enforcement</text>
+<text class="text" x="880" y="944">Feb 2024: soft enforcement</text>
+<text class="text" x="880" y="962">Nov 2025: strict 5xx rejection</text>
+
+<text class="stat-date" x="600" y="1000" style="font-size:11px;">support.google.com/a/answer/81126 · support.google.com/a/answer/14229414</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- SOURCES -->
+<!-- ============================================================ -->
+
+<g id="sources"
+   aria-label="Sources: all data sourced from Google's official blog posts and Workspace Admin documentation"
+   data-step="sources"
+   data-label="Sources"
+   data-description="All statistics sourced exclusively from blog.google posts and Google Workspace Admin Help pages. Zero third-party data.">
+
+<text class="source-text" x="600" y="1048">blog.google/products/gmail/gmail-is-entering-the-gemini-era (Jan 2026) · blog.google/products/gmail/gmail-holidays-2024-spam-scam (Dec 2024)</text>
+<text class="source-text" x="600" y="1066">blog.google/products/gmail/gmail-security-authentication-spam-protection (Oct 2023) · blog.google/technology/protecting-against-cyber-threats (Apr 2020)</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- ATTRIBUTION -->
+<!-- ============================================================ -->
+
+<a href="https://www.inboxally.com">
+  <text class="attribution" x="36" y="1148">Source: InboxAlly · inboxally.com</text>
+</a>
+<text class="attribution" x="1164" y="1148" text-anchor="end">CC BY 4.0</text>
+
+</svg>
