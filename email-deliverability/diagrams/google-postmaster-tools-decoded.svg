@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     width="100%"
+     viewBox="0 0 1200 1440"
+     xml:lang="en"
+     preserveAspectRatio="xMidYMid meet"
+     role="img"
+     aria-labelledby="title desc"
+     data-source="InboxAlly Deliverability Research">
+
+<title id="title">Google Postmaster Tools Decoded</title>
+
+<desc id="desc">
+Complete reference guide to all eight Google Postmaster Tools dashboards. The Compliance Status
+dashboard (v2 only) provides a binary pass/fail checklist covering SPF/DKIM authentication, DNS
+records, message formatting, encryption, and spam rate for all senders, plus DMARC, one-click
+unsubscribe, and honor-unsubscribe for bulk senders. The Spam Rate dashboard shows the percentage
+of inbox-delivered messages manually marked as spam by recipients — the denominator is inbox-delivered
+only, not total sent, and only DKIM-authenticated messages are counted. Google's thresholds are below
+0.1% target and below 0.3% maximum. The Domain Reputation and IP Reputation dashboards (v1 only,
+announced for retirement) rate sending quality as High, Medium, Low, or Bad. The Feedback Loop
+dashboard shows campaign-level spam reports using Feedback-ID headers. The Authentication dashboard
+shows SPF, DKIM, and DMARC pass rates. The Encryption dashboard shows TLS usage percentage. The
+Delivery Errors dashboard shows rejection and temporary failure rates with error codes. Postmaster
+Tools does not show open rates, click rates, inbox placement rates, automatic spam filtering
+decisions, or real-time data. Data updates within 24 hours and low-volume days may show no data.
+All data sourced from Google Workspace Admin Help documentation.
+</desc>
+
+<metadata>
+<rdf:RDF>
+  <cc:Work rdf:about="">
+    <dc:title>Google Postmaster Tools Decoded</dc:title>
+    <dc:creator>InboxAlly</dc:creator>
+    <dc:source>https://www.inboxally.com</dc:source>
+    <dc:subject>Google Postmaster Tools, GPT dashboards, compliance status, spam rate, domain reputation, IP reputation, feedback loop, authentication, encryption, delivery errors, email deliverability, sender reputation, DKIM, SPF, DMARC, Gmail sender requirements, bulk sender, spam complaint threshold</dc:subject>
+    <dc:description>Visual reference guide to all eight Google Postmaster Tools dashboards with version availability, thresholds, what each measures, and what action to take when metrics are unhealthy.</dc:description>
+    <cc:license rdf:resource="https://creativecommons.org/licenses/by/4.0/" />
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Google Postmaster Tools Decoded",
+  "description": "How to read and act on every dashboard in Google Postmaster Tools, with version availability, thresholds, and troubleshooting guidance.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "InboxAlly",
+    "url": "https://www.inboxally.com"
+  },
+  "step": [
+    { "@type": "HowToStep", "position": 1, "name": "Compliance Status (v2 only)", "text": "Binary pass/fail checklist. All senders: SPF/DKIM auth, DNS records, formatting, encryption, spam rate. Bulk senders add: DMARC, one-click unsubscribe, honor-unsubscribe. Two states only: Compliant or Needs Work. Uses rolling average — changes take up to 7 days. Primary domain only, subdomains roll up." },
+    { "@type": "HowToStep", "position": 2, "name": "Spam Rate (v1 + v2)", "text": "Percentage of inbox-delivered messages manually marked spam by recipients. Denominator is inbox-delivered only, not total sent. DKIM-authenticated messages only. Target: below 0.1%. Maximum: below 0.3%. Above 0.3% triggers enforcement. A very low rate after high history means Gmail is pre-filtering to spam. Threshold lines visible in v2 graph." },
+    { "@type": "HowToStep", "position": 3, "name": "Domain Reputation (v1 only)", "text": "Quality rating for sending domains: High, Medium, Low, or Bad. Domain reputation follows you across ESP changes. Announced for retirement in v2 transition. DKIM or SPF authenticated messages." },
+    { "@type": "HowToStep", "position": 4, "name": "IP Reputation (v1 only)", "text": "Quality rating for sending IP addresses: High, Medium, Low, or Bad. IP reputation resets when switching providers. Shared IPs reflect all senders on that IP. Announced for retirement in v2 transition." },
+    { "@type": "HowToStep", "position": 5, "name": "Feedback Loop (v1 + v2)", "text": "Campaign-level spam reports identified by Feedback-ID header. Use to pinpoint which specific campaign caused a spam rate spike. Requires Feedback-ID header setup. More granular identifiers available in v2." },
+    { "@type": "HowToStep", "position": 6, "name": "Authentication (v1 + v2)", "text": "SPF, DKIM, and DMARC pass rates as percentages. Target: 100% on all three. Any drop indicates a configuration issue — check DNS records, sending infrastructure, and domain alignment." },
+    { "@type": "HowToStep", "position": 7, "name": "Encryption (v1 + v2)", "text": "Percentage of email sent over TLS-encrypted connections. Target: 100%. Required since December 2023. A drop below 100% indicates SMTP configuration issues." },
+    { "@type": "HowToStep", "position": 8, "name": "Delivery Errors (v1 + v2)", "text": "Percentage of authenticated messages rejected or temporarily failed. Shows error codes: 421 for temporary failures (rate limiting, policy), 550 for permanent rejections (authentication, compliance). Target: 0%. Any spike means check authentication and compliance status first." }
+  ]
+}
+</script>
+
+<style>
+  .bg { fill: #F1F0ED; }
+  .header-bar { fill: #292929; }
+  .header-text { font-family: Georgia, "Times New Roman", serif; font-size: 24px; fill: #FFFFFF; dominant-baseline: middle; }
+  .header-sub { font-family: Arial, Helvetica, sans-serif; font-size: 13px; fill: #DDEFFF; letter-spacing: 1px; dominant-baseline: middle; }
+
+  /* Dashboard panels */
+  .panel { fill: #FFFFFF; stroke: #292929; stroke-width: 1; }
+  .panel-header { fill: #0062FF; }
+  .panel-header-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 16px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+  .panel-desc { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; text-anchor: start; dominant-baseline: middle; opacity: 0.5; }
+
+  /* Version badges */
+  .badge-v1v2 { fill: #0062FF; }
+  .badge-v2 { fill: #292929; }
+  .badge-v1 { fill: #CC8800; }
+  .badge-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 9px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+
+  /* Threshold indicators */
+  .thresh-good { fill: #DDEFFF; stroke: #0062FF; stroke-width: 1; }
+  .thresh-warn { fill: #FFF8E0; stroke: #CC8800; stroke-width: 1; }
+  .thresh-bad { fill: #FFF0F0; stroke: #FF3333; stroke-width: 1; }
+  .thresh-text-good { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 12px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+  .thresh-text-warn { font-family: Arial, Helvetica, sans-serif; fill: #CC8800; font-size: 12px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+  .thresh-text-bad { font-family: Arial, Helvetica, sans-serif; fill: #FF3333; font-size: 12px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+
+  /* Reputation ratings */
+  .rep-high { fill: #0062FF; }
+  .rep-med { fill: #CC8800; }
+  .rep-low { fill: #FF8800; }
+  .rep-bad { fill: #FF3333; }
+  .rep-label { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 10px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+
+  /* Content text */
+  .label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 13px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+  .label-center { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 13px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; text-anchor: start; dominant-baseline: middle; }
+  .text-muted { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: start; dominant-baseline: middle; opacity: 0.5; }
+  .text-center { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; text-anchor: middle; dominant-baseline: middle; }
+  .check { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 12px; text-anchor: start; dominant-baseline: middle; }
+  .warn-text { font-family: Arial, Helvetica, sans-serif; fill: #CC8800; font-size: 11px; text-anchor: start; dominant-baseline: middle; }
+  .action-text { font-family: Arial, Helvetica, sans-serif; fill: #FF3333; font-size: 11px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+
+  /* Compliance panel specific */
+  .comp-section { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 11px; font-weight: bold; text-anchor: start; dominant-baseline: middle; letter-spacing: 0.5px; }
+  .comp-item { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; text-anchor: start; dominant-baseline: middle; }
+  .comp-state-pass { fill: #0062FF; }
+  .comp-state-fail { fill: #FF3333; }
+  .comp-state-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 10px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+
+  /* Not-shown panel */
+  .notshown-panel { fill: #FFFFFF; stroke: #FF3333; stroke-width: 1; stroke-dasharray: 6 3; }
+  .notshown-header { fill: #FF3333; }
+  .notshown-text { font-family: Arial, Helvetica, sans-serif; fill: #FF3333; font-size: 12px; text-anchor: start; dominant-baseline: middle; }
+
+  /* Caveats */
+  .caveat-box { fill: #292929; }
+  .caveat-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 13px; text-anchor: start; dominant-baseline: middle; }
+  .caveat-sub { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 11px; text-anchor: start; dominant-baseline: middle; opacity: 0.6; }
+
+  /* General */
+  .diag-line { stroke: #0062FF; stroke-width: 0.5; opacity: 0.06; }
+  .attribution { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #292929; opacity: 0.4; }
+  .source-text { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 11px; text-anchor: start; dominant-baseline: middle; }
+  .source-label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; font-weight: bold; text-anchor: start; dominant-baseline: middle; opacity: 0.5; }
+  .section-line { stroke: #292929; stroke-width: 0.5; opacity: 0.08; }
+  .deprecated { font-family: Arial, Helvetica, sans-serif; fill: #CC8800; font-size: 10px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+
+  @media (prefers-color-scheme: dark) {
+    .bg { fill: #1A1A1A; }
+    .header-bar { fill: #0D0D0D; }
+    .panel { fill: #242424; stroke: #444444; }
+    .panel-header { fill: #4D9AFF; }
+    .panel-desc { fill: #888888; }
+    .badge-v1v2 { fill: #4D9AFF; }
+    .badge-v2 { fill: #555555; }
+    .badge-v1 { fill: #DDAA00; }
+    .thresh-good { fill: #1A2A3A; stroke: #4D9AFF; }
+    .thresh-warn { fill: #3A3A1A; stroke: #DDAA00; }
+    .thresh-bad { fill: #3A1A1A; stroke: #FF6666; }
+    .thresh-text-good { fill: #4D9AFF; }
+    .thresh-text-warn { fill: #DDAA00; }
+    .thresh-text-bad { fill: #FF6666; }
+    .label { fill: #E8E8E8; }
+    .label-center { fill: #E8E8E8; }
+    .text { fill: #D0D0D0; }
+    .text-muted { fill: #888888; }
+    .text-center { fill: #D0D0D0; }
+    .check { fill: #4D9AFF; }
+    .warn-text { fill: #DDAA00; }
+    .action-text { fill: #FF6666; }
+    .comp-section { fill: #4D9AFF; }
+    .comp-item { fill: #D0D0D0; }
+    .notshown-panel { fill: #242424; stroke: #FF6666; }
+    .notshown-text { fill: #FF6666; }
+    .caveat-box { fill: #333333; }
+    .deprecated { fill: #DDAA00; }
+    .diag-line { stroke: #4D9AFF; opacity: 0.04; }
+    .attribution { fill: #888888; }
+    .source-text { fill: #4D9AFF; }
+    .source-label { fill: #888888; }
+    .section-line { stroke: #555555; }
+  }
+</style>
+
+<defs>
+  <clipPath id="clip-canvas">
+    <rect x="0" y="0" width="1200" height="1440"/>
+  </clipPath>
+</defs>
+
+<rect class="bg" x="0" y="0" width="1200" height="1440"/>
+
+<g clip-path="url(#clip-canvas)" aria-hidden="true">
+  <line class="diag-line" x1="-50" y1="1440" x2="950" y2="0"/>
+  <line class="diag-line" x1="50" y1="1440" x2="1050" y2="0"/>
+  <line class="diag-line" x1="150" y1="1440" x2="1150" y2="0"/>
+  <line class="diag-line" x1="250" y1="1440" x2="1250" y2="0"/>
+  <line class="diag-line" x1="350" y1="1440" x2="1350" y2="0"/>
+</g>
+
+<rect class="header-bar" x="0" y="0" width="1200" height="54"/>
+<text class="header-text" x="36" y="29">Google Postmaster Tools Decoded</text>
+<text class="header-sub" x="1164" y="29" text-anchor="end">INBOXALLY DELIVERABILITY RESEARCH</text>
+
+<!-- ============================================================ -->
+<!-- PANEL 1: COMPLIANCE STATUS (full width) -->
+<!-- ============================================================ -->
+
+<g id="panel-compliance"
+   aria-label="Compliance Status dashboard: v2 only. Binary pass/fail checklist for all sender requirements."
+   data-step="1"
+   data-label="Compliance Status"
+   data-description="Binary pass/fail checklist against Gmail sender guidelines — v2 only">
+  <rect class="panel" x="40" y="74" width="1120" height="186" rx="8"/>
+  <rect class="panel-header" x="40" y="74" width="1120" height="32" rx="8"/>
+  <rect class="panel-header" x="40" y="94" width="1120" height="12"/>
+  <text class="panel-header-text" x="60" y="93">Compliance Status</text>
+
+  <!-- V2 badge -->
+  <rect class="badge-v2" x="250" y="82" width="56" height="18" rx="4"/>
+  <text class="badge-text" x="278" y="92">V2 ONLY</text>
+
+  <text class="panel-desc" x="60" y="126">Pass / fail checklist against Gmail sender guidelines</text>
+
+  <!-- Two states -->
+  <rect class="comp-state-pass" x="60" y="142" width="90" height="20" rx="4"/>
+  <text class="comp-state-text" x="105" y="153">COMPLIANT</text>
+  <rect class="comp-state-fail" x="160" y="142" width="90" height="20" rx="4"/>
+  <text class="comp-state-text" x="205" y="153">NEEDS WORK</text>
+  <text class="text-muted" x="262" y="153">Two states only — no score, no gradient</text>
+
+  <!-- All senders column -->
+  <text class="comp-section" x="60" y="180">ALL SENDERS</text>
+  <text class="comp-item" x="60" y="198">✓ SPF and DKIM authentication</text>
+  <text class="comp-item" x="60" y="214">✓ DNS records (forward + reverse)</text>
+  <text class="comp-item" x="60" y="230">✓ Message formatting (RFC 5322)</text>
+  <text class="comp-item" x="60" y="246">✓ Encryption (TLS)</text>
+
+  <!-- Bulk senders column -->
+  <text class="comp-section" x="420" y="180">BULK SENDERS (5,000+/DAY)</text>
+  <text class="comp-item" x="420" y="198">✓ DMARC authentication</text>
+  <text class="comp-item" x="420" y="214">✓ One-click unsubscribe (RFC 8058)</text>
+  <text class="comp-item" x="420" y="230">✓ Honor unsubscribe within 48 hours</text>
+  <text class="comp-item" x="420" y="246">✓ User-reported spam rate</text>
+
+  <!-- Caveats -->
+  <text class="warn-text" x="750" y="198">⚠ Uses rolling average — changes take up to 7 days</text>
+  <text class="warn-text" x="750" y="214">⚠ Primary domain only (subdomains roll up)</text>
+  <text class="warn-text" x="750" y="230">⚠ Low-volume days may show no data</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- PANEL 2: SPAM RATE (left half) -->
+<!-- ============================================================ -->
+
+<g id="panel-spam-rate"
+   aria-label="Spam Rate dashboard: percentage of inbox-delivered messages manually marked spam. Target below 0.1%, maximum below 0.3%."
+   data-step="2"
+   data-label="Spam Rate"
+   data-description="Percentage of inbox-delivered messages manually marked spam by recipients">
+  <rect class="panel" x="40" y="280" width="545" height="224" rx="8"/>
+  <rect class="panel-header" x="40" y="280" width="545" height="32" rx="8"/>
+  <rect class="panel-header" x="40" y="300" width="545" height="12"/>
+  <text class="panel-header-text" x="60" y="299">Spam Rate</text>
+
+  <rect class="badge-v1v2" x="185" y="288" width="56" height="18" rx="4"/>
+  <text class="badge-text" x="213" y="298">V1 + V2</text>
+
+  <text class="panel-desc" x="60" y="330">% of inbox-delivered messages manually marked spam by recipients</text>
+
+  <!-- Thresholds -->
+  <rect class="thresh-good" x="60" y="348" width="240" height="24" rx="5"/>
+  <text class="thresh-text-good" x="72" y="361">✓ Below 0.1% — target</text>
+
+  <rect class="thresh-warn" x="60" y="380" width="240" height="24" rx="5"/>
+  <text class="thresh-text-warn" x="72" y="393">⚠ 0.1%–0.3% — danger zone</text>
+
+  <rect class="thresh-bad" x="60" y="412" width="240" height="24" rx="5"/>
+  <text class="thresh-text-bad" x="72" y="425">✗ Above 0.3% — policy violation</text>
+
+  <!-- Key nuances -->
+  <text class="label" x="330" y="358">Key nuances</text>
+  <text class="text-muted" x="330" y="376">Denominator = inbox delivered, not total sent</text>
+  <text class="text-muted" x="330" y="392">DKIM-authenticated messages only</text>
+  <text class="text-muted" x="330" y="408">Does NOT include auto-filtered spam</text>
+  <text class="text-muted" x="330" y="424">0% after high history = Gmail pre-filtering</text>
+
+  <text class="warn-text" x="60" y="454">⚠ Above 0.3%: lose access to Gmail mitigation for 7 days</text>
+
+  <text class="text-muted" x="60" y="476">V2 added visual threshold lines (0.1% and 0.3%) to the graph</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- PANEL 3: FEEDBACK LOOP (right half) -->
+<!-- ============================================================ -->
+
+<g id="panel-feedback"
+   aria-label="Feedback Loop dashboard: campaign-level spam reports by Feedback-ID header."
+   data-step="3"
+   data-label="Feedback Loop"
+   data-description="Campaign-level spam reports identified by Feedback-ID header">
+  <rect class="panel" x="615" y="280" width="545" height="224" rx="8"/>
+  <rect class="panel-header" x="615" y="280" width="545" height="32" rx="8"/>
+  <rect class="panel-header" x="615" y="300" width="545" height="12"/>
+  <text class="panel-header-text" x="635" y="299">Feedback Loop</text>
+
+  <rect class="badge-v1v2" x="790" y="288" width="56" height="18" rx="4"/>
+  <text class="badge-text" x="818" y="298">V1 + V2</text>
+
+  <text class="panel-desc" x="635" y="330">Campaign-level spam reports identified by Feedback-ID header</text>
+
+  <text class="label" x="635" y="358">What it does</text>
+  <text class="text" x="635" y="376">Shows which specific campaigns recipients are</text>
+  <text class="text" x="635" y="392">marking as spam — lets you pinpoint the problem</text>
+
+  <text class="label" x="635" y="420">Requires setup</text>
+  <text class="text" x="635" y="438">Add Feedback-ID header to outgoing messages</text>
+  <text class="text-muted" x="635" y="454">Format: campaignId:senderId (5–15 char sender ID)</text>
+
+  <text class="label" x="635" y="478">When to use</text>
+  <text class="text" x="635" y="494">Spam rate spikes → check Feedback Loop to find which campaign caused it</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- PANEL 4: DOMAIN REPUTATION (left half) -->
+<!-- ============================================================ -->
+
+<g id="panel-domain-rep"
+   aria-label="Domain Reputation dashboard: v1 only, announced for retirement. Four-tier quality rating for sending domains."
+   data-step="4"
+   data-label="Domain Reputation"
+   data-description="Quality rating for sending domains — v1 only, announced for retirement">
+  <rect class="panel" x="40" y="524" width="545" height="186" rx="8"/>
+  <rect class="panel-header" x="40" y="524" width="545" height="32" rx="8"/>
+  <rect class="panel-header" x="40" y="544" width="545" height="12"/>
+  <text class="panel-header-text" x="60" y="543">Domain Reputation</text>
+
+  <rect class="badge-v1" x="262" y="532" width="56" height="18" rx="4"/>
+  <text class="badge-text" x="290" y="542">V1 ONLY</text>
+
+  <text class="deprecated" x="328" y="542">Announced for retirement in v2</text>
+
+  <text class="panel-desc" x="60" y="574">Quality rating for your sending domain — follows you across ESP changes</text>
+
+  <!-- Rating bars -->
+  <rect class="rep-high" x="60" y="592" width="70" height="20" rx="4"/>
+  <text class="rep-label" x="95" y="603">HIGH</text>
+  <text class="text" x="140" y="603">Strong sending history, low spam</text>
+
+  <rect class="rep-med" x="60" y="618" width="70" height="20" rx="4"/>
+  <text class="rep-label" x="95" y="629">MED</text>
+  <text class="text" x="140" y="629">Mixed signals, some spam reports</text>
+
+  <rect class="rep-low" x="60" y="644" width="70" height="20" rx="4"/>
+  <text class="rep-label" x="95" y="655">LOW</text>
+  <text class="text" x="140" y="655">Significant problems, high complaints</text>
+
+  <rect class="rep-bad" x="60" y="670" width="70" height="20" rx="4"/>
+  <text class="rep-label" x="95" y="681">BAD</text>
+  <text class="text" x="140" y="681">History of high-volume spam — severe impact</text>
+
+  <text class="text-muted" x="60" y="700">DKIM or SPF authenticated messages · Exact domain match only</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- PANEL 5: IP REPUTATION (right half) -->
+<!-- ============================================================ -->
+
+<g id="panel-ip-rep"
+   aria-label="IP Reputation dashboard: v1 only, announced for retirement. Four-tier quality rating for sending IPs."
+   data-step="5"
+   data-label="IP Reputation"
+   data-description="Quality rating for sending IP addresses — v1 only, announced for retirement">
+  <rect class="panel" x="615" y="524" width="545" height="186" rx="8"/>
+  <rect class="panel-header" x="615" y="524" width="545" height="32" rx="8"/>
+  <rect class="panel-header" x="615" y="544" width="545" height="12"/>
+  <text class="panel-header-text" x="635" y="543">IP Reputation</text>
+
+  <rect class="badge-v1" x="800" y="532" width="56" height="18" rx="4"/>
+  <text class="badge-text" x="828" y="542">V1 ONLY</text>
+
+  <text class="deprecated" x="866" y="542">Announced for retirement in v2</text>
+
+  <text class="panel-desc" x="635" y="574">Quality rating for sending IPs — resets when you switch ESPs</text>
+
+  <rect class="rep-high" x="635" y="592" width="70" height="20" rx="4"/>
+  <text class="rep-label" x="670" y="603">HIGH</text>
+  <text class="text" x="715" y="603">Clean IP, strong history</text>
+
+  <rect class="rep-med" x="635" y="618" width="70" height="20" rx="4"/>
+  <text class="rep-label" x="670" y="629">MED</text>
+  <text class="text" x="715" y="629">Some issues or shared IP effects</text>
+
+  <rect class="rep-low" x="635" y="644" width="70" height="20" rx="4"/>
+  <text class="rep-label" x="670" y="655">LOW</text>
+  <text class="text" x="715" y="655">IP sending mostly unwanted mail</text>
+
+  <rect class="rep-bad" x="635" y="670" width="70" height="20" rx="4"/>
+  <text class="rep-label" x="670" y="681">BAD</text>
+  <text class="text" x="715" y="681">IP known for spam — likely blocklisted</text>
+
+  <text class="warn-text" x="635" y="700">⚠ Shared IPs: other senders affect your rating</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- PANEL 6: AUTHENTICATION (left half) -->
+<!-- ============================================================ -->
+
+<g id="panel-auth"
+   aria-label="Authentication dashboard: SPF, DKIM, and DMARC pass rates. Target 100% on all three."
+   data-step="6"
+   data-label="Authentication"
+   data-description="SPF, DKIM, and DMARC pass rates as percentages">
+  <rect class="panel" x="40" y="730" width="545" height="154" rx="8"/>
+  <rect class="panel-header" x="40" y="730" width="545" height="32" rx="8"/>
+  <rect class="panel-header" x="40" y="750" width="545" height="12"/>
+  <text class="panel-header-text" x="60" y="749">Authentication</text>
+
+  <rect class="badge-v1v2" x="210" y="738" width="56" height="18" rx="4"/>
+  <text class="badge-text" x="238" y="748">V1 + V2</text>
+
+  <text class="panel-desc" x="60" y="780">SPF, DKIM, and DMARC pass rates as percentages</text>
+
+  <rect class="thresh-good" x="60" y="798" width="200" height="24" rx="5"/>
+  <text class="thresh-text-good" x="72" y="811">Target: 100% on all three</text>
+
+  <text class="label" x="60" y="842">If authentication drops</text>
+  <text class="text" x="60" y="858">Check DNS records · Verify sending infrastructure config</text>
+  <text class="text" x="60" y="874">Confirm From: domain alignment with SPF/DKIM domains</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- PANEL 7: ENCRYPTION (right half) -->
+<!-- ============================================================ -->
+
+<g id="panel-encryption"
+   aria-label="Encryption dashboard: percentage of email sent over TLS. Target 100%, required since December 2023."
+   data-step="7"
+   data-label="Encryption"
+   data-description="Percentage of email sent over TLS-encrypted connections">
+  <rect class="panel" x="615" y="730" width="545" height="154" rx="8"/>
+  <rect class="panel-header" x="615" y="730" width="545" height="32" rx="8"/>
+  <rect class="panel-header" x="615" y="750" width="545" height="12"/>
+  <text class="panel-header-text" x="635" y="749">Encryption</text>
+
+  <rect class="badge-v1v2" x="760" y="738" width="56" height="18" rx="4"/>
+  <text class="badge-text" x="788" y="748">V1 + V2</text>
+
+  <text class="panel-desc" x="635" y="780">Percentage of outgoing email sent over TLS-encrypted connections</text>
+
+  <rect class="thresh-good" x="635" y="798" width="200" height="24" rx="5"/>
+  <text class="thresh-text-good" x="647" y="811">Target: 100%</text>
+
+  <text class="text" x="635" y="842">TLS required for Gmail delivery since December 2023</text>
+  <text class="text" x="635" y="858">A drop below 100% indicates SMTP configuration issues</text>
+  <text class="text-muted" x="635" y="874">Most modern ESPs enforce TLS by default</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- PANEL 8: DELIVERY ERRORS (full width) -->
+<!-- ============================================================ -->
+
+<g id="panel-errors"
+   aria-label="Delivery Errors dashboard: percentage of authenticated messages rejected or temporarily failed, with error codes."
+   data-step="8"
+   data-label="Delivery Errors"
+   data-description="Percentage of authenticated messages rejected or temporarily failed">
+  <rect class="panel" x="40" y="904" width="1120" height="136" rx="8"/>
+  <rect class="panel-header" x="40" y="904" width="1120" height="32" rx="8"/>
+  <rect class="panel-header" x="40" y="924" width="1120" height="12"/>
+  <text class="panel-header-text" x="60" y="923">Delivery Errors</text>
+
+  <rect class="badge-v1v2" x="222" y="912" width="56" height="18" rx="4"/>
+  <text class="badge-text" x="250" y="922">V1 + V2</text>
+
+  <text class="panel-desc" x="60" y="954">% of all authenticated messages (SPF or DKIM) rejected or temporarily failed</text>
+
+  <rect class="thresh-good" x="60" y="972" width="160" height="24" rx="5"/>
+  <text class="thresh-text-good" x="72" y="985">Target: 0%</text>
+
+  <text class="label" x="260" y="985">Error codes</text>
+
+  <rect class="thresh-warn" x="370" y="972" width="310" height="24" rx="5"/>
+  <text class="thresh-text-warn" x="382" y="985">421 — temporary failure (rate limit, policy)</text>
+
+  <rect class="thresh-bad" x="700" y="972" width="350" height="24" rx="5"/>
+  <text class="thresh-text-bad" x="712" y="985">550 — permanent rejection (auth, compliance)</text>
+
+  <text class="action-text" x="60" y="1024">Any spike → check Authentication and Compliance Status dashboards first</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- PANEL 9: WHAT POSTMASTER TOOLS DOESN'T SHOW -->
+<!-- ============================================================ -->
+
+<g id="panel-not-shown"
+   aria-label="What Postmaster Tools does not show: open rates, click rates, inbox placement rate, automatic spam filtering decisions, real-time data, or individual recipient data."
+   data-step="9"
+   data-label="What Postmaster Tools Does NOT Show"
+   data-description="Metrics and data types not available in Google Postmaster Tools">
+  <rect class="notshown-panel" x="40" y="1060" width="1120" height="110" rx="8"/>
+  <rect class="notshown-header" x="40" y="1060" width="1120" height="32" rx="8"/>
+  <rect class="notshown-header" x="40" y="1080" width="1120" height="12"/>
+  <text class="panel-header-text" x="60" y="1079" style="fill:#FFFFFF;">What Postmaster Tools Does NOT Show</text>
+
+  <text class="notshown-text" x="60" y="1112">✗ Open rates</text>
+  <text class="notshown-text" x="220" y="1112">✗ Click rates</text>
+  <text class="notshown-text" x="380" y="1112">✗ Inbox placement rate</text>
+
+  <text class="notshown-text" x="600" y="1112">✗ Automatic spam filtering decisions</text>
+  <text class="notshown-text" x="920" y="1112">✗ Real-time data</text>
+
+  <text class="notshown-text" x="60" y="1140">✗ Individual recipient data</text>
+  <text class="notshown-text" x="300" y="1140">✗ Google Workspace (B2B) accounts — personal Gmail only</text>
+  <text class="notshown-text" x="720" y="1140">✗ Third-party spam reports</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- DATA CAVEATS -->
+<!-- ============================================================ -->
+
+<g id="data-caveats"
+   aria-label="Data caveats: not real-time, 24-hour update lag, low-volume days may show no data, uses UTC"
+   data-step="caveats"
+   data-label="Data Caveats"
+   data-description="Limitations and timing considerations for Postmaster Tools data">
+  <rect class="caveat-box" x="40" y="1194" width="1120" height="80" rx="8"/>
+  <text class="caveat-text" x="60" y="1218">Data Caveats</text>
+  <text class="caveat-sub" x="60" y="1240">Updated within 24 hours, not real-time · Low-volume days (~100–200 emails) may show no data · Uses UTC timezone</text>
+  <text class="caveat-sub" x="60" y="1258">Compliance Status uses slightly different datasets than other dashboards · Forwarded messages may be included in some dashboards</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- TRANSITION NOTE -->
+<!-- ============================================================ -->
+
+<g id="transition-note"
+   aria-label="V2 transition note: v1 interface deprecated September 2025, v2 is the default going forward"
+   data-step="transition"
+   data-label="V1 → V2 Transition"
+   data-description="Timeline and impact of the v1 to v2 Postmaster Tools interface transition">
+  <rect fill="#FFF8E0" stroke="#CC8800" stroke-width="1" x="40" y="1294" width="1120" height="56" rx="8"/>
+  <text class="warn-text" x="60" y="1316" style="font-size:13px; font-weight:bold;">V1 → V2 Transition</text>
+  <text class="text" x="240" y="1316">V1 interface deprecated September 2025. V2 is the default going forward.</text>
+  <text class="text" x="240" y="1336">IP and Domain Reputation dashboards announced for retirement — will not exist in v2.</text>
+</g>
+
+<!-- ============================================================ -->
+<!-- SOURCES                                                       -->
+<!-- ============================================================ -->
+
+<text class="source-text" x="600" y="1382" style="text-anchor: middle;">Data from support.google.com/a/answer/14668346 · support.google.com/a/answer/81126 · support.google.com/mail/answer/16594218 · support.google.com/a/answer/14229414</text>
+
+<!-- ============================================================ -->
+<!-- ATTRIBUTION                                                   -->
+<!-- ============================================================ -->
+
+<a href="https://www.inboxally.com">
+  <text class="attribution" x="36" y="1416">Source: InboxAlly · inboxally.com</text>
+</a>
+<text class="attribution" x="1164" y="1416" text-anchor="end">CC BY 4.0</text>
+
+</svg>
