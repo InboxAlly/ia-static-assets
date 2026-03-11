@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     width="100%"
+     viewBox="0 0 1200 1880"
+     xml:lang="en"
+     preserveAspectRatio="xMidYMid meet"
+     role="img"
+     aria-labelledby="title desc"
+     data-source="InboxAlly Deliverability Research">
+
+<title id="title">SMTP Response Code Reference</title>
+
+<desc id="desc">
+Curated reference of SMTP response codes most relevant to email deliverability and sender compliance.
+Covers RFC 5321 standard codes and provider-specific enforcement codes from Gmail, Microsoft, and
+Yahoo introduced with the 2024–2025 bulk sender requirements. Gmail enforcement codes are shown as
+paired warning (4xx) to rejection (5xx) escalations: the same compliance issue starts as a temporary
+rate limit and escalates to permanent rejection if not fixed. This is not an exhaustive protocol
+reference — for the complete specification see IETF RFC 5321.
+</desc>
+
+<metadata>
+<rdf:RDF>
+  <cc:Work rdf:about="">
+    <dc:title>SMTP Response Code Reference for Email Deliverability</dc:title>
+    <dc:creator>InboxAlly</dc:creator>
+    <dc:source>https://www.inboxally.com</dc:source>
+    <dc:subject>SMTP codes, SMTP error codes, bounce codes, email deliverability, Gmail error codes, Yahoo error codes, Microsoft error codes, 550 5.7.26, 550 5.7.25, 550 5.7.27, 550 5.7.28, 550 5.7.29, 550 5.7.30, 550 5.7.515, 421 4.7.26, 421 4.7.27, 421 4.7.28, 421 4.7.29, 421 4.7.30, 421 4.7.32, 421 4.7.23, 553 5.7.1, 554 5.7.9, 421 4.7.0, sender requirements, bulk sender, SPF, DKIM, DMARC, TLS, PTR, RFC 5321</dc:subject>
+    <dc:description>Practitioner-facing SMTP code lookup organized by severity tier with paired Gmail warning-to-rejection escalation mapping and cross-provider enforcement codes from Google, Microsoft, and Yahoo.</dc:description>
+    <cc:license rdf:resource="https://creativecommons.org/licenses/by/4.0/" />
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "name": "SMTP Response Code Reference — Common Codes for Email Deliverability",
+  "description": "Practitioner-facing SMTP code lookup organized by severity tier with paired Gmail warning-to-rejection escalation mapping and cross-provider enforcement codes from Google, Microsoft, and Yahoo.",
+  "publisher": { "@type": "Organization", "name": "InboxAlly", "url": "https://www.inboxally.com" },
+  "about": { "@type": "Thing", "name": "SMTP Response Codes", "url": "https://datatracker.ietf.org/doc/html/rfc5321" }
+}
+</script>
+
+<style>
+  .bg { fill: #F1F0ED; }
+  .header-bar { fill: #292929; }
+  .header-text { font-family: Georgia, "Times New Roman", serif; font-size: 22px; fill: #FFFFFF; dominant-baseline: middle; }
+  .header-sub { font-family: Arial, Helvetica, sans-serif; font-size: 13px; fill: #DDEFFF; letter-spacing: 1px; dominant-baseline: middle; }
+  .scope-text { font-family: Arial, Helvetica, sans-serif; font-size: 12px; fill: #292929; text-anchor: middle; dominant-baseline: middle; opacity: 0.45; }
+  .section-2xx { fill: #0062FF; }
+  .section-3xx { fill: #292929; opacity: 0.6; }
+  .section-4xx { fill: #CC8800; }
+  .section-5xx { fill: #FF3333; }
+  .section-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 14px; font-weight: bold; text-anchor: start; dominant-baseline: middle; letter-spacing: 0.5px; }
+  .section-desc { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 11px; text-anchor: start; dominant-baseline: middle; opacity: 0.7; }
+  .howto-box { fill: #FFFFFF; stroke: #292929; stroke-width: 1; }
+  .howto-title { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 14px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+  .howto-code { font-family: "Courier New", monospace; fill: #0062FF; font-size: 28px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .howto-label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: middle; dominant-baseline: middle; opacity: 0.5; }
+  .howto-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; text-anchor: start; dominant-baseline: middle; }
+  .howto-muted { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: start; dominant-baseline: middle; opacity: 0.5; }
+  .row-alt { fill: #FFFFFF; opacity: 0.4; }
+  .code-num { font-family: "Courier New", monospace; fill: #292929; font-size: 14px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+  .code-num-blue { font-family: "Courier New", monospace; fill: #0062FF; font-size: 14px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+  .code-num-amber { font-family: "Courier New", monospace; fill: #CC8800; font-size: 14px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+  .code-num-red { font-family: "Courier New", monospace; fill: #FF3333; font-size: 14px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+  .code-desc { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 13px; text-anchor: start; dominant-baseline: middle; }
+  .code-fix { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: start; dominant-baseline: middle; opacity: 0.5; }
+  .badge-gmail { fill: #0062FF; }
+  .badge-msft { fill: #CC8800; }
+  .badge-yahoo { fill: #720E9E; }
+  .badge-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 9px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .subsection { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; font-weight: bold; text-anchor: start; dominant-baseline: middle; letter-spacing: 1px; opacity: 0.35; }
+  .subsection-line { stroke: #292929; stroke-width: 0.5; opacity: 0.1; }
+  .arrow-text { font-family: Arial, Helvetica, sans-serif; fill: #FF3333; font-size: 14px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .escalation-header-warn { fill: #FFF8E0; stroke: #CC8800; stroke-width: 1; }
+  .escalation-header-reject { fill: #FFF0F0; stroke: #FF3333; stroke-width: 1; }
+  .escalation-label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .action-box-retry { fill: #FFF8E0; stroke: #CC8800; stroke-width: 1; }
+  .action-box-stop { fill: #FFF0F0; stroke: #FF3333; stroke-width: 1; }
+  .action-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
+  .action-sub { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: start; dominant-baseline: middle; opacity: 0.5; }
+  .note-box { fill: #FFFFFF; stroke: #292929; stroke-width: 1; stroke-dasharray: 6 3; }
+  .note-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; text-anchor: start; dominant-baseline: middle; opacity: 0.6; }
+  .note-link { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 12px; text-anchor: start; dominant-baseline: middle; }
+  .diag-line { stroke: #0062FF; stroke-width: 0.5; opacity: 0.06; }
+  .attribution { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #292929; opacity: 0.4; }
+  .source-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: middle; dominant-baseline: middle; opacity: 0.4; }
+
+  @media (prefers-color-scheme: dark) {
+    .bg { fill: #1A1A1A; }
+    .header-bar { fill: #0D0D0D; }
+    .scope-text { fill: #888888; }
+    .section-2xx { fill: #4D9AFF; }
+    .section-3xx { fill: #555555; }
+    .section-4xx { fill: #DDAA00; }
+    .section-5xx { fill: #FF6666; }
+    .howto-box { fill: #242424; stroke: #444444; }
+    .howto-title { fill: #E8E8E8; }
+    .howto-code { fill: #4D9AFF; }
+    .howto-label { fill: #888888; }
+    .howto-text { fill: #D0D0D0; }
+    .howto-muted { fill: #888888; }
+    .row-alt { fill: #252525; opacity: 0.6; }
+    .code-num { fill: #E8E8E8; }
+    .code-num-blue { fill: #4D9AFF; }
+    .code-num-amber { fill: #DDAA00; }
+    .code-num-red { fill: #FF6666; }
+    .code-desc { fill: #D0D0D0; }
+    .code-fix { fill: #888888; }
+    .badge-gmail { fill: #4D9AFF; }
+    .badge-msft { fill: #DDAA00; }
+    .badge-yahoo { fill: #A855F7; }
+    .subsection { fill: #666666; }
+    .subsection-line { stroke: #444444; }
+    .arrow-text { fill: #FF6666; }
+    .escalation-header-warn { fill: #3A3A1A; stroke: #DDAA00; }
+    .escalation-header-reject { fill: #3A1A1A; stroke: #FF6666; }
+    .escalation-label { fill: #D0D0D0; }
+    .action-box-retry { fill: #3A3A1A; stroke: #DDAA00; }
+    .action-box-stop { fill: #3A1A1A; stroke: #FF6666; }
+    .action-text { fill: #E8E8E8; }
+    .action-sub { fill: #888888; }
+    .note-box { fill: #242424; stroke: #555555; }
+    .note-text { fill: #888888; }
+    .note-link { fill: #4D9AFF; }
+    .diag-line { stroke: #4D9AFF; opacity: 0.04; }
+    .attribution { fill: #888888; }
+    .source-text { fill: #888888; }
+  }
+</style>
+
+<defs>
+  <clipPath id="clip-canvas"><rect x="0" y="0" width="1200" height="1880"/></clipPath>
+</defs>
+
+<rect class="bg" x="0" y="0" width="1200" height="1880"/>
+
+<g clip-path="url(#clip-canvas)" aria-hidden="true">
+  <line class="diag-line" x1="-50" y1="1880" x2="1400" y2="0"/>
+  <line class="diag-line" x1="50" y1="1880" x2="1500" y2="0"/>
+  <line class="diag-line" x1="150" y1="1880" x2="1600" y2="0"/>
+  <line class="diag-line" x1="250" y1="1880" x2="1700" y2="0"/>
+</g>
+
+<!-- ============================================================ -->
+<!-- HEADER -->
+<!-- ============================================================ -->
+
+<rect class="header-bar" x="0" y="0" width="1200" height="54"/>
+<text class="header-text" x="36" y="22">SMTP Response Code Reference</text>
+<text class="header-sub" x="36" y="42">COMMON CODES FOR EMAIL DELIVERABILITY</text>
+<text class="header-sub" x="1164" y="29" text-anchor="end">INBOXALLY DELIVERABILITY RESEARCH</text>
+
+<text class="scope-text" x="600" y="74">Codes most relevant to email deliverability and sender compliance — not an exhaustive protocol reference</text>
+
+<!-- ============================================================ -->
+<!-- STEP 1: HOW TO READ -->
+<!-- ============================================================ -->
+
+<g id="smtp-howto" aria-label="How to read SMTP codes: three-digit code structure and enhanced code format" data-step="1" data-label="How to Read SMTP Codes" data-description="Visual breakdown of the three-digit SMTP code system. First digit is severity (2=success, 3=intermediate, 4=temporary failure, 5=permanent failure), second digit is category (x.7.x=security/policy, x.1.x=addressing, x.2.x=mailbox), third digit is specific detail. Enhanced codes like 550 5.7.26 follow base-reply plus enhanced-status format.">
+
+<rect class="howto-box" x="40" y="92" width="1120" height="110" rx="8"/>
+<text class="howto-title" x="60" y="116">How to Read SMTP Codes</text>
+
+<text class="howto-code" x="100" y="152">5</text>
+<text class="howto-code" x="148" y="152">5</text>
+<text class="howto-code" x="196" y="152">0</text>
+<line stroke="#0062FF" stroke-width="1" opacity="0.3" x1="100" y1="168" x2="100" y2="174"/>
+<line stroke="#0062FF" stroke-width="1" opacity="0.3" x1="148" y1="168" x2="148" y2="174"/>
+<line stroke="#0062FF" stroke-width="1" opacity="0.3" x1="196" y1="168" x2="196" y2="174"/>
+<text class="howto-label" x="100" y="186">Severity</text>
+<text class="howto-label" x="148" y="186">Category</text>
+<text class="howto-label" x="196" y="186">Detail</text>
+
+<text class="howto-text" x="290" y="118">Severity (1st digit):</text>
+<text class="code-num-blue" x="290" y="136">2xx</text><text class="howto-muted" x="330" y="136">Success</text>
+<text class="code-num" x="430" y="136">3xx</text><text class="howto-muted" x="470" y="136">Intermediate</text>
+<text class="code-num-amber" x="580" y="136">4xx</text><text class="howto-muted" x="620" y="136">Temporary failure — server retries</text>
+<text class="code-num-red" x="830" y="136">5xx</text><text class="howto-muted" x="870" y="136">Permanent failure — message rejected</text>
+
+<text class="howto-text" x="290" y="162">Enhanced codes (e.g., 550 5.7.26 = base reply + enhanced status):</text>
+<text class="howto-muted" x="290" y="180">class.subject.detail — x.7.x = security/policy · x.1.x = addressing · x.2.x = mailbox</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- STEP 2: 2xx SUCCESS (left) -->
+<!-- ============================================================ -->
+
+<g id="smtp-success" aria-label="2xx Success codes: service ready, closing, auth success, OK, will forward, will attempt" data-step="2" data-label="2xx Success" data-description="Six standard 2xx success codes from RFC 5321: 220 service ready, 221 closing, 235 auth successful, 250 OK, 251 will forward, 252 will attempt delivery.">
+
+<rect class="section-2xx" x="40" y="220" width="545" height="26" rx="5"/>
+<text class="section-text" x="60" y="235">2xx — SUCCESS</text>
+
+<rect class="row-alt" x="40" y="250" width="545" height="22" rx="0" aria-hidden="true"/>
+<text class="code-num-blue" x="60" y="262">220</text><text class="code-desc" x="120" y="262">Service ready — connection accepted</text>
+<text class="code-num-blue" x="60" y="282">221</text><text class="code-desc" x="120" y="282">Closing connection</text>
+<rect class="row-alt" x="40" y="292" width="545" height="22" rx="0" aria-hidden="true"/>
+<text class="code-num-blue" x="60" y="304">235</text><text class="code-desc" x="120" y="304">Authentication successful</text>
+<text class="code-num-blue" x="60" y="324">250</text><text class="code-desc" x="120" y="324">OK — action completed</text>
+<rect class="row-alt" x="40" y="334" width="545" height="22" rx="0" aria-hidden="true"/>
+<text class="code-num-blue" x="60" y="346">251</text><text class="code-desc" x="120" y="346">User not local — will forward</text>
+<text class="code-num-blue" x="60" y="366">252</text><text class="code-desc" x="120" y="366">Cannot verify user — will attempt delivery</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- STEP 3: 3xx INTERMEDIATE (right) -->
+<!-- ============================================================ -->
+
+<g id="smtp-intermediate" aria-label="3xx Intermediate codes: authentication challenge and start mail input" data-step="3" data-label="3xx Intermediate" data-description="Two standard 3xx intermediate codes from RFC 5321: 334 server authentication challenge, 354 start mail input.">
+
+<rect class="section-3xx" x="615" y="220" width="545" height="26" rx="5"/>
+<text class="section-text" x="635" y="235">3xx — INTERMEDIATE</text>
+
+<rect class="row-alt" x="615" y="250" width="545" height="22" rx="0" aria-hidden="true"/>
+<text class="code-num" x="635" y="262">334</text><text class="code-desc" x="695" y="262">Server authentication challenge</text>
+<text class="code-num" x="635" y="282">354</text><text class="code-desc" x="695" y="282">Start mail input — send message content</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- STEP 4: 4xx TEMPORARY FAILURE -->
+<!-- ============================================================ -->
+
+<g id="smtp-temp-failure" aria-label="4xx Temporary failure codes: standard RFC 5321 codes where the sending server retries automatically" data-step="4" data-label="4xx Temporary Failure (Standard)" data-description="Five standard 4xx temporary failure codes from RFC 5321: 421 service unavailable, 450 mailbox busy, 451 local error, 452 insufficient storage, 455 can't accommodate parameters. Sending server retries automatically.">
+
+<rect class="section-4xx" x="40" y="396" width="1120" height="26" rx="5"/>
+<text class="section-text" x="60" y="411">4xx — TEMPORARY FAILURE</text>
+<text class="section-desc" x="330" y="411">Your server retries automatically — fix the issue before providers escalate to 5xx</text>
+
+<text class="subsection" x="60" y="438">STANDARD (RFC 5321)</text>
+<line class="subsection-line" x1="240" y1="438" x2="1140" y2="438" aria-hidden="true"/>
+
+<rect class="row-alt" x="40" y="448" width="1120" height="22" rx="0" aria-hidden="true"/>
+<text class="code-num-amber" x="60" y="460">421</text><text class="code-desc" x="130" y="460">Service unavailable — closing connection</text><text class="code-fix" x="640" y="460">Server shutting down or overloaded</text>
+<text class="code-num-amber" x="60" y="480">450</text><text class="code-desc" x="130" y="480">Mailbox unavailable — busy or temp policy block</text><text class="code-fix" x="640" y="480">Recipient server temp rejecting — retry later</text>
+<rect class="row-alt" x="40" y="490" width="1120" height="22" rx="0" aria-hidden="true"/>
+<text class="code-num-amber" x="60" y="502">451</text><text class="code-desc" x="130" y="502">Local error in processing</text><text class="code-fix" x="640" y="502">Server-side issue — retry later</text>
+<text class="code-num-amber" x="60" y="522">452</text><text class="code-desc" x="130" y="522">Insufficient storage / mailbox full</text><text class="code-fix" x="640" y="522">Recipient needs to free space</text>
+<rect class="row-alt" x="40" y="532" width="1120" height="22" rx="0" aria-hidden="true"/>
+<text class="code-num-amber" x="60" y="544">455</text><text class="code-desc" x="130" y="544">Server unable to accommodate parameters</text><text class="code-fix" x="640" y="544">Check message formatting</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- STEP 5: 5xx PERMANENT FAILURE -->
+<!-- ============================================================ -->
+
+<g id="smtp-perm-failure" aria-label="5xx Permanent failure codes: standard RFC 5321 codes where the message is permanently rejected" data-step="5" data-label="5xx Permanent Failure (Standard)" data-description="Twelve standard 5xx permanent failure codes from RFC 5321 and RFC 7504: 500 syntax error, 501 parameter syntax, 502 not implemented, 503 bad sequence, 521 server does not accept mail, 550 mailbox unavailable, 551 user not local, 552 exceeded storage, 553 mailbox name not allowed, 554 transaction failed, 556 domain does not accept mail.">
+
+<rect class="section-5xx" x="40" y="574" width="1120" height="26" rx="5"/>
+<text class="section-text" x="60" y="589">5xx — PERMANENT FAILURE</text>
+<text class="section-desc" x="330" y="589">Message rejected — fix the compliance issue so future messages from your domain are accepted</text>
+
+<text class="subsection" x="60" y="616">STANDARD (RFC 5321)</text>
+<line class="subsection-line" x1="240" y1="616" x2="1140" y2="616" aria-hidden="true"/>
+
+<rect class="row-alt" x="40" y="626" width="1120" height="22" rx="0" aria-hidden="true"/>
+<text class="code-num-red" x="60" y="638">500</text><text class="code-desc" x="130" y="638">Syntax error — command unrecognized</text><text class="code-fix" x="640" y="638">Check SMTP command formatting</text>
+<text class="code-num-red" x="60" y="658">501</text><text class="code-desc" x="130" y="658">Syntax error in parameters</text><text class="code-fix" x="640" y="658">Check addresses and command syntax</text>
+<rect class="row-alt" x="40" y="668" width="1120" height="22" rx="0" aria-hidden="true"/>
+<text class="code-num-red" x="60" y="680">502</text><text class="code-desc" x="130" y="680">Command not implemented</text><text class="code-fix" x="640" y="680">Server doesn't support this command</text>
+<text class="code-num-red" x="60" y="700">503</text><text class="code-desc" x="130" y="700">Bad sequence of commands</text><text class="code-fix" x="640" y="700">Check SMTP command order</text>
+<rect class="row-alt" x="40" y="710" width="1120" height="22" rx="0" aria-hidden="true"/>
+<text class="code-num-red" x="60" y="722">521</text><text class="code-desc" x="130" y="722">Server does not accept mail (RFC 7504)</text><text class="code-fix" x="640" y="722">Host blocks all SMTP — find alternate contact</text>
+<text class="code-num-red" x="60" y="742">550</text><text class="code-desc" x="130" y="742">Mailbox unavailable — not found or policy block</text><text class="code-fix" x="640" y="742">Verify address or check sender policy</text>
+<rect class="row-alt" x="40" y="752" width="1120" height="22" rx="0" aria-hidden="true"/>
+<text class="code-num-red" x="60" y="764">551</text><text class="code-desc" x="130" y="764">User not local — use forward-path</text><text class="code-fix" x="640" y="764">Update recipient address</text>
+<text class="code-num-red" x="60" y="784">552</text><text class="code-desc" x="130" y="784">Exceeded storage allocation</text><text class="code-fix" x="640" y="784">Recipient mailbox full</text>
+<rect class="row-alt" x="40" y="794" width="1120" height="22" rx="0" aria-hidden="true"/>
+<text class="code-num-red" x="60" y="806">553</text><text class="code-desc" x="130" y="806">Mailbox name not allowed</text><text class="code-fix" x="640" y="806">Check recipient address format</text>
+<text class="code-num-red" x="60" y="826">554</text><text class="code-desc" x="130" y="826">Transaction failed</text><text class="code-fix" x="640" y="826">General rejection — check message content</text>
+<rect class="row-alt" x="40" y="836" width="1120" height="22" rx="0" aria-hidden="true"/>
+<text class="code-num-red" x="60" y="848">556</text><text class="code-desc" x="130" y="848">Domain does not accept mail (RFC 7504)</text><text class="code-fix" x="640" y="848">Domain rejects all mail — find alternate contact</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- STEP 6: BULK SENDER ENFORCEMENT — PAIRED WARNING → REJECTION -->
+<!-- ============================================================ -->
+
+<g id="smtp-enforcement-paired" aria-label="Bulk sender enforcement codes from Gmail and Microsoft, 2024–2025, shown as paired warning to rejection escalations" data-step="6" data-label="Bulk Sender Enforcement Codes" data-description="Gmail enforcement codes shown as paired 4xx warning to 5xx rejection escalations. Warning codes ride inside 421 base reply, rejection codes inside 550 base reply. Covers: 421 4.7.26/550 5.7.26 (unauthenticated), 421 4.7.27/550 5.7.27 (SPF failure), 421 4.7.28/550 5.7.28 (spam rate), 421 4.7.29/550 5.7.29 (no TLS), 421 4.7.30/550 5.7.30 (DKIM failure), 421 4.7.32/550 5.7.26 (no DMARC alignment), 421 4.7.23/550 5.7.25 (no PTR record).">
+
+<rect fill="#292929" x="40" y="882" width="1120" height="28" rx="5"/>
+<text class="section-text" x="60" y="898">BULK SENDER ENFORCEMENT CODES (2024–2025)</text>
+<text class="section-desc" x="510" y="898">Same issue, two severity levels — 4xx warns, 5xx rejects</text>
+
+<!-- Column headers -->
+<rect class="escalation-header-warn" x="40" y="918" width="270" height="28" rx="4"/>
+<text class="escalation-label" x="175" y="933" style="fill:#CC8800;">WARNING (421 4.x.x)</text>
+
+<text class="arrow-text" x="340" y="933">→</text>
+
+<rect class="escalation-header-reject" x="370" y="918" width="270" height="28" rx="4"/>
+<text class="escalation-label" x="505" y="933" style="fill:#FF3333;">REJECTION (550 5.x.x)</text>
+
+<text class="escalation-label" x="700" y="933">Issue</text>
+<text class="escalation-label" x="1000" y="933">Fix</text>
+
+<!-- Row 1: Unauthenticated -->
+<rect class="row-alt" x="40" y="950" width="1120" height="26" rx="0" aria-hidden="true"/>
+<rect class="badge-gmail" x="48" y="955" width="42" height="14" rx="3"/><text class="badge-text" x="69" y="963">GMAIL</text>
+<text class="code-num-amber" x="100" y="963">421 4.7.26</text>
+<text class="arrow-text" x="340" y="963">→</text>
+<text class="code-num-red" x="380" y="963">550 5.7.26</text>
+<text class="code-desc" x="660" y="963">Unauthenticated — SPF or DKIM missing</text>
+<text class="code-fix" x="970" y="963">Configure SPF + DKIM</text>
+
+<!-- Row 2: SPF -->
+<rect class="badge-gmail" x="48" y="981" width="42" height="14" rx="3"/><text class="badge-text" x="69" y="989">GMAIL</text>
+<text class="code-num-amber" x="100" y="989">421 4.7.27</text>
+<text class="arrow-text" x="340" y="989">→</text>
+<text class="code-num-red" x="380" y="989">550 5.7.27</text>
+<text class="code-desc" x="660" y="989">SPF did not pass</text>
+<text class="code-fix" x="970" y="989">Fix SPF record, check IPs</text>
+
+<!-- Row 3: Spam/volume -->
+<rect class="row-alt" x="40" y="1002" width="1120" height="26" rx="0" aria-hidden="true"/>
+<rect class="badge-gmail" x="48" y="1007" width="42" height="14" rx="3"/><text class="badge-text" x="69" y="1015">GMAIL</text>
+<text class="code-num-amber" x="100" y="1015">421 4.7.28</text>
+<text class="arrow-text" x="340" y="1015">→</text>
+<text class="code-num-red" x="380" y="1015">550 5.7.28</text>
+<text class="code-desc" x="660" y="1015">Unusual rate / high spam rate</text>
+<text class="code-fix" x="970" y="1015">Reduce volume, lower spam rate</text>
+
+<!-- Row 4: TLS -->
+<rect class="badge-gmail" x="48" y="1033" width="42" height="14" rx="3"/><text class="badge-text" x="69" y="1041">GMAIL</text>
+<text class="code-num-amber" x="100" y="1041">421 4.7.29</text>
+<text class="arrow-text" x="340" y="1041">→</text>
+<text class="code-num-red" x="380" y="1041">550 5.7.29</text>
+<text class="code-desc" x="660" y="1041">No TLS encryption</text>
+<text class="code-fix" x="970" y="1041">Enable TLS on sending server</text>
+
+<!-- Row 5: DKIM -->
+<rect class="row-alt" x="40" y="1054" width="1120" height="26" rx="0" aria-hidden="true"/>
+<rect class="badge-gmail" x="48" y="1059" width="42" height="14" rx="3"/><text class="badge-text" x="69" y="1067">GMAIL</text>
+<text class="code-num-amber" x="100" y="1067">421 4.7.30</text>
+<text class="arrow-text" x="340" y="1067">→</text>
+<text class="code-num-red" x="380" y="1067">550 5.7.30</text>
+<text class="code-desc" x="660" y="1067">DKIM did not pass</text>
+<text class="code-fix" x="970" y="1067">Fix DKIM signing + DNS key</text>
+
+<!-- Row 6: DMARC alignment -->
+<rect class="badge-gmail" x="48" y="1085" width="42" height="14" rx="3"/><text class="badge-text" x="69" y="1093">GMAIL</text>
+<text class="code-num-amber" x="100" y="1093">421 4.7.32</text>
+<text class="arrow-text" x="340" y="1093">→</text>
+<text class="code-num-red" x="380" y="1093">550 5.7.26*</text>
+<text class="code-desc" x="660" y="1093">No DMARC alignment</text>
+<text class="code-fix" x="970" y="1093">Align From: with SPF/DKIM</text>
+
+<!-- Row 7: PTR -->
+<rect class="row-alt" x="40" y="1106" width="1120" height="26" rx="0" aria-hidden="true"/>
+<rect class="badge-gmail" x="48" y="1111" width="42" height="14" rx="3"/><text class="badge-text" x="69" y="1119">GMAIL</text>
+<text class="code-num-amber" x="100" y="1119">421 4.7.23</text>
+<text class="arrow-text" x="340" y="1119">→</text>
+<text class="code-num-red" x="380" y="1119">550 5.7.25</text>
+<text class="code-desc" x="660" y="1119">No PTR record / reverse DNS mismatch</text>
+<text class="code-fix" x="970" y="1119">Add valid PTR record</text>
+
+<!-- Footnote -->
+<text class="code-fix" x="60" y="1148">* No documented 550 5.7.32 — alignment failures escalate to 550 5.7.26 (unauthenticated) or 550 5.7.1 (general block)</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- STEP 7: GMAIL PERMANENT ONLY -->
+<!-- ============================================================ -->
+
+<g id="smtp-gmail-perm-only" aria-label="Gmail permanent rejection codes with no 4xx warning equivalent — these go straight to rejection" data-step="7" data-label="Gmail Permanent Rejection Only" data-description="Two Gmail enforcement codes with no 4xx warning equivalent: 550 5.7.1 (blocked for spam, low reputation, DMARC policy, or invalid headers) and 550 5.7.23 (DMARC policy failure with quarantine or reject applied). These go straight to permanent rejection.">
+
+<text class="subsection" x="60" y="1178">GMAIL — PERMANENT REJECTION ONLY (NO 421 WARNING EQUIVALENT)</text>
+<line class="subsection-line" x1="560" y1="1178" x2="1140" y2="1178" aria-hidden="true"/>
+
+<rect class="row-alt" x="40" y="1188" width="1120" height="26" rx="0" aria-hidden="true"/>
+<rect class="badge-gmail" x="48" y="1193" width="42" height="14" rx="3"/><text class="badge-text" x="69" y="1201">GMAIL</text>
+<text class="code-num-red" x="100" y="1201">550 5.7.1</text>
+<text class="code-desc" x="260" y="1201">Blocked — spam, low reputation, DMARC policy, or invalid From: header</text>
+<text class="code-fix" x="840" y="1201">Check content, reputation, auth, headers</text>
+
+<rect class="badge-gmail" x="48" y="1219" width="42" height="14" rx="3"/><text class="badge-text" x="69" y="1227">GMAIL</text>
+<text class="code-num-red" x="100" y="1227">550 5.7.23</text>
+<text class="code-desc" x="260" y="1227">DMARC policy failure (quarantine or reject applied)</text>
+<text class="code-fix" x="840" y="1227">Fix DMARC record, check SPF + DKIM alignment</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- STEP 8: MICROSOFT ENFORCEMENT -->
+<!-- ============================================================ -->
+
+<g id="smtp-msft-enforcement" aria-label="Microsoft Outlook enforcement code: 550 5.7.515 required authentication level not met" data-step="8" data-label="Microsoft Outlook Enforcement" data-description="Microsoft's single enforcement code: 550 5.7.515 — required authentication level not met, requiring SPF + DKIM + DMARC (p=none minimum). Active since May 2025.">
+
+<text class="subsection" x="60" y="1262">MICROSOFT OUTLOOK (MAY 2025)</text>
+<line class="subsection-line" x1="330" y1="1262" x2="1140" y2="1262" aria-hidden="true"/>
+
+<rect class="row-alt" x="40" y="1272" width="1120" height="26" rx="0" aria-hidden="true"/>
+<rect class="badge-msft" x="48" y="1277" width="32" height="14" rx="3"/><text class="badge-text" x="64" y="1285">MSFT</text>
+<text class="code-num-red" x="90" y="1285">550 5.7.515</text>
+<text class="code-desc" x="260" y="1285">Required authentication level not met (SPF + DKIM + DMARC)</text>
+<text class="code-fix" x="840" y="1285">Configure SPF + DKIM + DMARC (p=none min)</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- STEP 9: YAHOO ENFORCEMENT -->
+<!-- ============================================================ -->
+
+<g id="smtp-yahoo-enforcement" aria-label="Yahoo and AOL enforcement codes: temporary deferrals, Spamhaus blocks, permanent deferrals, and policy rejections" data-step="9" data-label="Yahoo / AOL Enforcement" data-description="Four Yahoo/AOL enforcement codes active since February 2024: 421 4.7.0 [TSS04] (temporary deferral for unusual volume or complaints), 553 5.7.1 [BL21/BL23] (IP blocked on Spamhaus SBL or XBL), 553 5.7.2 [TSS11] (permanent deferral — retrying will not succeed), 554 5.7.9 (policy rejection for unauthenticated or content violation). Sourced from senders.yahooinc.com/smtp-error-codes.">
+
+<text class="subsection" x="60" y="1318">YAHOO / AOL (FEB 2024)</text>
+<line class="subsection-line" x1="280" y1="1318" x2="1140" y2="1318" aria-hidden="true"/>
+
+<rect class="row-alt" x="40" y="1328" width="1120" height="26" rx="0" aria-hidden="true"/>
+<rect class="badge-yahoo" x="48" y="1333" width="42" height="14" rx="3"/><text class="badge-text" x="69" y="1341">YAHOO</text>
+<text class="code-num-amber" x="100" y="1341">421 4.7.0 [TSS04]</text>
+<text class="code-desc" x="340" y="1341">Temporarily deferred — unusual volume or user complaints</text>
+<text class="code-fix" x="840" y="1341">Slow down, review complaint sources</text>
+
+<rect class="badge-yahoo" x="48" y="1359" width="42" height="14" rx="3"/><text class="badge-text" x="69" y="1367">YAHOO</text>
+<text class="code-num-red" x="100" y="1367">553 5.7.1 [BL21/BL23]</text>
+<text class="code-desc" x="340" y="1367">IP blocked — listed on Spamhaus (SBL or XBL)</text>
+<text class="code-fix" x="840" y="1367">Request delisting at spamhaus.org</text>
+
+<rect class="row-alt" x="40" y="1380" width="1120" height="26" rx="0" aria-hidden="true"/>
+<rect class="badge-yahoo" x="48" y="1385" width="42" height="14" rx="3"/><text class="badge-text" x="69" y="1393">YAHOO</text>
+<text class="code-num-red" x="100" y="1393">553 5.7.2 [TSS11]</text>
+<text class="code-desc" x="340" y="1393">All messages permanently deferred — retrying will NOT succeed</text>
+<text class="code-fix" x="840" y="1393">Fix auth + reputation, then wait</text>
+
+<rect class="badge-yahoo" x="48" y="1411" width="42" height="14" rx="3"/><text class="badge-text" x="69" y="1419">YAHOO</text>
+<text class="code-num-red" x="100" y="1419">554 5.7.9</text>
+<text class="code-desc" x="340" y="1419">Policy rejection — unauthenticated or content violation</text>
+<text class="code-fix" x="840" y="1419">Configure SPF + DKIM + DMARC</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- STEP 10: RECIPIENT-SIDE CODES -->
+<!-- ============================================================ -->
+
+<g id="smtp-recipient-codes" aria-label="Common recipient-side codes that senders cannot fix — these are the recipient's problem" data-step="10" data-label="Common Recipient-Side Codes" data-description="Seven codes the sender sees but cannot fix: 450 4.2.1 (rate limited), 452 4.2.2 (over quota temp), 550 5.1.1 (account doesn't exist), 550 5.2.1 (account disabled), 552 5.2.2 (over quota permanent), 552 5.2.3 (message too large), 552 5.7.0 (illegal attachment).">
+
+<text class="subsection" x="60" y="1458">COMMON RECIPIENT-SIDE CODES (SENDER CANNOT FIX — RECIPIENT ISSUE)</text>
+<line class="subsection-line" x1="590" y1="1458" x2="1140" y2="1458" aria-hidden="true"/>
+
+<rect class="row-alt" x="40" y="1468" width="1120" height="22" rx="0" aria-hidden="true"/>
+<text class="code-num" x="60" y="1480">450 4.2.1</text><text class="code-desc" x="190" y="1480">Recipient receiving too fast — rate limited</text><text class="code-fix" x="680" y="1480">Retry later — recipient-side limit</text>
+<text class="code-num" x="60" y="1500">452 4.2.2</text><text class="code-desc" x="190" y="1500">Recipient over quota (temporary)</text><text class="code-fix" x="680" y="1500">Retry later</text>
+<rect class="row-alt" x="40" y="1510" width="1120" height="22" rx="0" aria-hidden="true"/>
+<text class="code-num" x="60" y="1522">550 5.1.1</text><text class="code-desc" x="190" y="1522">Account does not exist</text><text class="code-fix" x="680" y="1522">Suppress — will never accept mail</text>
+<text class="code-num" x="60" y="1542">550 5.2.1</text><text class="code-desc" x="190" y="1542">Account disabled or suspended</text><text class="code-fix" x="680" y="1542">Suppress — account inactive</text>
+<rect class="row-alt" x="40" y="1552" width="1120" height="22" rx="0" aria-hidden="true"/>
+<text class="code-num" x="60" y="1564">552 5.2.2</text><text class="code-desc" x="190" y="1564">Recipient over quota (permanent)</text><text class="code-fix" x="680" y="1564">Suppress after repeated failures</text>
+<text class="code-num" x="60" y="1584">552 5.2.3</text><text class="code-desc" x="190" y="1584">Message too large</text><text class="code-fix" x="680" y="1584">Reduce size (Gmail limit: 25MB)</text>
+<rect class="row-alt" x="40" y="1594" width="1120" height="22" rx="0" aria-hidden="true"/>
+<text class="code-num" x="60" y="1606">552 5.7.0</text><text class="code-desc" x="190" y="1606">Illegal attachment detected</text><text class="code-fix" x="680" y="1606">Remove blocked attachment type</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- STEP 11: QUICK REFERENCE -->
+<!-- ============================================================ -->
+
+<g id="smtp-quick-reference" aria-label="Quick reference: 4xx temporary failure means server retries automatically, 5xx permanent failure means message is rejected" data-step="11" data-label="Quick Reference" data-description="Summary boxes: 4xx is a temporary failure where your server retries automatically — fix the issue before providers escalate to 5xx. 5xx is a permanent failure where the message is rejected and your server stops trying.">
+
+<rect class="action-box-retry" x="40" y="1636" width="545" height="66" rx="8"/>
+<text class="action-text" x="60" y="1658" style="fill:#CC8800;">4xx → Temporary failure</text>
+<text class="action-sub" x="60" y="1676">Your sending server retries automatically.</text>
+<text class="action-sub" x="60" y="1692">This is a warning — fix the issue before providers escalate to permanent 5xx rejection.</text>
+
+<rect class="action-box-stop" x="615" y="1636" width="545" height="66" rx="8"/>
+<text class="action-text" x="635" y="1658" style="fill:#FF3333;">5xx → Permanent failure</text>
+<text class="action-sub" x="635" y="1676">This message is permanently rejected. Your server stops trying.</text>
+<text class="action-sub" x="635" y="1692">Fix the compliance issue so future messages from your domain are accepted.</text>
+
+<!-- Key insight -->
+<rect fill="#292929" x="40" y="1720" width="1120" height="40" rx="8"/>
+<text font-family="Arial, Helvetica, sans-serif" font-size="14px" fill="#FFFFFF" font-weight="bold" text-anchor="middle" dominant-baseline="middle" x="600" y="1734">Since November 2025, Gmail converts 421 warnings to 550 rejections for persistent non-compliance</text>
+<text font-family="Arial, Helvetica, sans-serif" font-size="11px" fill="#FFFFFF" text-anchor="middle" dominant-baseline="middle" opacity="0.6" x="600" y="1752">A 421 4.7.x code today becomes a 550 5.7.x rejection tomorrow if you don't fix the issue</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- SCOPE NOTE -->
+<!-- ============================================================ -->
+
+<rect class="note-box" x="40" y="1778" width="1120" height="50" rx="8"/>
+<text class="note-text" x="60" y="1798">This reference covers codes most relevant to email deliverability and sender compliance.</text>
+<text class="note-text" x="60" y="1816">For the complete SMTP protocol specification, see</text>
+<text class="note-link" x="378" y="1816">IETF RFC 5321 (datatracker.ietf.org/doc/html/rfc5321)</text>
+
+<!-- ============================================================ -->
+<!-- STEP 12: SOURCES -->
+<!-- ============================================================ -->
+
+<g id="smtp-sources" aria-label="Sources: IETF RFC 5321, RFC 7504, RFC 3463, Google Workspace Admin Help, Microsoft Tech Community, Yahoo Sender Hub" data-step="sources" data-label="Sources" data-description="Standard codes from IETF RFC 5321 (Oct 2008), RFC 7504 (Jun 2015), RFC 3463. Gmail enforcement codes from Google Workspace Admin Help. Microsoft code from Microsoft Tech Community (Apr 2025). Yahoo codes from senders.yahooinc.com/smtp-error-codes.">
+
+<text class="source-text" x="600" y="1848">RFC 5321 (Oct 2008) · RFC 7504 (Jun 2015) · RFC 3463 · support.google.com/a/answer/3726730 · support.google.com/a/answer/81126</text>
+<text class="source-text" x="600" y="1862">support.google.com/a/answer/14229414 · Microsoft Tech Community (Apr 2025) · senders.yahooinc.com/smtp-error-codes</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- ATTRIBUTION -->
+<!-- ============================================================ -->
+
+<a href="https://www.inboxally.com">
+  <text class="attribution" x="36" y="1878">Source: InboxAlly · inboxally.com</text>
+</a>
+<text class="attribution" x="1164" y="1878" text-anchor="end">CC BY 4.0</text>
+
+</svg>
