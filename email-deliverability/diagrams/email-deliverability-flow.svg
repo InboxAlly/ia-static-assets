@@ -125,35 +125,37 @@ feed back into the sender reputation system and influence future filtering decis
   @media (prefers-color-scheme: dark) {
     .bg { fill: #1A1A1A; }
     .header-bar { fill: #0D0D0D; }
+    .header-sub { opacity: 1; }
     .stage-box { fill: #1A2A3A; stroke: #4D9AFF; stroke-width: 1; }
-    .stage-box-inner { stroke: #4D9AFF; opacity: 0.08; }
+    .stage-box-inner { stroke: #4D9AFF; opacity: 1; }
     .label { fill: #E8E8E8; }
-    .sublabel { fill: #A0A0A0; }
+    .sublabel { fill: #A0A0A0; opacity: 1; }
     .step-num { fill: #4D9AFF; }
-    .icon-shape { fill: #4D9AFF; opacity: 0.1; }
+    .icon-shape { fill: #4D9AFF; opacity: 1; }
     .arrow-line { stroke: #4D9AFF; }
-    .arrow-line-muted { stroke: #666666; }
-    .outcome-box { fill: #2A2A2A; stroke: #666666; }
+    .arrow-line-muted { stroke: #999999; opacity: 1; }
+    .outcome-box { fill: #2A2A2A; stroke: #999999; }
     .outcome-inbox { fill: #1A2A3A; stroke: #4D9AFF; }
     .outcome-label { fill: #E8E8E8; }
-    .outcome-sublabel { fill: #888888; }
+    .outcome-sublabel { fill: #999999; opacity: 1; }
     .spam-box { fill: #3A1A1A; stroke: #FF6666; }
     .spam-label { fill: #FF6666; }
     .engagement-box { fill: #1A2A3A; stroke: #4D9AFF; }
-    .feedback-path { stroke: #4D9AFF; }
+    .feedback-path { stroke: #4D9AFF; opacity: 1; }
     .loop-label { fill: #4D9AFF; }
     .diag-line { stroke: #4D9AFF; opacity: 0.04; }
-    .attribution { fill: #888888; }
+    .attribution { fill: #999999; opacity: 1; }
     .connector-dot { fill: #4D9AFF; }
-    .pipeline-axis { stroke: #333333; }
+    .pipeline-axis { stroke: #333333; opacity: 1; }
     .decision-node { fill: #4D9AFF; }
-    .decision-label { fill: #888888; }
+    .decision-label { fill: #999999; opacity: 1; }
+    .marker-arrow { fill: #4D9AFF; }
   }
 </style>
 
 <defs>
   <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-    <polygon points="0 0, 8 3, 0 6" fill="#0062FF"/>
+    <polygon class="marker-arrow" points="0 0, 8 3, 0 6" fill="#0062FF"/>
   </marker>
   <clipPath id="clip-canvas">
     <rect x="0" y="0" width="1200" height="520" rx="0"/>

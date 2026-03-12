@@ -142,35 +142,35 @@ accelerates trust building during the critical early phases.
   @media (prefers-color-scheme: dark) {
     .bg { fill: #1A1A1A; }
     .header-bar { fill: #0D0D0D; }
-    .axis { stroke: #666666; }
-    .axis-label { fill: #888888; }
-    .axis-label-y { fill: #888888; }
+    .axis { stroke: #999999; opacity: 1; }
+    .axis-label { fill: #999999; opacity: 1; }
+    .axis-label-y { fill: #999999; opacity: 1; }
     .grid-line { stroke: #444444; }
-    .tick { fill: #888888; }
+    .tick { fill: #999999; opacity: 1; }
     .step-fill { fill: #1A2A3A; }
     .step-outline { stroke: #4D9AFF; }
     .step-pct { fill: #4D9AFF; }
     .phase-bar { fill: #4D9AFF; opacity: 0.06; }
     .phase-label { fill: #4D9AFF; }
-    .phase-goal { fill: #A0A0A0; }
+    .phase-goal { fill: #A0A0A0; opacity: 1; }
     .eng-bar-bg { fill: #444444; opacity: 0.3; }
-    .eng-bar { fill: #4D9AFF; }
+    .eng-bar { fill: #4D9AFF; opacity: 1; }
     .eng-label { fill: #4D9AFF; }
-    .eng-threshold { stroke: #4D9AFF; }
+    .eng-threshold { stroke: #4D9AFF; opacity: 1; }
     .danger-area { fill: #FF6666; opacity: 0.03; }
-    .danger-curve { stroke: #FF6666; }
+    .danger-curve { stroke: #FF6666; opacity: 1; }
     .danger-label { fill: #FF6666; }
-    .danger-sub { fill: #FF6666; }
+    .danger-sub { fill: #FF6666; opacity: 1; }
     .rule-box { fill: #1A2A3A; stroke: #4D9AFF; }
     .rule-text { fill: #E8E8E8; }
-    .rule-sub { fill: #A0A0A0; }
+    .rule-sub { fill: #A0A0A0; opacity: 1; }
     .ia-box { fill: #1A2A3A; stroke: #4D9AFF; }
     .ia-label { fill: #4D9AFF; }
-    .ia-sub { fill: #A0A0A0; }
+    .ia-sub { fill: #A0A0A0; opacity: 1; }
     .label { fill: #E8E8E8; }
-    .sublabel { fill: #A0A0A0; }
+    .sublabel { fill: #A0A0A0; opacity: 1; }
     .diag-line { stroke: #4D9AFF; opacity: 0.04; }
-    .attribution { fill: #888888; }
+    .attribution { fill: #999999; opacity: 1; }
   }
 </style>
 

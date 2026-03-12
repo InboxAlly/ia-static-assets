@@ -125,37 +125,39 @@ score calculation for future messages, creating a continuous feedback cycle.
     .bg { fill: #1A1A1A; }
     .header-bar { fill: #0D0D0D; }
     .signal-box { fill: #1A2A3A; stroke: #4D9AFF; stroke-width: 1; }
-    .signal-box-inner { stroke: #4D9AFF; opacity: 0.08; }
+    .signal-box-inner { stroke: #4D9AFF; opacity: 1; }
     .score-box { fill: #4D9AFF; }
+    .score-sub { opacity: 1; }
     .label { fill: #E8E8E8; }
-    .sublabel { fill: #A0A0A0; }
+    .sublabel { fill: #A0A0A0; opacity: 1; }
     .signal-tag { fill: #4D9AFF; }
-    .icon { fill: #4D9AFF; opacity: 0.1; }
+    .icon { fill: #4D9AFF; opacity: 1; }
     .arrow-line { stroke: #4D9AFF; }
     .arrow-converge { stroke: #4D9AFF; }
     .arrow-branch { stroke: #4D9AFF; }
     .arrow-down { stroke: #4D9AFF; }
-    .outcome-box { fill: #2A2A2A; stroke: #666666; }
+    .outcome-box { fill: #2A2A2A; stroke: #999999; }
     .outcome-inbox { fill: #1A2A3A; stroke: #4D9AFF; }
     .spam-outcome { fill: #3A1A1A; stroke: #FF6666; }
     .engagement-box { fill: #1A2A3A; stroke: #4D9AFF; }
     .outcome-label { fill: #E8E8E8; }
-    .outcome-sub { fill: #888888; }
+    .outcome-sub { fill: #999999; opacity: 1; }
     .spam-label { fill: #FF6666; }
-    .feedback-path { stroke: #4D9AFF; }
+    .feedback-path { stroke: #4D9AFF; opacity: 1; }
     .feedback-label { fill: #4D9AFF; }
     .connector-dot { fill: #4D9AFF; }
     .diag-line { stroke: #4D9AFF; opacity: 0.04; }
-    .attribution { fill: #888888; }
-    .brace { stroke: #666666; }
-    .outcome-group { stroke: #555555; }
-    .outcome-group-label { fill: #666666; }
+    .attribution { fill: #999999; opacity: 1; }
+    .brace { stroke: #999999; opacity: 1; }
+    .outcome-group { stroke: #555555; opacity: 1; }
+    .outcome-group-label { fill: #999999; opacity: 1; }
+    .marker-arrow { fill: #4D9AFF; }
   }
 </style>
 
 <defs>
   <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-    <polygon points="0 0, 8 3, 0 6" fill="#0062FF"/>
+    <polygon class="marker-arrow" points="0 0, 8 3, 0 6" fill="#0062FF"/>
   </marker>
   <clipPath id="clip-canvas">
     <rect x="0" y="0" width="1200" height="780"/>

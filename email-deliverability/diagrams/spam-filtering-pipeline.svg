@@ -103,34 +103,37 @@ Spam filtering pipeline: mailbox providers evaluate an email using several signa
   .icon { fill: #0062FF; opacity: 0.12; stroke: none; }
   .diag-line { stroke: #0062FF; stroke-width: 0.5; opacity: 0.06; }
   .feedback-label { font-family: Arial, Helvetica, sans-serif; font-size: 12px; fill: #0062FF; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .spam-text { fill: #FF3333; }
 
   /* === Dark mode === */
   @media (prefers-color-scheme: dark) {
     .bg { fill: #1A1A1A; }
     .header-bar { fill: #0D0D0D; }
     .box { fill: #1A2A3A; stroke: #4D9AFF; stroke-width: 1; }
-    .box-inner { stroke: #4D9AFF; stroke-opacity: 0.08; }
+    .box-inner { stroke: #4D9AFF; stroke-opacity: 1; }
     .text { fill: #E8E8E8; }
-    .sub { fill: #A0A0A0; }
+    .sub { fill: #A0A0A0; opacity: 1; }
     .stepnum { fill: #4D9AFF; }
-    .icon { fill: #4D9AFF; opacity: 0.1; }
+    .icon { fill: #4D9AFF; opacity: 1; }
     .arrow { stroke: #4D9AFF; }
-    .arrow-muted { stroke: #666666; }
-    .outcome { fill: #2A2A2A; stroke: #666666; }
+    .arrow-muted { stroke: #999999; stroke-opacity: 1; }
+    .outcome { fill: #2A2A2A; stroke: #999999; }
     .spam-outcome { fill: #3A1A1A; stroke: #FF6666; }
+    .spam-text { fill: #FF6666; }
     .primary { fill: #E8E8E8; }
-    .tertiary { fill: #888888; }
+    .tertiary { fill: #999999; }
     .decision-node { fill: #4D9AFF; }
     .connector-dot { fill: #4D9AFF; }
     .pipeline-axis { stroke: #333333; }
     .diag-line { stroke: #4D9AFF; opacity: 0.04; }
-    .attribution { fill: #888888; }
+    .attribution { fill: #999999; opacity: 1; }
     .feedback-label { fill: #4D9AFF; }
+    .marker-arrowhead { fill: #4D9AFF; }
   }
 </style>
 <defs>
   <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-    <polygon points="0 0, 10 3.5, 0 7" fill="#0062FF"/>
+    <polygon class="marker-arrowhead" points="0 0, 10 3.5, 0 7" fill="#0062FF"/>
   </marker>
   <clipPath id="clip-canvas">
     <rect x="0" y="0" width="1460" height="680"/>
@@ -326,7 +329,7 @@ Spam filtering pipeline: mailbox providers evaluate an email using several signa
    data-label="Spam"
    data-description="Message routed to the spam folder">
   <rect class="spam-outcome" x="1270" y="500" width="160" height="76"/>
-  <text class="text primary" x="1350" y="528" style="fill:#FF3333;">Spam</text>
+  <text class="text primary spam-text" x="1350" y="528">Spam</text>
   <text class="text sub" x="1350" y="550">Spam folder</text>
 </g>
 
