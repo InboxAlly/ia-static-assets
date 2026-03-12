@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     width="100%"
+     viewBox="0 0 1200 790"
+     xml:lang="en"
+     preserveAspectRatio="xMidYMid meet"
+     role="img"
+     aria-labelledby="title desc"
+     data-source="InboxAlly Deliverability Research">
+
+<title id="title">Spam Complaint Feedback Loop — How Providers Report Complaints to Senders</title>
+
+<desc id="desc">
+Diagram showing the complete spam complaint signal path from recipient clicking Report Spam through
+provider reputation calculation to sender notification via feedback loops. Compares three fundamentally
+different feedback mechanisms: Gmail Postmaster Tools provides aggregate trend dashboards only and
+requires a Feedback-ID header for campaign-level data. Yahoo Complaint Feedback Loop forwards
+individual complaint messages in ARF format. Microsoft operates two programs through one portal — JMRP forwards
+individual complaints while SNDS provides IP-level aggregate dashboards. Each provider evaluates sender
+reputation independently based on their own recipients, so complaint rates can differ across providers
+for the same campaign. Senders need all three FBLs configured to catch issues wherever they surface.
+</desc>
+
+<metadata>
+<rdf:RDF>
+  <cc:Work rdf:about="">
+    <dc:title>Spam Complaint Feedback Loop — How Providers Report Complaints to Senders</dc:title>
+    <dc:creator>InboxAlly</dc:creator>
+    <dc:source>https://www.inboxally.com</dc:source>
+    <dc:subject>spam complaint feedback loop, FBL, Gmail Postmaster Tools, Feedback-ID header, Yahoo CFL, complaint feedback loop, Microsoft JMRP, Microsoft SNDS, ARF format, abuse reporting format, spam rate, sender reputation, Report Spam, complaint suppression, email deliverability</dc:subject>
+    <dc:description>Cross-provider comparison of spam complaint feedback mechanisms showing Gmail aggregate dashboards versus Yahoo and Microsoft individual complaint forwarding, with the universal complaint signal path and operational response guidance.</dc:description>
+    <cc:license rdf:resource="https://creativecommons.org/licenses/by/4.0/" />
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "name": "Spam Complaint Feedback Loop — How Providers Report Complaints to Senders",
+  "description": "Cross-provider comparison of spam complaint feedback mechanisms showing Gmail aggregate dashboards versus Yahoo and Microsoft individual complaint forwarding.",
+  "publisher": { "@type": "Organization", "name": "InboxAlly", "url": "https://www.inboxally.com" },
+  "about": { "@type": "Thing", "name": "Email Complaint Feedback Loops" }
+}
+</script>
+
+<style>
+  .bg { fill: #F1F0ED; }
+  .header-bar { fill: #292929; }
+  .header-text { font-family: Georgia, "Times New Roman", serif; font-size: 24px; fill: #FFFFFF; dominant-baseline: middle; }
+  .header-sub { font-family: Arial, Helvetica, sans-serif; font-size: 13px; fill: #DDEFFF; letter-spacing: 1px; dominant-baseline: middle; }
+  .diag-line { stroke: #0062FF; stroke-width: 0.5; opacity: 0.06; }
+
+  /* Step boxes */
+  .step-box { fill: #FFFFFF; stroke: #292929; stroke-width: 1.5; }
+  .step-box-red { fill: #FFF0F0; stroke: #FF3333; stroke-width: 1.5; }
+  .step-box-blue { fill: #EBF0FF; stroke: #0062FF; stroke-width: 1.5; }
+  .step-num { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 11px; font-weight: bold; dominant-baseline: middle; }
+  .step-title { font-family: Georgia, "Times New Roman", serif; fill: #292929; font-size: 14px; font-weight: bold; dominant-baseline: middle; }
+  .step-title-red { font-family: Georgia, "Times New Roman", serif; fill: #FF3333; font-size: 14px; font-weight: bold; dominant-baseline: middle; }
+  .step-desc { font-family: Arial, Helvetica, sans-serif; fill: #666666; font-size: 11px; dominant-baseline: middle; }
+
+  /* Arrows */
+  .arrow-marker { fill: #666666; }
+  .arrow-line { stroke: #292929; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead); }
+
+  /* Insight bar */
+  .insight-bar { fill: #292929; }
+  .insight-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 13px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+  .insight-sub { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 11px; text-anchor: middle; dominant-baseline: middle; opacity: 0.6; }
+
+  /* Provider columns */
+  .col-header { fill: #292929; }
+  .col-header-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 13px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; letter-spacing: 0.5px; }
+  .col-body-fill { fill: #DDEFFF; stroke: #0062FF; stroke-width: 0.5; stroke-opacity: 0.3; }
+  .col-hero { fill: #0062FF; }
+  .col-hero-title { font-family: Georgia, serif; font-size: 18px; fill: #FFFFFF; font-weight: bold; dominant-baseline: middle; }
+  .col-hero-sub { font-family: Arial, sans-serif; font-size: 11px; fill: #FFFFFF; dominant-baseline: middle; opacity: 0.7; }
+  .col-label { font-family: Arial, Helvetica, sans-serif; fill: #666666; font-size: 11px; font-weight: bold; dominant-baseline: middle; letter-spacing: 0.5px; }
+  .col-value { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; dominant-baseline: middle; }
+  .col-value-bold { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; font-weight: bold; dominant-baseline: middle; }
+  .col-code { font-family: "Courier New", monospace; fill: #0062FF; font-size: 11px; dominant-baseline: middle; }
+  .col-muted { font-family: Arial, Helvetica, sans-serif; fill: #666666; font-size: 11px; dominant-baseline: middle; }
+  .col-divider { stroke: #292929; stroke-width: 0.5; opacity: 0.08; }
+  .col-separator { stroke: #292929; stroke-width: 1; stroke-dasharray: 4 3; opacity: 0.2; }
+  .col-separator-label { font-family: Arial, Helvetica, sans-serif; font-size: 8px; fill: #292929; text-anchor: middle; letter-spacing: 1.5px; opacity: 0.35; dominant-baseline: middle; }
+
+  /* Callout boxes */
+  .callout-amber { fill: #FFF8E0; stroke: #CC8800; stroke-width: 1; }
+  .callout-green { fill: #F0FFF4; stroke: #22863A; stroke-width: 1; }
+  .callout-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; dominant-baseline: middle; }
+  .callout-label { font-family: Arial, Helvetica, sans-serif; font-size: 9px; font-weight: bold; dominant-baseline: middle; letter-spacing: 0.5px; }
+  .callout-label-amber { fill: #CC8800; }
+  .callout-label-green { fill: #22863A; }
+
+  /* Badges */
+  .badge-gmail { fill: #0062FF; }
+  .badge-yahoo { fill: #720E9E; }
+  .badge-msft { fill: #CC8800; }
+  .badge-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 9px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+
+  /* Action row */
+  .action-box { fill: #FFFFFF; stroke: #292929; stroke-width: 1; }
+  .action-title { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; font-weight: bold; dominant-baseline: middle; }
+  .action-desc { font-family: Arial, Helvetica, sans-serif; fill: #555555; font-size: 11px; dominant-baseline: middle; }
+  .action-num { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 20px; font-weight: bold; dominant-baseline: middle; }
+
+  /* Section label */
+  .tier-label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; font-weight: bold; letter-spacing: 1.5px; dominant-baseline: middle; opacity: 0.25; }
+  .tier-line { stroke: #292929; stroke-width: 0.5; opacity: 0.08; }
+
+  /* Sources / attribution */
+  .source-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: middle; dominant-baseline: middle; opacity: 0.4; }
+  .attribution { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #292929; opacity: 0.4; }
+
+  @media (prefers-color-scheme: dark) {
+    .bg { fill: #1A1A1A; }
+    .header-bar { fill: #0D0D0D; }
+    .diag-line { stroke: #4D9AFF; opacity: 0.04; }
+
+    .step-box { fill: #242424; stroke: #555555; }
+    .step-box-red { fill: #3A1A1A; stroke: #FF6666; }
+    .step-box-blue { fill: #1A2A3A; stroke: #4D9AFF; }
+    .step-num { fill: #4D9AFF; }
+    .step-title { fill: #E8E8E8; }
+    .step-title-red { fill: #FF6666; }
+    .step-desc { fill: #BBBBBB; }
+
+    .arrow-marker { fill: #999999; }
+    .arrow-line { stroke: #999999; }
+
+    .insight-bar { fill: #0D0D0D; }
+    .insight-sub { fill: #BBBBBB; opacity: 1; }
+
+    .col-header { fill: #0D0D0D; }
+    .col-body-fill { fill: #1A2A3A; stroke: #4D9AFF; stroke-opacity: 0.2; }
+    .col-hero { fill: #2A5A9A; }
+    .col-hero-title { fill: #FFFFFF; }
+    .col-hero-sub { fill: #CCDDFF; opacity: 1; }
+    .col-label { fill: #999999; }
+    .col-value { fill: #D0D0D0; }
+    .col-value-bold { fill: #E8E8E8; }
+    .col-code { fill: #4D9AFF; }
+    .col-muted { fill: #999999; }
+    .col-divider { stroke: #444444; opacity: 1; }
+    .col-separator { stroke: #666666; opacity: 0.3; }
+    .col-separator-label { fill: #999999; opacity: 0.5; }
+
+    .callout-amber { fill: #3A3A1A; stroke: #DDAA00; }
+    .callout-green { fill: #1A3A1A; stroke: #44AA55; }
+    .callout-text { fill: #D0D0D0; }
+    .callout-label-amber { fill: #DDAA00; }
+    .callout-label-green { fill: #44AA55; }
+
+    .badge-gmail { fill: #4D9AFF; }
+    .badge-yahoo { fill: #A855F7; }
+    .badge-msft { fill: #DDAA00; }
+
+    .action-box { fill: #242424; stroke: #444444; }
+    .action-title { fill: #E8E8E8; }
+    .action-desc { fill: #AAAAAA; }
+    .action-num { fill: #4D9AFF; }
+
+    .tier-label { fill: #777777; opacity: 1; }
+    .tier-line { stroke: #444444; opacity: 1; }
+
+    .source-text { fill: #999999; opacity: 1; }
+    .attribution { fill: #999999; opacity: 1; }
+  }
+</style>
+
+<defs>
+  <clipPath id="fbl-clip-canvas"><rect x="0" y="0" width="1200" height="790"/></clipPath>
+  <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <polygon class="arrow-marker" points="0 0, 8 3, 0 6"/>
+  </marker>
+</defs>
+
+<rect class="bg" x="0" y="0" width="1200" height="790"/>
+
+<g clip-path="url(#fbl-clip-canvas)" aria-hidden="true">
+  <line class="diag-line" x1="-50" y1="790" x2="1400" y2="0"/>
+  <line class="diag-line" x1="50" y1="790" x2="1500" y2="0"/>
+  <line class="diag-line" x1="150" y1="790" x2="1600" y2="0"/>
+  <line class="diag-line" x1="250" y1="790" x2="1700" y2="0"/>
+</g>
+
+<!-- ============================================================ -->
+<!-- HEADER -->
+<!-- ============================================================ -->
+
+<rect class="header-bar" x="0" y="0" width="1200" height="54"/>
+<text class="header-text" x="36" y="22">Spam Complaint Feedback Loop</text>
+<text class="header-sub" x="36" y="42">HOW PROVIDERS REPORT COMPLAINTS TO SENDERS</text>
+<text class="header-sub" x="1164" y="29" text-anchor="end">INBOXALLY DELIVERABILITY RESEARCH</text>
+
+<!-- ============================================================ -->
+<!-- TIER 1: THE COMPLAINT SIGNAL PATH -->
+<!-- ============================================================ -->
+
+<g id="fbl-complaint-signal" aria-label="The Complaint Signal Path" data-step="1" data-label="Complaint Signal" data-description="Universal flow showing what happens when a recipient clicks Report Spam — the complaint enters the provider reputation system, is weighted against total volume, affects all mail from the sender at that provider, and is then routed to the sender via a feedback loop if configured" data-next="fbl-gmail fbl-yahoo fbl-msft">
+
+<text class="tier-label" x="40" y="78">THE COMPLAINT SIGNAL</text>
+<line class="tier-line" x1="230" y1="78" x2="1160" y2="78" aria-hidden="true"/>
+
+<!-- Step 1: Report Spam -->
+<rect class="step-box-red" x="40" y="92" width="220" height="70" rx="8"/>
+<text class="step-num" x="56" y="108">STEP 1</text>
+<text class="step-title" x="56" y="128">Recipient clicks</text>
+<text class="step-title-red" x="56" y="146">"Report Spam"</text>
+
+<line class="arrow-line" x1="260" y1="127" x2="290" y2="127"/>
+
+<!-- Step 2: Provider records -->
+<rect class="step-box" x="298" y="92" width="250" height="70" rx="8"/>
+<text class="step-num" x="314" y="108">STEP 2</text>
+<text class="step-title" x="314" y="128">Provider records complaint</text>
+<text class="step-desc" x="314" y="146">Goes to provider first — not to you</text>
+
+<line class="arrow-line" x1="548" y1="127" x2="578" y2="127"/>
+
+<!-- Step 3: Reputation impact -->
+<rect class="step-box" x="586" y="92" width="280" height="70" rx="8"/>
+<text class="step-num" x="602" y="108">STEP 3</text>
+<text class="step-title" x="602" y="128">Reputation impact calculated</text>
+<text class="step-desc" x="602" y="146">Weighted against total inbox-delivered volume</text>
+
+<line class="arrow-line" x1="866" y1="127" x2="896" y2="127"/>
+
+<!-- Step 4: Routed to sender -->
+<rect class="step-box-blue" x="904" y="92" width="256" height="70" rx="8"/>
+<text class="step-num" x="920" y="108">STEP 4</text>
+<text class="step-title" x="920" y="128">Signal routed to sender</text>
+<text class="step-desc" x="920" y="146">Via feedback loop (if configured)</text>
+
+<!-- Insight bar -->
+<rect class="insight-bar" x="40" y="178" width="1120" height="30" rx="6"/>
+<text class="insight-text" x="600" y="195">One complaint affects your reputation for ALL mail to that provider — not just the reported campaign</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- TIER 2: PROVIDER COMPARISON — THREE COLUMNS                  -->
+<!-- Consistent structure: HERO → WHAT YOU GET → ENROLLMENT → CALLOUT -->
+<!-- ============================================================ -->
+
+<text class="tier-label" x="40" y="232">HOW EACH PROVIDER REPORTS BACK TO YOU</text>
+<line class="tier-line" x1="380" y1="232" x2="1160" y2="232" aria-hidden="true"/>
+
+<!-- ============================================================ -->
+<!-- COLUMN 1: GMAIL -->
+<!-- ============================================================ -->
+
+<g id="fbl-gmail" aria-label="Gmail Feedback Loop via Postmaster Tools" data-step="2" data-label="Gmail FBL" data-description="Gmail provides aggregate trend dashboards only through Google Postmaster Tools. Requires domain verification and Feedback-ID header for campaign-level data. Does not forward individual complaint messages or identify specific complainants." data-next="fbl-actions">
+
+<rect class="col-header" x="40" y="246" width="360" height="30" rx="6 6 0 0"/>
+<rect class="badge-gmail" x="52" y="252" width="42" height="16" rx="3"/><text class="badge-text" x="73" y="261">GMAIL</text>
+<text class="col-header-text" x="220" y="262">Google Postmaster Tools</text>
+
+<rect class="col-body-fill" x="40" y="276" width="360" height="308" rx="0 0 6 6"/>
+
+<!-- HERO -->
+<rect class="col-hero" x="40" y="276" width="360" height="52"/>
+<text class="col-hero-title" x="60" y="296">Aggregate dashboards only</text>
+<text class="col-hero-sub" x="60" y="316">Spam rate % · Domain reputation · IP reputation</text>
+
+<!-- WHAT YOU GET -->
+<text class="col-label" x="56" y="348">WHAT YOU GET</text>
+<text class="col-value" x="56" y="366">Spam rate trends, domain + IP reputation scores</text>
+<text class="col-value" x="56" y="384">Feedback-ID header enables campaign-level data</text>
+<text class="col-muted" x="56" y="402">No individual complaints · No complainant identities</text>
+
+<line class="col-divider" x1="56" y1="418" x2="384" y2="418" aria-hidden="true"/>
+
+<!-- ENROLLMENT -->
+<text class="col-label" x="56" y="434">ENROLLMENT</text>
+<text class="col-code" x="56" y="452">postmaster.google.com</text>
+<text class="col-muted" x="56" y="470">Verify domain (DNS TXT) · Add Feedback-ID header</text>
+<text class="col-muted" x="56" y="488">Data appears above undisclosed volume threshold</text>
+<text class="col-muted" x="56" y="506">Works for any sender — no IP ownership required</text>
+
+<line class="col-divider" x1="56" y1="522" x2="384" y2="522" aria-hidden="true"/>
+
+<!-- CALLOUT -->
+<rect class="callout-amber" x="52" y="534" width="336" height="38" rx="5"/>
+<text class="callout-label callout-label-amber" x="68" y="549">KEY LIMITATION</text>
+<text class="callout-text" x="68" y="565">No way to suppress individual complainants.</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- COLUMN 2: YAHOO -->
+<!-- ============================================================ -->
+
+<g id="fbl-yahoo" aria-label="Yahoo Complaint Feedback Loop" data-step="3" data-label="Yahoo CFL" data-description="Yahoo forwards individual complaint messages back to the sender in ARF (Abuse Reporting Format) via the registered complaint address. Sender can identify specific complainants and suppress them." data-next="fbl-actions">
+
+<rect class="col-header" x="420" y="246" width="360" height="30" rx="6 6 0 0"/>
+<rect class="badge-yahoo" x="432" y="252" width="42" height="16" rx="3"/><text class="badge-text" x="453" y="261">YAHOO</text>
+<text class="col-header-text" x="600" y="262">Complaint Feedback Loop (CFL)</text>
+
+<rect class="col-body-fill" x="420" y="276" width="360" height="308" rx="0 0 6 6"/>
+
+<!-- HERO -->
+<rect class="col-hero" x="420" y="276" width="360" height="52"/>
+<text class="col-hero-title" x="440" y="296">Individual complaint messages</text>
+<text class="col-hero-sub" x="440" y="316">Original message returned in ARF format</text>
+
+<!-- WHAT YOU GET -->
+<text class="col-label" x="436" y="348">WHAT YOU GET</text>
+<text class="col-value" x="436" y="366">Exact complainant address + reported message</text>
+<text class="col-value" x="436" y="384">Suppress individuals · Match to campaigns</text>
+<text class="col-muted" x="436" y="402">Requires infrastructure to receive + parse ARF email</text>
+
+<line class="col-divider" x1="436" y1="418" x2="764" y2="418" aria-hidden="true"/>
+
+<!-- ENROLLMENT -->
+<text class="col-label" x="436" y="434">ENROLLMENT</text>
+<text class="col-code" x="436" y="452">senders.yahooinc.com</text>
+<text class="col-muted" x="436" y="470">Domain-based: verify domain + provide complaint address</text>
+<text class="col-muted" x="436" y="488">Works for any sender — no IP ownership required</text>
+
+<line class="col-divider" x1="436" y1="522" x2="764" y2="522" aria-hidden="true"/>
+
+<!-- CALLOUT -->
+<rect class="callout-green" x="432" y="534" width="336" height="38" rx="5"/>
+<text class="callout-label callout-label-green" x="448" y="549">ADVANTAGE</text>
+<text class="callout-text" x="448" y="565">Suppress the individual and fix the campaign.</text>
+
+</g>
+
+<!-- Vertical separator: Gmail/Yahoo (any sender) vs Microsoft (IP control required) -->
+<line class="col-separator" x1="790" y1="246" x2="790" y2="584"/>
+<text class="col-separator-label" x="790" y="239">REQUIRES IP CONTROL &#x2192;</text>
+
+<!-- ============================================================ -->
+<!-- COLUMN 3: MICROSOFT -->
+<!-- ============================================================ -->
+
+<g id="fbl-msft" aria-label="Microsoft JMRP and SNDS Feedback Programs" data-step="4" data-label="Microsoft JMRP + SNDS" data-description="Microsoft operates two programs through one portal. JMRP (Junk Mail Reporting Program) forwards individual complaint messages similar to Yahoo CFL. SNDS (Smart Network Data Services) provides IP-level aggregate dashboards. Both are managed through the SNDS portal at sendersupport.olc.protection.outlook.com." data-next="fbl-actions">
+
+<rect class="col-header" x="800" y="246" width="360" height="30" rx="6 6 0 0"/>
+<rect class="badge-msft" x="812" y="252" width="32" height="16" rx="3"/><text class="badge-text" x="828" y="261">MSFT</text>
+<text class="col-header-text" x="980" y="262">JMRP + SNDS</text>
+
+<rect class="col-body-fill" x="800" y="276" width="360" height="308" rx="0 0 6 6"/>
+
+<!-- HERO -->
+<rect class="col-hero" x="800" y="276" width="360" height="52"/>
+<text class="col-hero-title" x="820" y="296">Both messages + dashboards</text>
+<text class="col-hero-sub" x="820" y="316">Two programs, one portal (JMRP lives inside SNDS)</text>
+
+<!-- WHAT YOU GET -->
+<text class="col-label" x="816" y="348">WHAT YOU GET</text>
+<text class="col-value-bold" x="816" y="366">JMRP: individual complaints in ARF (like Yahoo)</text>
+<text class="col-value-bold" x="816" y="384">SNDS: IP-level aggregate dashboards (like Gmail)</text>
+<text class="col-muted" x="816" y="402">SNDS is IP-only — limited value on shared IPs</text>
+
+<line class="col-divider" x1="816" y1="418" x2="1144" y2="418" aria-hidden="true"/>
+
+<!-- ENROLLMENT -->
+<text class="col-label" x="816" y="434">ENROLLMENT</text>
+<text class="col-code" x="816" y="452">sendersupport.olc.protection.outlook.com</text>
+<text class="col-muted" x="816" y="470">One portal: register IPs, enable JMRP + SNDS</text>
+<text class="col-muted" x="816" y="488">Verify IP ownership via WHOIS abuse contact email</text>
+<text class="col-muted" x="816" y="506">ESP-owned IPs: ESP handles enrollment + reporting</text>
+
+<line class="col-divider" x1="816" y1="522" x2="1144" y2="522" aria-hidden="true"/>
+
+<!-- CALLOUT -->
+<rect class="callout-amber" x="812" y="534" width="336" height="38" rx="5"/>
+<text class="callout-label callout-label-amber" x="828" y="549">DUAL NATURE</text>
+<text class="callout-text" x="828" y="565">JMRP = messages. SNDS = dashboards. Enable both.</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- KEY INSIGHT BAR -->
+<!-- ============================================================ -->
+
+<g id="fbl-insight-independence" aria-label="Key insight: providers evaluate reputation independently" data-step="5" data-label="Provider Independence" data-description="Each provider evaluates sender reputation independently based on their own recipients — a complaint problem at one provider will not appear at the others">
+
+<rect class="insight-bar" x="40" y="596" width="1120" height="36" rx="6"/>
+<text class="insight-text" x="600" y="609">Each provider evaluates your reputation independently — a problem at one won't show up at the others</text>
+<text class="insight-sub" x="600" y="626">The same campaign can spike complaints at Yahoo but look clean at Gmail.</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- TIER 3: WHAT TO DO WITH THE DATA -->
+<!-- ============================================================ -->
+
+<g id="fbl-actions" aria-label="Operational Response to Complaint Data" data-step="6" data-label="What To Do" data-description="Three-phase operational response: immediately suppress complainants, identify problem campaigns, keep complaint rate below provider thresholds" data-feeds="fbl-complaint-signal">
+
+<text class="tier-label" x="40" y="644">WHAT TO DO WITH THE DATA</text>
+<line class="tier-line" x1="290" y1="644" x2="1160" y2="644" aria-hidden="true"/>
+
+<!-- Action 1 -->
+<rect class="action-box" x="40" y="660" width="360" height="80" rx="8"/>
+<text class="action-num" x="56" y="688">1</text>
+<text class="action-title" x="80" y="684">Suppress immediately</text>
+<text class="action-desc" x="56" y="706">Yahoo/JMRP: suppress address via ARF report</text>
+<text class="action-desc" x="56" y="722">Gmail: no individual data — monitor aggregate rate</text>
+
+<!-- Action 2 -->
+<rect class="action-box" x="420" y="660" width="360" height="80" rx="8"/>
+<text class="action-num" x="436" y="688">2</text>
+<text class="action-title" x="460" y="684">Identify the problem campaign</text>
+<text class="action-desc" x="436" y="706">Yahoo/JMRP: match reported message to campaign</text>
+<text class="action-desc" x="436" y="722">Gmail: use Feedback-ID segments to isolate source</text>
+
+<!-- Action 3 -->
+<rect class="action-box" x="800" y="660" width="360" height="80" rx="8"/>
+<text class="action-num" x="816" y="688">3</text>
+<text class="action-title" x="840" y="684">Stay below complaint thresholds</text>
+<text class="action-desc" x="816" y="706">Google: &lt; 0.1% target · &lt; 0.3% max</text>
+<text class="action-desc" x="816" y="722">Yahoo/Microsoft: similar (less publicly specific)</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- SOURCES + ATTRIBUTION -->
+<!-- ============================================================ -->
+
+<text class="source-text" x="600" y="760">support.google.com/mail/answer/6254652 · support.google.com/a/answer/81126 · senders.yahooinc.com · sendersupport.olc.protection.outlook.com</text>
+
+<a href="https://www.inboxally.com">
+  <text class="attribution" x="36" y="778">Source: InboxAlly · inboxally.com</text>
+</a>
+<text class="attribution" x="1164" y="778" text-anchor="end">CC BY 4.0</text>
+
+</svg>
