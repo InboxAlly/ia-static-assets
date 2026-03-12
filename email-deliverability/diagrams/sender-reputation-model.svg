@@ -146,52 +146,55 @@ creating a continuous feedback cycle.
     .bg { fill: #1A1A1A; }
     .header-bar { fill: #0D0D0D; }
     .pos-box { fill: #1A2A3A; stroke: #4D9AFF; stroke-width: 1; }
-    .pos-box-inner { stroke: #4D9AFF; opacity: 0.06; }
+    .pos-box-inner { stroke: #4D9AFF; opacity: 1; }
     .neg-box { fill: #3A1A1A; stroke: #FF6666; stroke-width: 1; }
-    .neg-box-inner { stroke: #FF6666; opacity: 0.06; }
+    .neg-box-inner { stroke: #FF6666; opacity: 1; }
     .column-label { fill: #4D9AFF; }
     .column-label-neg { fill: #FF6666; }
     .rep-box { fill: #4D9AFF; }
+    .rep-sub { opacity: 1; }
     .converge-label { fill: #4D9AFF; }
     .converge-label-neg { fill: #FF6666; }
     .label { fill: #E8E8E8; }
-    .sublabel { fill: #A0A0A0; }
+    .sublabel { fill: #A0A0A0; opacity: 1; }
     .signal-label { fill: #E8E8E8; }
-    .signal-sub { fill: #888888; }
+    .signal-sub { fill: #999999; opacity: 1; }
     .signal-label-r { fill: #E8E8E8; }
-    .signal-sub-r { fill: #888888; }
-    .signal-type { fill: #4D9AFF; }
-    .signal-type-r { fill: #FF6666; }
-    .outcome-box { fill: #2A2A2A; stroke: #666666; }
+    .signal-sub-r { fill: #999999; opacity: 1; }
+    .signal-type { fill: #4D9AFF; opacity: 1; }
+    .signal-type-r { fill: #FF6666; opacity: 1; }
+    .outcome-box { fill: #2A2A2A; stroke: #999999; }
     .outcome-inbox { fill: #1A2A3A; stroke: #4D9AFF; }
     .spam-outcome { fill: #3A1A1A; stroke: #FF6666; }
-    .outcome-group { stroke: #555555; }
-    .outcome-group-label { fill: #666666; }
+    .outcome-group { stroke: #555555; opacity: 1; }
+    .outcome-group-label { fill: #999999; opacity: 1; }
     .engagement-box { fill: #1A2A3A; stroke: #4D9AFF; }
     .outcome-label { fill: #E8E8E8; }
-    .outcome-sub { fill: #888888; }
+    .outcome-sub { fill: #999999; opacity: 1; }
     .spam-label { fill: #FF6666; }
     .arrow-pos { stroke: #4D9AFF; }
     .arrow-neg { stroke: #FF6666; }
     .arrow-down { stroke: #4D9AFF; }
     .arrow-branch { stroke: #4D9AFF; }
-    .feedback-pos { stroke: #4D9AFF; }
-    .feedback-neg { stroke: #FF6666; }
+    .feedback-pos { stroke: #4D9AFF; opacity: 1; }
+    .feedback-neg { stroke: #FF6666; opacity: 1; }
     .feedback-label-pos { fill: #4D9AFF; }
     .feedback-label-neg { fill: #FF6666; }
     .connector-dot { fill: #4D9AFF; }
     .connector-dot-neg { fill: #FF6666; }
     .diag-line { stroke: #4D9AFF; opacity: 0.04; }
-    .attribution { fill: #888888; }
+    .attribution { fill: #999999; opacity: 1; }
+    .marker-arrow-blue { fill: #4D9AFF; }
+    .marker-arrow-red { fill: #FF6666; }
   }
 </style>
 
 <defs>
   <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-    <polygon points="0 0, 8 3, 0 6" fill="#0062FF"/>
+    <polygon class="marker-arrow-blue" points="0 0, 8 3, 0 6" fill="#0062FF"/>
   </marker>
   <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-    <polygon points="0 0, 8 3, 0 6" fill="#FF3333"/>
+    <polygon class="marker-arrow-red" points="0 0, 8 3, 0 6" fill="#FF3333"/>
   </marker>
   <clipPath id="clip-canvas">
     <rect x="0" y="0" width="1200" height="920"/>

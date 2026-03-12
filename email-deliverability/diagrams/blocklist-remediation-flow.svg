@@ -116,32 +116,34 @@ removal until the root cause is fixed.
     .redirect-box { fill: #2A2A2A; stroke: #666666; }
     .bl-card { fill: #2A2A2A; stroke: #555555; }
     .bl-name { fill: #E8E8E8; }
-    .bl-type { fill: #888888; }
+    .alert-sub { opacity: 1; }
+    .step-inner { opacity: 1; }
+    .bl-type { fill: #999999; opacity: 1; }
     .severity-high { fill: #FF6666; }
     .severity-med { fill: #DDAA00; }
     .warn-box { fill: #3A1A1A; stroke: #FF6666; }
     .warn-text { fill: #FF6666; }
-    .warn-sub { fill: #A0A0A0; }
+    .warn-sub { fill: #A0A0A0; opacity: 1; }
     .outcome-clear { fill: #1A2A3A; stroke: #4D9AFF; }
     .outcome-fail { fill: #3A1A1A; stroke: #FF6666; }
     .outcome-text { fill: #E8E8E8; }
-    .outcome-sub { fill: #888888; }
+    .outcome-sub { fill: #999999; opacity: 1; }
     .outcome-text-fail { fill: #FF6666; }
     .outcome-text-pass { fill: #4D9AFF; }
     .return-text { fill: #FF6666; }
     .label { fill: #E8E8E8; }
-    .sublabel { fill: #A0A0A0; }
+    .sublabel { fill: #A0A0A0; opacity: 1; }
     .cause-text { fill: #E8E8E8; }
-    .cause-sub { fill: #888888; }
+    .cause-sub { fill: #999999; opacity: 1; }
     .rem-label { fill: #E8E8E8; }
-    .rem-text { fill: #888888; }
+    .rem-text { fill: #999999; opacity: 1; }
     .arrow { stroke: #4D9AFF; }
-    .arrow-muted { stroke: #666666; }
+    .arrow-muted { stroke: #999999; opacity: 1; }
     .connector-dot { fill: #4D9AFF; }
-    .branch-label { fill: #888888; }
+    .branch-label { fill: #999999; opacity: 1; }
     .diag-line { stroke: #4D9AFF; opacity: 0.04; }
-    .attribution { fill: #888888; }
-    .section-line { stroke: #555555; }
+    .attribution { fill: #999999; opacity: 1; }
+    .section-line { stroke: #555555; opacity: 1; }
   }
 </style>
 
@@ -150,7 +152,7 @@ removal until the root cause is fixed.
     <polygon points="0 0, 8 3, 0 6" fill="#0062FF"/>
   </marker>
   <marker id="arrow-dark" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-    <polygon points="0 0, 8 3, 0 6" fill="#292929" opacity="0.3"/>
+    <polygon points="0 0, 8 3, 0 6" fill="#999999" opacity="0.3"/>
   </marker>
   <clipPath id="clip-canvas">
     <rect x="0" y="0" width="1200" height="1200"/>

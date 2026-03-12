@@ -130,33 +130,34 @@ one-click unsubscribe. Non-compliant mail has been rejected with 5xx codes since
     .big-num { fill: #4D9AFF; }
     .big-num-dark { fill: #E8E8E8; }
     .big-label { fill: #E8E8E8; }
-    .big-sub { fill: #888888; }
-    .big-date { fill: #4D9AFF; }
+    .big-sub { fill: #999999; opacity: 1; }
+    .big-date { fill: #4D9AFF; opacity: 1; }
     .stat-card { fill: #242424; stroke: #444444; }
     .stat-num { fill: #4D9AFF; }
     .stat-label { fill: #E8E8E8; }
-    .stat-sub { fill: #888888; }
-    .stat-date { fill: #4D9AFF; }
+    .stat-sub { fill: #999999; opacity: 1; }
+    .stat-date { fill: #4D9AFF; opacity: 1; }
     .growth-line { stroke: #4D9AFF; }
     .growth-dot { fill: #4D9AFF; }
     .growth-dot-outline { fill: #1A1A1A; stroke: #4D9AFF; }
     .growth-num { fill: #4D9AFF; }
-    .growth-year { fill: #888888; }
-    .growth-label { fill: #666666; }
+    .growth-year { fill: #999999; opacity: 1; }
+    .growth-label { fill: #999999; opacity: 1; }
     .growth-accent { fill: #4D9AFF; }
     .impact-card { fill: #1A2A3A; stroke: #4D9AFF; }
     .impact-num { fill: #4D9AFF; }
     .thresh-good { fill: #1A2A3A; stroke: #4D9AFF; }
     .thresh-bad { fill: #3A1A1A; stroke: #FF6666; }
+    .thresh-text { fill: #E8E8E8; }
     .thresh-num-good { fill: #4D9AFF; }
     .thresh-num-bad { fill: #FF6666; }
     .label { fill: #E8E8E8; }
     .text { fill: #D0D0D0; }
-    .text-muted { fill: #888888; }
+    .text-muted { fill: #999999; opacity: 1; }
     .diag-line { stroke: #4D9AFF; opacity: 0.04; }
-    .attribution { fill: #888888; }
+    .attribution { fill: #999999; opacity: 1; }
     .source-text { fill: #4D9AFF; }
-    .section-line { stroke: #555555; }
+    .section-line { stroke: #555555; opacity: 1; }
   }
 </style>
 

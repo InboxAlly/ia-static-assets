@@ -146,37 +146,40 @@ the inbox, promotions tab, or spam folder.
   @media (prefers-color-scheme: dark) {
     .bg { fill: #1A1A1A; }
     .header-bar { fill: #0D0D0D; }
-    .col-ip { fill: #222222; stroke: #555555; }
+    .col-ip { fill: #222222; stroke: #555555; opacity: 1; }
     .col-domain { fill: #1A2A3A; stroke: #4D9AFF; }
     .col-domain-inner { stroke: #4D9AFF; opacity: 0.06; }
     .col-header-ip { fill: #333333; }
     .col-header-domain { fill: #4D9AFF; }
-    .row-label { fill: #888888; }
-    .row-divider { stroke: #555555; }
+    .col-header-sub { opacity: 1; }
+    .row-label { fill: #999999; opacity: 1; }
+    .row-divider { stroke: #555555; opacity: 1; }
     .cell-title { fill: #E8E8E8; }
-    .cell-desc { fill: #A0A0A0; }
+    .cell-desc { fill: #A0A0A0; opacity: 1; }
     .cell-title-domain { fill: #4D9AFF; }
     .trend-declining { fill: #FF6666; }
     .trend-increasing { fill: #4D9AFF; }
     .score-box { fill: #4D9AFF; }
-    .weight-secondary { fill: #888888; }
+    .score-sub { opacity: 1; }
+    .weight-secondary { fill: #999999; opacity: 1; }
     .weight-primary { fill: #4D9AFF; }
-    .outcome-box { fill: #2A2A2A; stroke: #666666; }
+    .outcome-box { fill: #2A2A2A; stroke: #999999; }
     .outcome-inbox { fill: #1A2A3A; stroke: #4D9AFF; }
     .spam-outcome { fill: #3A1A1A; stroke: #FF6666; }
-    .outcome-group { stroke: #555555; }
-    .outcome-group-label { fill: #666666; }
+    .outcome-group { stroke: #555555; opacity: 1; }
+    .outcome-group-label { fill: #999999; opacity: 1; }
     .outcome-label { fill: #E8E8E8; }
-    .outcome-sub { fill: #888888; }
+    .outcome-sub { fill: #999999; opacity: 1; }
     .spam-label { fill: #FF6666; }
-    .arrow-secondary { stroke: #666666; }
+    .arrow-secondary { stroke: #999999; opacity: 1; marker-end: url(#arrow-gray); }
     .arrow-primary { stroke: #4D9AFF; }
     .arrow-branch { stroke: #4D9AFF; }
     .connector-dot { fill: #4D9AFF; }
-    .connector-dot-muted { fill: #666666; }
+    .connector-dot-muted { fill: #999999; opacity: 1; }
     .diag-line { stroke: #4D9AFF; opacity: 0.04; }
-    .attribution { fill: #888888; }
-    .vs-text { fill: #555555; }
+    .attribution { fill: #999999; opacity: 1; }
+    .vs-text { fill: #555555; opacity: 1; }
+    .arrow-gray-fill { fill: #999999; opacity: 1; }
   }
 </style>
 
@@ -185,7 +188,7 @@ the inbox, promotions tab, or spam folder.
     <polygon points="0 0, 8 3, 0 6" fill="#0062FF"/>
   </marker>
   <marker id="arrow-gray" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-    <polygon points="0 0, 8 3, 0 6" fill="#292929" opacity="0.35"/>
+    <polygon class="arrow-gray-fill" points="0 0, 8 3, 0 6" fill="#292929" opacity="0.35"/>
   </marker>
   <clipPath id="clip-canvas">
     <rect x="0" y="0" width="1200" height="1060"/>

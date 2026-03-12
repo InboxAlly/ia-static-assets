@@ -95,7 +95,7 @@ reference — for the complete specification see IETF RFC 5321.
   @media (prefers-color-scheme: dark) {
     .bg { fill: #1A1A1A; }
     .header-bar { fill: #0D0D0D; }
-    .scope-text { fill: #888888; }
+    .scope-text { fill: #999999; }
     .section-2xx { fill: #4D9AFF; }
     .section-3xx { fill: #555555; }
     .section-4xx { fill: #DDAA00; }
@@ -103,20 +103,20 @@ reference — for the complete specification see IETF RFC 5321.
     .howto-box { fill: #242424; stroke: #444444; }
     .howto-title { fill: #E8E8E8; }
     .howto-code { fill: #4D9AFF; }
-    .howto-label { fill: #888888; }
+    .howto-label { fill: #999999; }
     .howto-text { fill: #D0D0D0; }
-    .howto-muted { fill: #888888; }
+    .howto-muted { fill: #999999; }
     .row-alt { fill: #252525; opacity: 0.6; }
     .code-num { fill: #E8E8E8; }
     .code-num-blue { fill: #4D9AFF; }
     .code-num-amber { fill: #DDAA00; }
     .code-num-red { fill: #FF6666; }
     .code-desc { fill: #D0D0D0; }
-    .code-fix { fill: #888888; }
+    .code-fix { fill: #999999; }
     .badge-gmail { fill: #4D9AFF; }
     .badge-msft { fill: #DDAA00; }
     .badge-yahoo { fill: #A855F7; }
-    .subsection { fill: #666666; }
+    .subsection { fill: #777777; }
     .subsection-line { stroke: #444444; }
     .arrow-text { fill: #FF6666; }
     .escalation-header-warn { fill: #3A3A1A; stroke: #DDAA00; }
@@ -125,13 +125,13 @@ reference — for the complete specification see IETF RFC 5321.
     .action-box-retry { fill: #3A3A1A; stroke: #DDAA00; }
     .action-box-stop { fill: #3A1A1A; stroke: #FF6666; }
     .action-text { fill: #E8E8E8; }
-    .action-sub { fill: #888888; }
+    .action-sub { fill: #999999; }
     .note-box { fill: #242424; stroke: #555555; }
-    .note-text { fill: #888888; }
+    .note-text { fill: #999999; }
     .note-link { fill: #4D9AFF; }
     .diag-line { stroke: #4D9AFF; opacity: 0.04; }
-    .attribution { fill: #888888; }
-    .source-text { fill: #888888; }
+    .attribution { fill: #999999; }
+    .source-text { fill: #999999; }
   }
 </style>
 

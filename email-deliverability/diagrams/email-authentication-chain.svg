@@ -171,42 +171,43 @@ monitoring and correction of authentication issues.
     .proto-box-inner { stroke: #4D9AFF; opacity: 0.08; }
     .proto-header { fill: #4D9AFF; }
     .proto-question { fill: #E8E8E8; }
-    .proto-mechanic { fill: #A0A0A0; }
-    .proto-label { fill: #888888; }
+    .proto-mechanic { fill: #A0A0A0; opacity: 1; }
+    .proto-label { fill: #999999; opacity: 1; }
     .result-pass { fill: #4D9AFF; }
     .result-warn { fill: #DDAA00; }
     .result-fail { fill: #FF6666; }
     .dmarc-box { fill: #1A2A3A; stroke: #4D9AFF; }
     .dmarc-box-inner { stroke: #4D9AFF; opacity: 0.06; }
-    .policy-none { fill: #2A2A2A; stroke: #666666; }
+    .policy-none { fill: #2A2A2A; stroke: #999999; }
     .policy-quarantine { fill: #3A3A1A; stroke: #DDAA00; }
     .policy-reject { fill: #3A1A1A; stroke: #FF6666; }
     .policy-label { fill: #E8E8E8; }
-    .policy-sub { fill: #A0A0A0; }
+    .policy-sub { fill: #A0A0A0; opacity: 1; }
     .policy-label-warn { fill: #DDAA00; }
     .policy-label-reject { fill: #FF6666; }
     .auth-pass-box { fill: #4D9AFF; }
-    .outcome-box { fill: #2A2A2A; stroke: #666666; }
+    .auth-pass-sub { opacity: 1; }
+    .outcome-box { fill: #2A2A2A; stroke: #999999; }
     .outcome-inbox { fill: #1A2A3A; stroke: #4D9AFF; }
     .spam-outcome { fill: #3A1A1A; stroke: #FF6666; }
-    .outcome-group { stroke: #555555; }
-    .outcome-group-label { fill: #666666; }
+    .outcome-group { stroke: #555555; opacity: 1; }
+    .outcome-group-label { fill: #999999; opacity: 1; }
     .outcome-label { fill: #E8E8E8; }
-    .outcome-sub { fill: #888888; }
+    .outcome-sub { fill: #999999; opacity: 1; }
     .spam-label { fill: #FF6666; }
     .report-box { fill: #1A2A3A; stroke: #4D9AFF; }
     .report-label { fill: #4D9AFF; }
-    .report-sub { fill: #A0A0A0; }
-    .feedback-path { stroke: #4D9AFF; }
+    .report-sub { fill: #A0A0A0; opacity: 1; }
+    .feedback-path { stroke: #4D9AFF; opacity: 1; }
     .feedback-label { fill: #4D9AFF; }
     .arrow { stroke: #4D9AFF; }
     .arrow-warn { stroke: #DDAA00; }
     .arrow-fail { stroke: #FF6666; }
     .connector-dot { fill: #4D9AFF; }
     .diag-line { stroke: #4D9AFF; opacity: 0.04; }
-    .attribution { fill: #888888; }
+    .attribution { fill: #999999; opacity: 1; }
     .step-tag { fill: #4D9AFF; }
-    .section-divider { stroke: #555555; }
+    .section-divider { stroke: #555555; opacity: 1; }
   }
 </style>
 

@@ -114,6 +114,9 @@ hygiene problems. Maintaining bounce rates below 2% is critical for inbox placem
   .block-header { fill: #0062FF; }
   .cat-header-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 18px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
   .cat-header-sub { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 11px; text-anchor: middle; dominant-baseline: middle; opacity: 0.7; }
+  .cat-header-sub-hard { fill: #FF3333; opacity: 1; }
+  .cat-header-sub-soft { fill: #CC8800; opacity: 1; }
+  .cat-header-sub-blue { fill: #0062FF; opacity: 1; }
 
   /* Content text */
   .label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 14px; font-weight: bold; text-anchor: start; dominant-baseline: middle; }
@@ -196,21 +199,35 @@ hygiene problems. Maintaining bounce rates below 2% is critical for inbox placem
     .rem-box { fill: #1A2A3A; stroke: #4D9AFF; }
     .rem-title { fill: #4D9AFF; }
     .rem-text { fill: #A0A0A0; }
-    .arrow { stroke: #888888; }
+    .entry-sub { opacity: 1; }
+    .hard-inner { opacity: 1; }
+    .soft-inner { opacity: 1; }
+    .block-inner { opacity: 1; }
+    .cat-header-sub { opacity: 1; }
+    .desc-text { opacity: 1; }
+    .desc-center { opacity: 1; }
+    .action-sub { opacity: 1; }
+    .retry-desc { opacity: 1; }
+    .rep-text { opacity: 1; }
+    .rem-text { opacity: 1; }
+    .arrow { stroke: #999999; opacity: 1; }
+    .arrow-consequence { opacity: 1; }
+    .connector-dot { fill: #999999; opacity: 1; }
     .arrow-hard { stroke: #FF6666; }
     .arrow-soft { stroke: #DDAA00; }
     .arrow-block { stroke: #4D9AFF; }
-    .arrow-consequence { stroke: #FF6666; }
-    .connector-dot { fill: #888888; }
     .diag-line { stroke: #4D9AFF; opacity: 0.04; }
-    .attribution { fill: #888888; }
-    .branch-label { fill: #888888; }
+    .attribution { fill: #999999; opacity: 1; }
+    .branch-label { fill: #999999; opacity: 1; }
+    .cat-header-sub-hard { fill: #FFFFFF; }
+    .cat-header-sub-soft { fill: #FFFFFF; }
+    .cat-header-sub-blue { fill: #FFFFFF; }
   }
 </style>
 
 <defs>
   <marker id="arrow-dark" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-    <polygon points="0 0, 8 3, 0 6" fill="#292929" opacity="0.5"/>
+    <polygon points="0 0, 8 3, 0 6" fill="#999999" opacity="0.5"/>
   </marker>
   <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
     <polygon points="0 0, 8 3, 0 6" fill="#FF3333"/>
@@ -298,7 +315,7 @@ hygiene problems. Maintaining bounce rates below 2% is critical for inbox placem
   <rect class="hard-header" x="60" y="330" width="360" height="18"/>
   <text class="cat-header-text" x="240" y="328">Hard Bounce</text>
 
-  <text class="cat-header-sub" x="240" y="362" style="fill:#FF3333; opacity:1;">5xx — Permanent Failure</text>
+  <text class="cat-header-sub cat-header-sub-hard" x="240" y="362">5xx — Permanent Failure</text>
 
   <text class="code code-hard" x="90" y="392">550</text>
   <text class="desc-text" x="130" y="392">Invalid / nonexistent address</text>
@@ -347,7 +364,7 @@ hygiene problems. Maintaining bounce rates below 2% is critical for inbox placem
   <rect class="soft-header" x="430" y="330" width="340" height="18"/>
   <text class="cat-header-text" x="600" y="328">Soft Bounce</text>
 
-  <text class="cat-header-sub" x="600" y="362" style="fill:#CC8800; opacity:1;">4xx — Temporary Failure</text>
+  <text class="cat-header-sub cat-header-sub-soft" x="600" y="362">4xx — Temporary Failure</text>
 
   <text class="code code-soft" x="460" y="392">452</text>
   <text class="desc-text" x="500" y="392">Mailbox full</text>
@@ -409,7 +426,7 @@ hygiene problems. Maintaining bounce rates below 2% is critical for inbox placem
   <rect class="block-header" x="780" y="330" width="360" height="18"/>
   <text class="cat-header-text" x="960" y="328">Block Bounce</text>
 
-  <text class="cat-header-sub" x="960" y="362" style="fill:#0062FF; opacity:1;">Policy / Reputation Rejection</text>
+  <text class="cat-header-sub cat-header-sub-blue" x="960" y="362">Policy / Reputation Rejection</text>
 
   <text class="label" x="810" y="392">Content rejected</text>
   <text class="desc-text" x="810" y="410">Message flagged by content filters</text>

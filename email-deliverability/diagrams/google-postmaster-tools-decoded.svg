@@ -140,7 +140,7 @@ All data sourced from Google Workspace Admin Help documentation.
     .header-bar { fill: #0D0D0D; }
     .panel { fill: #242424; stroke: #444444; }
     .panel-header { fill: #4D9AFF; }
-    .panel-desc { fill: #888888; }
+    .panel-desc { fill: #999999; opacity: 1; }
     .badge-v1v2 { fill: #4D9AFF; }
     .badge-v2 { fill: #555555; }
     .badge-v1 { fill: #DDAA00; }
@@ -153,7 +153,7 @@ All data sourced from Google Workspace Admin Help documentation.
     .label { fill: #E8E8E8; }
     .label-center { fill: #E8E8E8; }
     .text { fill: #D0D0D0; }
-    .text-muted { fill: #888888; }
+    .text-muted { fill: #999999; opacity: 1; }
     .text-center { fill: #D0D0D0; }
     .check { fill: #4D9AFF; }
     .warn-text { fill: #DDAA00; }
@@ -163,12 +163,13 @@ All data sourced from Google Workspace Admin Help documentation.
     .notshown-panel { fill: #242424; stroke: #FF6666; }
     .notshown-text { fill: #FF6666; }
     .caveat-box { fill: #333333; }
+    .caveat-sub { opacity: 1; }
     .deprecated { fill: #DDAA00; }
     .diag-line { stroke: #4D9AFF; opacity: 0.04; }
-    .attribution { fill: #888888; }
+    .attribution { fill: #999999; opacity: 1; }
     .source-text { fill: #4D9AFF; }
-    .source-label { fill: #888888; }
-    .section-line { stroke: #555555; }
+    .source-label { fill: #999999; opacity: 1; }
+    .section-line { stroke: #555555; opacity: 1; }
   }
 </style>
 

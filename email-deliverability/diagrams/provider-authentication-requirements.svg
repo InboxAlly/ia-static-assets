@@ -124,11 +124,12 @@ documentation.
     .bg { fill: #1A1A1A; }
     .header-bar { fill: #0D0D0D; }
     .col-header { fill: #4D9AFF; }
+    .col-header-sub { opacity: 1; }
     .row-label { fill: #E8E8E8; }
-    .row-label-sub { fill: #E8E8E8; }
+    .row-label-sub { fill: #E8E8E8; opacity: 1; }
     .row-bg-alt { fill: #252525; opacity: 0.6; }
     .cell-text { fill: #D0D0D0; }
-    .cell-sub { fill: #888888; }
+    .cell-sub { fill: #999999; opacity: 1; }
     .cell-check { fill: #4D9AFF; }
     .cell-rec { fill: #DDAA00; }
     .cell-bold { fill: #E8E8E8; }
@@ -140,13 +141,13 @@ documentation.
     .target-text { fill: #4D9AFF; }
     .takeaway-bar { fill: #0D0D0D; }
     .takeaway-text { fill: #E8E8E8; }
-    .takeaway-sub { fill: #E8E8E8; }
-    .source-label { fill: #888888; }
+    .takeaway-sub { fill: #E8E8E8; opacity: 1; }
+    .source-label { fill: #999999; opacity: 1; }
     .source-text { fill: #4D9AFF; }
-    .grid-line { stroke: #444444; }
-    .col-divider { stroke: #444444; }
+    .grid-line { stroke: #444444; opacity: 1; }
+    .col-divider { stroke: #444444; opacity: 1; }
     .diag-line { stroke: #4D9AFF; opacity: 0.04; }
-    .attribution { fill: #888888; }
+    .attribution { fill: #999999; opacity: 1; }
   }
 </style>
 
