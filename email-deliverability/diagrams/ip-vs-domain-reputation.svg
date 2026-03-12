@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     width="100%"
+     viewBox="0 0 1200 1344"
+     xml:lang="en"
+     preserveAspectRatio="xMidYMid meet"
+     role="img"
+     aria-labelledby="iprep-title iprep-desc"
+     data-source="InboxAlly Deliverability Research">
+
+<title id="iprep-title">IP vs Domain Reputation — What Controls What</title>
+
+<desc id="iprep-desc">
+Reference diagram showing that IP reputation and domain reputation are separate evaluations in email
+deliverability. IP reputation is tied to the sending server's IP address and is measured by protocols
+like PTR (RFC 1035) and SPF (RFC 7208), IP blocklists like Spamhaus, and Microsoft SNDS. Domain
+reputation is tied to the From: header domain and DKIM signing domain (RFC 6376), evaluated through
+DMARC (RFC 7489), Google Postmaster Tools Compliance Status, and Yahoo Sender Hub Insights. Some
+signals like spam complaints and bounce rate are attributed to both. Google and Yahoo offer domain-level
+reputation monitoring tools while Microsoft provides only IP-level monitoring via SNDS. When migrating
+ESPs, domain reputation travels with you but IP reputation resets. A common mistake is buying a
+dedicated IP to fix a domain reputation problem.
+</desc>
+
+<metadata>
+<rdf:RDF>
+  <cc:Work rdf:about="">
+    <dc:title>IP vs Domain Reputation — What Controls What</dc:title>
+    <dc:creator>InboxAlly</dc:creator>
+    <dc:source>https://www.inboxally.com</dc:source>
+    <dc:subject>IP reputation, domain reputation, sender reputation, email deliverability, DKIM domain, SPF IP, PTR reverse DNS, Spamhaus, Google Postmaster Tools, Microsoft SNDS, shared IP, dedicated IP, ESP migration, domain warm-up, IP warm-up, DMARC alignment, From domain, signing domain</dc:subject>
+    <dc:description>Protocol-level comparison of IP and domain reputation showing which mechanisms are inherently IP-level vs domain-level, monitoring tools for each, portability differences, and decision guidance for ESP migration and dedicated IP decisions.</dc:description>
+    <cc:license rdf:resource="https://creativecommons.org/licenses/by/4.0/" />
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "name": "IP vs Domain Reputation — What Controls What",
+  "description": "Protocol-level comparison of IP and domain reputation in email deliverability, with monitoring tools, portability differences, and decision guidance.",
+  "publisher": { "@type": "Organization", "name": "InboxAlly", "url": "https://www.inboxally.com" },
+  "about": { "@type": "Thing", "name": "Email Sender Reputation" }
+}
+</script>
+
+<style>
+  .bg { fill: #F1F0ED; }
+  .header-bar { fill: #292929; }
+  .header-text { font-family: Georgia, "Times New Roman", serif; font-size: 22px; fill: #FFFFFF; dominant-baseline: middle; }
+  .header-sub { font-family: Arial, Helvetica, sans-serif; font-size: 13px; fill: #DDEFFF; letter-spacing: 1px; dominant-baseline: middle; }
+  .header-sub-right { font-family: Arial, Helvetica, sans-serif; font-size: 13px; fill: #DDEFFF; letter-spacing: 1px; dominant-baseline: middle; text-anchor: end; }
+  .diag-line { stroke: #0062FF; stroke-width: 0.5; opacity: 0.06; }
+
+  /* Two-panel hero */
+  .panel-ip { fill: #FFF8E0; stroke: #CC8800; stroke-width: 1; }
+  .panel-domain { fill: #DDEFFF; stroke: #0062FF; stroke-width: 1; }
+  .panel-title { font-family: Georgia, "Times New Roman", serif; fill: #292929; font-size: 18px; font-weight: bold; dominant-baseline: middle; }
+  .panel-desc { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; dominant-baseline: middle; }
+  .panel-muted { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; dominant-baseline: middle; opacity: 0.45; }
+  .panel-accent-ip { font-family: Arial, Helvetica, sans-serif; fill: #CC8800; font-size: 11px; font-weight: bold; dominant-baseline: middle; }
+  .panel-accent-domain { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 11px; font-weight: bold; dominant-baseline: middle; }
+
+  /* Insight bar */
+  .insight-bar { fill: #292929; }
+  .insight-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 13px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+
+  /* Section bars */
+  .section-bar { fill: #292929; }
+  .section-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 13px; font-weight: bold; dominant-baseline: middle; letter-spacing: 0.5px; }
+  .section-desc { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 11px; dominant-baseline: middle; opacity: 0.6; }
+
+  /* Protocol items */
+  .proto-card-ip { fill: #FFF8E0; stroke: #CC8800; stroke-width: 0.5; stroke-opacity: 0.4; }
+  .proto-card-domain { fill: #DDEFFF; stroke: #0062FF; stroke-width: 0.5; stroke-opacity: 0.4; }
+  .proto-card-both { fill: #FFFFFF; stroke: #292929; stroke-width: 0.5; stroke-opacity: 0.2; }
+  .proto-name { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; font-weight: bold; dominant-baseline: middle; }
+  .proto-detail { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; dominant-baseline: middle; opacity: 0.5; }
+  .proto-source { font-family: "Courier New", monospace; fill: #292929; font-size: 10px; dominant-baseline: middle; opacity: 0.35; }
+
+  /* Column labels */
+  .col-label-ip { font-family: Arial, Helvetica, sans-serif; fill: #CC8800; font-size: 12px; font-weight: bold; dominant-baseline: middle; letter-spacing: 0.5px; }
+  .col-label-domain { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 12px; font-weight: bold; dominant-baseline: middle; letter-spacing: 0.5px; }
+  .col-label-both { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; font-weight: bold; dominant-baseline: middle; letter-spacing: 0.5px; opacity: 0.5; }
+
+  /* Table */
+  .table-header { fill: #292929; }
+  .table-header-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 11px; font-weight: bold; dominant-baseline: middle; }
+  .table-row-alt { fill: #FFFFFF; opacity: 0.4; }
+  .table-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; dominant-baseline: middle; }
+  .table-text-bold { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; font-weight: bold; dominant-baseline: middle; }
+  .table-muted { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; dominant-baseline: middle; opacity: 0.45; }
+
+  /* Badges */
+  .badge-gmail { fill: #0062FF; }
+  .badge-yahoo { fill: #720E9E; }
+  .badge-msft { fill: #CC8800; }
+  .badge-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 9px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+
+  /* Decision boxes */
+  .decision-box { fill: #FFFFFF; stroke: #292929; stroke-width: 1; }
+  .decision-title { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 13px; font-weight: bold; dominant-baseline: middle; }
+  .decision-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; dominant-baseline: middle; opacity: 0.55; }
+  .decision-num { font-family: Arial, Helvetica, sans-serif; fill: #0062FF; font-size: 20px; font-weight: bold; dominant-baseline: middle; }
+
+  /* Mistake callout */
+  .mistake-box { fill: #FFF0F0; stroke: #FF3333; stroke-width: 1; }
+  .mistake-label { font-family: Arial, Helvetica, sans-serif; fill: #FF3333; font-size: 10px; font-weight: bold; dominant-baseline: middle; letter-spacing: 0.5px; }
+  .mistake-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; dominant-baseline: middle; }
+  .mistake-muted { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; dominant-baseline: middle; opacity: 0.5; }
+
+  /* Portability table colors */
+  .port-resets { font-family: Arial, Helvetica, sans-serif; fill: #FF3333; font-size: 12px; font-weight: bold; dominant-baseline: middle; }
+  .port-travels { font-family: Arial, Helvetica, sans-serif; fill: #22863A; font-size: 12px; font-weight: bold; dominant-baseline: middle; }
+  .port-unchanged { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; dominant-baseline: middle; opacity: 0.4; }
+
+  /* Tier / section labels */
+  .tier-label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; font-weight: bold; letter-spacing: 1.5px; dominant-baseline: middle; opacity: 0.25; }
+  .tier-line { stroke: #292929; stroke-width: 0.5; opacity: 0.08; }
+
+  /* Sources */
+  .source-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: middle; dominant-baseline: middle; opacity: 0.4; }
+  .attribution { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #292929; opacity: 0.4; }
+  .attribution-right { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #292929; opacity: 0.4; text-anchor: end; }
+
+  @media (prefers-color-scheme: dark) {
+    .bg { fill: #1A1A1A; }
+    .header-bar { fill: #0D0D0D; }
+    .diag-line { stroke: #4D9AFF; opacity: 0.04; }
+    .panel-ip { fill: #3A3A1A; stroke: #DDAA00; }
+    .panel-domain { fill: #1A2A3A; stroke: #4D9AFF; }
+    .panel-title { fill: #E8E8E8; }
+    .panel-desc { fill: #D0D0D0; }
+    .panel-muted { fill: #999999; opacity: 1; }
+    .panel-accent-ip { fill: #DDAA00; }
+    .panel-accent-domain { fill: #4D9AFF; }
+    .insight-bar { fill: #0D0D0D; }
+    .section-bar { fill: #0D0D0D; }
+    .section-desc { opacity: 1; }
+    .proto-card-ip { fill: #3A3A1A; stroke: #DDAA00; stroke-opacity: 0.3; }
+    .proto-card-domain { fill: #1A2A3A; stroke: #4D9AFF; stroke-opacity: 0.3; }
+    .proto-card-both { fill: #2A2A2A; stroke: #555555; }
+    .proto-name { fill: #E8E8E8; }
+    .proto-detail { fill: #999999; opacity: 1; }
+    .proto-source { fill: #777777; opacity: 1; }
+    .col-label-ip { fill: #DDAA00; }
+    .col-label-domain { fill: #4D9AFF; }
+    .col-label-both { fill: #999999; opacity: 1; }
+    .table-header { fill: #0D0D0D; }
+    .table-row-alt { fill: #252525; opacity: 1; }
+    .table-text { fill: #D0D0D0; }
+    .table-text-bold { fill: #E8E8E8; }
+    .table-muted { fill: #999999; opacity: 1; }
+    .badge-gmail { fill: #4D9AFF; }
+    .badge-yahoo { fill: #A855F7; }
+    .badge-msft { fill: #DDAA00; }
+    .decision-box { fill: #242424; stroke: #444444; }
+    .decision-title { fill: #E8E8E8; }
+    .decision-text { fill: #AAAAAA; opacity: 1; }
+    .decision-num { fill: #4D9AFF; }
+    .mistake-box { fill: #3A1A1A; stroke: #FF6666; }
+    .mistake-label { fill: #FF6666; }
+    .mistake-text { fill: #E8E8E8; }
+    .mistake-muted { fill: #AAAAAA; opacity: 1; }
+    .port-resets { fill: #FF6666; }
+    .port-travels { fill: #44AA55; }
+    .port-unchanged { fill: #999999; opacity: 1; }
+    .tier-label { fill: #777777; opacity: 1; }
+    .tier-line { stroke: #444444; opacity: 1; }
+    .source-text { fill: #999999; opacity: 1; }
+    .attribution { fill: #999999; opacity: 1; }
+    .attribution-right { fill: #999999; opacity: 1; }
+  }
+</style>
+
+<defs>
+  <clipPath id="iprep-clip-canvas"><rect x="0" y="0" width="1200" height="1344"/></clipPath>
+</defs>
+
+<rect class="bg" x="0" y="0" width="1200" height="1344"/>
+
+<g clip-path="url(#iprep-clip-canvas)" aria-hidden="true">
+  <line class="diag-line" x1="-50" y1="1344" x2="1400" y2="0"/>
+  <line class="diag-line" x1="50" y1="1344" x2="1500" y2="0"/>
+  <line class="diag-line" x1="150" y1="1344" x2="1600" y2="0"/>
+  <line class="diag-line" x1="250" y1="1344" x2="1700" y2="0"/>
+</g>
+
+<!-- ============================================================ -->
+<!-- HEADER -->
+<!-- ============================================================ -->
+
+<rect class="header-bar" x="0" y="0" width="1200" height="54"/>
+<text class="header-text" x="36" y="22">IP vs Domain Reputation</text>
+<text class="header-sub" x="36" y="42">WHAT CONTROLS WHAT — SEPARATE EVALUATIONS, DIFFERENT TOOLS, DIFFERENT PORTABILITY</text>
+<text class="header-sub-right" x="1164" y="29">INBOXALLY DELIVERABILITY RESEARCH</text>
+
+<!-- ============================================================ -->
+<!-- ZONE 1: CORE DISTINCTION -->
+<!-- ============================================================ -->
+
+<g id="iprep-core-distinction" aria-label="Core Distinction — IP Reputation vs Domain Reputation" data-step="1" data-label="Core Distinction" data-description="IP reputation is tied to the sending server IP address and reflects the behavior of everyone who sends from that IP. Domain reputation is tied to the From header domain and DKIM signing domain and follows your brand regardless of which IP or ESP you send through.">
+
+<!-- IP panel -->
+<rect class="panel-ip" x="40" y="72" width="555" height="100" rx="8"/>
+<text class="panel-accent-ip" x="56" y="92">IP REPUTATION</text>
+<text class="panel-title" x="56" y="114">Tied to the sending server's IP address</text>
+<text class="panel-desc" x="56" y="134">Reflects behavior of everyone who sends from that IP.</text>
+<text class="panel-muted" x="56" y="150">Shared IP = shared reputation. Dedicated IP = yours alone, starts from zero.</text>
+
+<!-- Domain panel -->
+<rect class="panel-domain" x="605" y="72" width="555" height="100" rx="8"/>
+<text class="panel-accent-domain" x="621" y="92">DOMAIN REPUTATION</text>
+<text class="panel-title" x="621" y="114">Tied to your From: domain + DKIM signing domain</text>
+<text class="panel-desc" x="621" y="134">Follows your brand regardless of which IP or ESP you send through.</text>
+<text class="panel-muted" x="621" y="150">Migrate ESPs → domain reputation travels with you. IP reputation does not.</text>
+
+<!-- Insight bar -->
+<rect class="insight-bar" x="40" y="186" width="1120" height="30" rx="6"/>
+<text class="insight-text" x="600" y="203">Separate evaluations — you can have a clean IP with a damaged domain, or a strong domain on a problematic IP</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- ZONE 2: PROTOCOL-LEVEL ATTRIBUTION -->
+<!-- ============================================================ -->
+
+<g id="iprep-protocol-map" aria-label="Protocol-Level Attribution — What Is Inherently IP-Level vs Domain-Level" data-step="2" data-label="Protocol Map" data-description="Mechanisms that are inherently IP-level by protocol definition include PTR, SPF IP checks, IP blocklists, SNDS, and sending volume. Domain-level mechanisms include DKIM, DMARC, BIMI, Postmaster Tools Compliance Status, From header domain, and List-Unsubscribe. Spam complaints, bounce rate, and spam trap hits are attributed to both.">
+
+<rect class="section-bar" x="40" y="232" width="1120" height="28" rx="5"/>
+<text class="section-text" x="60" y="248">WHAT'S INHERENTLY IP-LEVEL vs DOMAIN-LEVEL</text>
+<text class="section-desc" x="480" y="248">By protocol definition — not inferred</text>
+
+<!-- IP column label -->
+<text class="col-label-ip" x="56" y="280">INHERENTLY IP-LEVEL</text>
+
+<!-- IP items -->
+<rect class="proto-card-ip" x="40" y="290" width="350" height="42" rx="6"/>
+<text class="proto-name" x="56" y="306">PTR / Reverse DNS</text>
+<text class="proto-detail" x="56" y="322">Maps IP to hostname, must forward-confirm</text>
+<text class="proto-source" x="300" y="306">RFC 1035</text>
+
+<rect class="proto-card-ip" x="40" y="340" width="350" height="42" rx="6"/>
+<text class="proto-name" x="56" y="356">SPF — IP authorization check</text>
+<text class="proto-detail" x="56" y="372">Record is in domain DNS, but evaluates the sending IP</text>
+<text class="proto-source" x="300" y="356">RFC 7208</text>
+
+<rect class="proto-card-ip" x="40" y="390" width="350" height="42" rx="6"/>
+<text class="proto-name" x="56" y="406">IP blocklists</text>
+<text class="proto-detail" x="56" y="422">Spamhaus SBL, CBL, XBL list IP addresses</text>
+<text class="proto-source" x="284" y="406">spamhaus.org</text>
+
+<rect class="proto-card-ip" x="40" y="440" width="350" height="42" rx="6"/>
+<text class="proto-name" x="56" y="456">Microsoft SNDS</text>
+<text class="proto-detail" x="56" y="472">Reports reputation, volume, traps per-IP</text>
+<text class="proto-source" x="282" y="456">SNDS portal</text>
+
+<rect class="proto-card-ip" x="40" y="490" width="350" height="42" rx="6"/>
+<text class="proto-name" x="56" y="506">Sending volume + rate</text>
+<text class="proto-detail" x="56" y="522">Measured per-IP by receiving servers</text>
+
+<rect class="proto-card-ip" x="40" y="540" width="350" height="42" rx="6"/>
+<text class="proto-name" x="56" y="556">TLS capability</text>
+<text class="proto-detail" x="56" y="572">Property of the sending server at that IP</text>
+
+<!-- Domain column label -->
+<text class="col-label-domain" x="826" y="280">INHERENTLY DOMAIN-LEVEL</text>
+
+<!-- Domain items -->
+<rect class="proto-card-domain" x="810" y="290" width="350" height="42" rx="6"/>
+<text class="proto-name" x="826" y="306">DKIM — signing domain</text>
+<text class="proto-detail" x="826" y="322">Signature tied to d= domain in DKIM header</text>
+<text class="proto-source" x="1070" y="306">RFC 6376</text>
+
+<rect class="proto-card-domain" x="810" y="340" width="350" height="42" rx="6"/>
+<text class="proto-name" x="826" y="356">DMARC — policy + alignment</text>
+<text class="proto-detail" x="826" y="372">Evaluated per From: domain</text>
+<text class="proto-source" x="1070" y="356">RFC 7489</text>
+
+<rect class="proto-card-domain" x="810" y="390" width="350" height="42" rx="6"/>
+<text class="proto-name" x="826" y="406">BIMI — brand logo</text>
+<text class="proto-detail" x="826" y="422">Display tied to verified domain</text>
+<text class="proto-source" x="1060" y="406">bimigroup.org</text>
+
+<rect class="proto-card-domain" x="810" y="440" width="350" height="42" rx="6"/>
+<text class="proto-name" x="826" y="456">Postmaster Tools — Compliance Status</text>
+<text class="proto-detail" x="826" y="472">Google evaluates compliance per-domain</text>
+<text class="proto-source" x="1036" y="456">GPT V2 docs</text>
+
+<rect class="proto-card-domain" x="810" y="490" width="350" height="42" rx="6"/>
+<text class="proto-name" x="826" y="506">From: header domain</text>
+<text class="proto-detail" x="826" y="522">What the recipient sees, what providers associate</text>
+
+<rect class="proto-card-domain" x="810" y="540" width="350" height="42" rx="6"/>
+<text class="proto-name" x="826" y="556">List-Unsubscribe header</text>
+<text class="proto-detail" x="826" y="572">Domain-level compliance signal</text>
+<text class="proto-source" x="1070" y="556">RFC 8058</text>
+
+<!-- Both column -->
+<text class="col-label-both" x="460" y="280">ATTRIBUTED TO BOTH</text>
+
+<rect class="proto-card-both" x="420" y="290" width="370" height="42" rx="6"/>
+<text class="proto-name" x="436" y="306">Spam complaints</text>
+<text class="proto-detail" x="436" y="322">Attributed to the IP that delivered + the domain that sent</text>
+
+<rect class="proto-card-both" x="420" y="340" width="370" height="42" rx="6"/>
+<text class="proto-name" x="436" y="356">Bounce rate</text>
+<text class="proto-detail" x="436" y="372">Hard bounces reflect on both IP and domain</text>
+
+<rect class="proto-card-both" x="420" y="390" width="370" height="42" rx="6"/>
+<text class="proto-name" x="436" y="406">Spam trap hits</text>
+<text class="proto-detail" x="436" y="422">Attribution varies by trap operator methodology</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- DKIM SIGNING DOMAIN CALLOUT -->
+<!-- ============================================================ -->
+
+<g id="iprep-dkim-callout" aria-label="Check Your DKIM Signing Domain" data-step="3" data-label="DKIM d= Check" data-description="Ensure your ESP signs outbound email with your domain in the DKIM d= tag, not theirs. This ensures DMARC alignment across all providers and gives you ownership of your domain reputation wherever providers track it.">
+
+<rect class="mistake-box" x="40" y="594" width="1120" height="66" rx="8"/>
+<text class="mistake-label" x="60" y="612">CHECK YOUR DKIM d= TAG</text>
+<text class="mistake-text" x="60" y="632">Make sure your ESP signs with your domain (d=yourbrand.com), not theirs.</text>
+<text class="mistake-muted" x="60" y="648">Ensures DMARC alignment across all providers and gives you ownership of your domain reputation wherever providers track it.</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- ZONE 3: MONITORING TOOLS -->
+<!-- ============================================================ -->
+
+<g id="iprep-monitoring-tools" aria-label="How to Monitor Each Reputation Type" data-step="4" data-label="Monitoring Tools" data-description="Google Postmaster Tools provides both IP and domain reputation dashboards. Microsoft SNDS provides IP-level data only with no public domain reputation tool. Yahoo Sender Hub Insights provides domain-level data based on DKIM domains. Microsoft is the only major provider with no domain-level reputation monitoring tool.">
+
+<text class="tier-label" x="40" y="682">HOW TO MONITOR EACH</text>
+<line class="tier-line" x1="240" y1="682" x2="1160" y2="682" aria-hidden="true"/>
+
+<!-- Table header -->
+<rect class="table-header" x="40" y="694" width="1120" height="24" rx="4 4 0 0"/>
+<text class="table-header-text" x="60" y="708">Provider</text>
+<text class="table-header-text" x="200" y="708">IP Reputation Tool</text>
+<text class="table-header-text" x="660" y="708">Domain Reputation Tool</text>
+
+<!-- Gmail -->
+<rect class="table-row-alt" x="40" y="718" width="1120" height="36" rx="0"/>
+<rect class="badge-gmail" x="52" y="728" width="42" height="14" rx="3"/><text class="badge-text" x="73" y="736">GMAIL</text>
+<text class="table-text" x="200" y="732">Postmaster Tools — IP Reputation</text>
+<text class="table-muted" x="200" y="748">V1 dashboard, announced for retirement</text>
+<text class="table-text" x="660" y="732">Postmaster Tools — Compliance Status (V2)</text>
+<text class="table-muted" x="660" y="748">Domain Reputation (V1) also available</text>
+
+<!-- Microsoft -->
+<rect class="badge-msft" x="52" y="764" width="32" height="14" rx="3"/><text class="badge-text" x="68" y="772">MSFT</text>
+<text class="table-text" x="200" y="772">SNDS — IP reputation, volume, trap hits</text>
+<text class="table-muted" x="660" y="772">No public domain-level tool</text>
+
+<!-- Yahoo -->
+<rect class="table-row-alt" x="40" y="784" width="1120" height="24" rx="0"/>
+<rect class="badge-yahoo" x="52" y="788" width="42" height="14" rx="3"/><text class="badge-text" x="73" y="796">YAHOO</text>
+<text class="table-muted" x="200" y="796">No dedicated IP reputation tool</text>
+<text class="table-text" x="660" y="796">Sender Hub Insights — domain-based (DKIM domain)</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- ZONE 4: PORTABILITY TABLE -->
+<!-- ============================================================ -->
+
+<g id="iprep-portability" aria-label="Portability — What Happens When You Change Infrastructure" data-step="5" data-label="Portability" data-description="When changing ESP or sending provider, IP reputation resets to new IPs but domain reputation travels with you. When changing sending IP on the same ESP, IP reputation resets but domain reputation is unchanged. When changing From domain, IP reputation is unchanged but domain reputation resets.">
+
+<text class="tier-label" x="40" y="860">WHAT HAPPENS WHEN YOU CHANGE INFRASTRUCTURE</text>
+<line class="tier-line" x1="470" y1="860" x2="1160" y2="860" aria-hidden="true"/>
+
+<rect class="table-header" x="40" y="872" width="1120" height="24" rx="4 4 0 0"/>
+<text class="table-header-text" x="60" y="886">When you change...</text>
+<text class="table-header-text" x="500" y="886">IP Reputation</text>
+<text class="table-header-text" x="820" y="886">Domain Reputation</text>
+
+<rect class="table-row-alt" x="40" y="896" width="1120" height="26" rx="0"/>
+<text class="table-text-bold" x="60" y="912">ESP / sending provider</text>
+<text class="port-resets" x="500" y="912">Resets (new IPs)</text>
+<text class="port-travels" x="820" y="912">Travels with you</text>
+
+<text class="table-text-bold" x="60" y="938">Sending IP (same ESP)</text>
+<text class="port-resets" x="500" y="938">Resets for that IP</text>
+<text class="port-unchanged" x="820" y="938">Unchanged</text>
+
+<rect class="table-row-alt" x="40" y="948" width="1120" height="26" rx="0"/>
+<text class="table-text-bold" x="60" y="964">From: domain</text>
+<text class="port-unchanged" x="500" y="964">Unchanged</text>
+<text class="port-resets" x="820" y="964">Resets (new domain)</text>
+
+<text class="table-text-bold" x="60" y="990">DKIM signing domain</text>
+<text class="port-unchanged" x="500" y="990">Unchanged</text>
+<text class="port-resets" x="820" y="990">Affected</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- ZONE 5: DECISION GUIDANCE -->
+<!-- ============================================================ -->
+
+<g id="iprep-decisions" aria-label="What This Means for Your Decisions" data-step="6" data-label="Decisions" data-description="Three decision scenarios where the IP vs domain distinction changes the practical action: ESP migration, shared vs dedicated IP evaluation, and whether buying a dedicated IP will solve a deliverability problem">
+
+<text class="tier-label" x="40" y="1026">WHAT THIS MEANS FOR YOUR DECISIONS</text>
+<line class="tier-line" x1="370" y1="1026" x2="1160" y2="1026" aria-hidden="true"/>
+
+<!-- Decision 1: ESP migration -->
+<rect class="decision-box" x="40" y="1042" width="360" height="130" rx="8"/>
+<text class="decision-num" x="56" y="1070">1</text>
+<text class="decision-title" x="80" y="1066">Migrating ESPs</text>
+<text class="decision-text" x="56" y="1090">Domain reputation travels with you.</text>
+<text class="decision-text" x="56" y="1106">IP reputation does not (new ESP = new IPs).</text>
+<text class="decision-text" x="56" y="1126">If the problem is domain-level, migrating</text>
+<text class="decision-text" x="56" y="1142">ESPs won't fix it. If IP-level, it helps.</text>
+<text class="decision-text" x="56" y="1162">Check Postmaster Tools domain status first.</text>
+
+<!-- Decision 2: Shared vs dedicated -->
+<rect class="decision-box" x="420" y="1042" width="360" height="130" rx="8"/>
+<text class="decision-num" x="436" y="1070">2</text>
+<text class="decision-title" x="460" y="1066">Shared vs dedicated IP</text>
+<text class="decision-text" x="436" y="1090">Shared IP: your domain reputation is yours</text>
+<text class="decision-text" x="436" y="1106">alone, but IP reputation is shared.</text>
+<text class="decision-text" x="436" y="1126">Microsoft (SNDS is IP-only): shared IP risk</text>
+<text class="decision-text" x="436" y="1142">is higher. Gmail (domain-level tools):</text>
+<text class="decision-text" x="436" y="1162">shared IP risk is lower.</text>
+
+<!-- Decision 3: Dedicated IP decision -->
+<rect class="decision-box" x="800" y="1042" width="360" height="130" rx="8"/>
+<text class="decision-num" x="816" y="1070">3</text>
+<text class="decision-title" x="840" y="1066">Diagnose before buying</text>
+<text class="decision-text" x="816" y="1090">Before buying a dedicated IP, check</text>
+<text class="decision-text" x="816" y="1106">Postmaster Tools for domain reputation.</text>
+<text class="decision-text" x="816" y="1126">If domain is the problem, fix list hygiene,</text>
+<text class="decision-text" x="816" y="1142">content, and engagement first. A new IP</text>
+<text class="decision-text" x="816" y="1162">starts at neutral — it won't fix a domain issue.</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- COMMON MISTAKE CALLOUT -->
+<!-- ============================================================ -->
+
+<g id="iprep-common-mistake" aria-label="Common Mistake — Buying a Dedicated IP to Fix a Domain Problem" data-step="7" data-label="Common Mistake" data-description="The most common infrastructure mistake in email deliverability is buying a dedicated IP when the real problem is domain reputation. Domain signals including complaint history and engagement patterns follow the domain to the new IP.">
+
+<rect class="mistake-box" x="40" y="1190" width="1120" height="70" rx="8"/>
+<text class="mistake-label" x="60" y="1210">COMMON MISTAKE</text>
+<text class="mistake-text" x="60" y="1230">Buying a dedicated IP to "fix" deliverability when the problem is domain reputation.</text>
+<text class="mistake-muted" x="60" y="1246">A new IP resets IP reputation to neutral but does nothing for a damaged domain. Complaint history and engagement patterns follow the domain.</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- SOURCES -->
+<!-- ============================================================ -->
+
+<g id="iprep-sources" aria-label="Sources" data-step="8" data-label="Sources" data-description="Primary sources including IETF RFCs, Google Postmaster Tools documentation, Microsoft SNDS, Yahoo Sender Hub, and Spamhaus">
+
+<text class="source-text" x="600" y="1278">RFC 7208 (SPF) · RFC 6376 (DKIM) · RFC 7489 (DMARC) · RFC 1035 (PTR) · RFC 8058 (List-Unsubscribe)</text>
+<text class="source-text" x="600" y="1294">support.google.com/a/answer/14668346 · support.google.com/a/answer/81126 · sendersupport.olc.protection.outlook.com · senders.yahooinc.com · spamhaus.org</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- ATTRIBUTION -->
+<!-- ============================================================ -->
+
+<a href="https://www.inboxally.com">
+  <text class="attribution" x="36" y="1322">Source: InboxAlly · inboxally.com</text>
+</a>
+<text class="attribution-right" x="1164" y="1322">CC BY 4.0</text>
+
+</svg>
