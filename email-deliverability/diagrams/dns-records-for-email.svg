@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     width="100%"
+     viewBox="0 0 1200 1390"
+     xml:lang="en"
+     preserveAspectRatio="xMidYMid meet"
+     role="img"
+     aria-labelledby="title desc"
+     data-source="InboxAlly Deliverability Research">
+
+<title id="title">DNS Records for Email — Complete Map</title>
+
+<desc id="desc">
+Complete reference of all DNS records that affect email deliverability, organized by function:
+authentication records (SPF, DKIM, DMARC, MX), infrastructure records (PTR/reverse DNS), and
+advanced security and brand records (MTA-STS, TLS-RPT, BIMI). Each record shows the DNS record
+type, the hostname where it lives, what it does, an example value, and whether it is required,
+recommended, or optional for bulk email senders. SPF, DKIM, DMARC, and MX are required by Google,
+Microsoft, and Yahoo. PTR is required by Google for all sending IPs. MTA-STS and TLS-RPT are
+recommended for TLS enforcement and monitoring. BIMI is optional for brand logo display in
+supporting inboxes. Includes a record location quick reference showing exactly what to enter in
+the DNS host field for each record, and a common mistakes panel covering the most frequent
+DNS configuration errors.
+</desc>
+
+<metadata>
+<rdf:RDF>
+  <cc:Work rdf:about="">
+    <dc:title>DNS Records for Email — Complete Map</dc:title>
+    <dc:creator>InboxAlly</dc:creator>
+    <dc:source>https://www.inboxally.com</dc:source>
+    <dc:subject>DNS records email, SPF record, DKIM record, DMARC record, MX record, PTR record, reverse DNS, MTA-STS, TLS-RPT, BIMI, email authentication DNS, DNS setup email, email deliverability DNS, SPF TXT record, DKIM selector, DMARC policy, bulk sender requirements, RFC 7208, RFC 6376, RFC 7489, RFC 8461, RFC 8460</dc:subject>
+    <dc:description>Complete DNS record reference for email deliverability covering authentication (SPF, DKIM, DMARC, MX), infrastructure (PTR), and advanced records (MTA-STS, TLS-RPT, BIMI) with requirement tiers, example values, and hostname locations.</dc:description>
+    <cc:license rdf:resource="https://creativecommons.org/licenses/by/4.0/" />
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "name": "DNS Records for Email — Complete Map",
+  "description": "Complete DNS record reference for email deliverability covering all eight record types with requirement tiers, example values, and hostname locations.",
+  "publisher": { "@type": "Organization", "name": "InboxAlly", "url": "https://www.inboxally.com" },
+  "about": { "@type": "Thing", "name": "Email DNS Records" }
+}
+</script>
+
+<style>
+  .bg { fill: #F1F0ED; }
+  .header-bar { fill: #292929; }
+  .header-text { font-family: Georgia, "Times New Roman", serif; font-size: 22px; fill: #FFFFFF; dominant-baseline: middle; }
+  .header-sub { font-family: Arial, Helvetica, sans-serif; font-size: 13px; fill: #DDEFFF; letter-spacing: 1px; dominant-baseline: middle; }
+  .diag-line { stroke: #0062FF; stroke-width: 0.5; opacity: 0.06; }
+
+  /* Section bars */
+  .section-bar { fill: #292929; }
+  .section-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 13px; font-weight: bold; dominant-baseline: middle; letter-spacing: 0.5px; }
+  .section-desc { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 11px; dominant-baseline: middle; opacity: 0.6; }
+
+  /* Record cards */
+  .record-card { fill: #DDEFFF; stroke: #0062FF; stroke-width: 0.5; stroke-opacity: 0.25; }
+  .record-name { font-family: Georgia, "Times New Roman", serif; fill: #292929; font-size: 18px; font-weight: bold; dominant-baseline: middle; }
+  .record-what { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; dominant-baseline: middle; }
+  .record-muted { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; dominant-baseline: middle; opacity: 0.45; }
+  .record-code { font-family: "Courier New", monospace; fill: #292929; font-size: 11px; dominant-baseline: middle; }
+  .record-label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 10px; font-weight: bold; dominant-baseline: middle; opacity: 0.35; letter-spacing: 0.5px; }
+
+  /* Code example strip */
+  .code-strip { fill: #FFFFFF; stroke: #292929; stroke-width: 0.5; stroke-opacity: 0.1; }
+
+  /* DNS type badges */
+  .badge-txt { fill: #0062FF; }
+  .badge-mx { fill: #22863A; }
+  .badge-ptr { fill: #CC8800; }
+  .badge-cname { fill: #720E9E; }
+  .badge-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 9px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+
+  /* Requirement badges */
+  .req-required { fill: #0062FF; }
+  .req-recommended { fill: #CC8800; }
+  .req-optional { fill: #888888; }
+  .req-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 8px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; letter-spacing: 0.5px; }
+
+  /* Hostname display */
+  .host-code { font-family: "Courier New", monospace; fill: #0062FF; font-size: 12px; dominant-baseline: middle; }
+
+  /* Quick reference table */
+  .table-header { fill: #292929; }
+  .table-row-alt { fill: #FFFFFF; opacity: 0.4; }
+  .table-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; dominant-baseline: middle; }
+  .table-text-bold { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; font-weight: bold; dominant-baseline: middle; }
+  .table-code { font-family: "Courier New", monospace; fill: #292929; font-size: 12px; dominant-baseline: middle; }
+  .table-header-text { font-family: Arial, Helvetica, sans-serif; fill: #FFFFFF; font-size: 11px; font-weight: bold; dominant-baseline: middle; }
+
+  /* Mistakes panel */
+  .mistake-box { fill: #FFFFFF; stroke: #292929; stroke-width: 1; stroke-dasharray: 6 3; }
+  .mistake-title { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 12px; font-weight: bold; dominant-baseline: middle; }
+  .mistake-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; dominant-baseline: middle; opacity: 0.55; }
+  .mistake-label { font-family: Arial, Helvetica, sans-serif; fill: #FF3333; font-size: 11px; font-weight: bold; dominant-baseline: middle; }
+
+  /* Tier labels */
+  .tier-label { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; font-weight: bold; letter-spacing: 1.5px; dominant-baseline: middle; opacity: 0.25; }
+  .tier-line { stroke: #292929; stroke-width: 0.5; opacity: 0.08; }
+
+  /* Sources / attribution */
+  .source-text { font-family: Arial, Helvetica, sans-serif; fill: #292929; font-size: 11px; text-anchor: middle; dominant-baseline: middle; opacity: 0.4; }
+  .attribution { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #292929; opacity: 0.4; }
+
+  @media (prefers-color-scheme: dark) {
+    .bg { fill: #1A1A1A; }
+    .header-bar { fill: #0D0D0D; }
+    .diag-line { stroke: #4D9AFF; opacity: 0.04; }
+    .section-bar { fill: #0D0D0D; }
+    .record-card { fill: #1A2A3A; stroke: #4D9AFF; stroke-opacity: 0.2; }
+    .section-desc { fill: #BBBBBB; opacity: 1; }
+    .record-name { fill: #E8E8E8; }
+    .record-what { fill: #D0D0D0; }
+    .record-muted { fill: #999999; opacity: 1; }
+    .record-code { fill: #D0D0D0; }
+    .record-label { fill: #888888; opacity: 1; }
+    .code-strip { fill: #2A2A2A; stroke: #444444; }
+    .badge-txt { fill: #4D9AFF; }
+    .badge-mx { fill: #44AA55; }
+    .badge-ptr { fill: #DDAA00; }
+    .badge-cname { fill: #A855F7; }
+    .req-recommended { fill: #DDAA00; }
+    .req-optional { fill: #666666; }
+    .host-code { fill: #4D9AFF; }
+    .table-header { fill: #0D0D0D; }
+    .table-row-alt { fill: #252525; opacity: 0.6; }
+    .table-text { fill: #D0D0D0; }
+    .table-text-bold { fill: #E8E8E8; }
+    .table-code { fill: #D0D0D0; }
+    .mistake-box { fill: #242424; stroke: #555555; }
+    .mistake-title { fill: #E8E8E8; }
+    .mistake-text { fill: #AAAAAA; opacity: 1; }
+    .mistake-label { fill: #FF6666; }
+    .tier-label { fill: #777777; opacity: 1; }
+    .tier-line { stroke: #444444; opacity: 1; }
+    .source-text { fill: #999999; opacity: 1; }
+    .attribution { fill: #999999; opacity: 1; }
+  }
+</style>
+
+<defs>
+  <clipPath id="dns-clip-canvas"><rect x="0" y="0" width="1200" height="1390"/></clipPath>
+</defs>
+
+<rect class="bg" x="0" y="0" width="1200" height="1390"/>
+
+<g clip-path="url(#dns-clip-canvas)" aria-hidden="true">
+  <line class="diag-line" x1="-50" y1="1390" x2="1400" y2="0"/>
+  <line class="diag-line" x1="50" y1="1390" x2="1500" y2="0"/>
+  <line class="diag-line" x1="150" y1="1390" x2="1600" y2="0"/>
+  <line class="diag-line" x1="250" y1="1390" x2="1700" y2="0"/>
+</g>
+
+<!-- ============================================================ -->
+<!-- HEADER -->
+<!-- ============================================================ -->
+
+<rect class="header-bar" x="0" y="0" width="1200" height="54"/>
+<text class="header-text" x="36" y="22">DNS Records for Email</text>
+<text class="header-sub" x="36" y="42">COMPLETE MAP — EVERY RECORD THAT AFFECTS DELIVERABILITY</text>
+<text class="header-sub" x="1164" y="29" text-anchor="end">INBOXALLY DELIVERABILITY RESEARCH</text>
+
+<!-- ============================================================ -->
+<!-- LEGEND -->
+<!-- ============================================================ -->
+
+<g id="dns-legend" aria-label="Legend showing DNS record types and requirement tiers" data-step="1" data-label="Legend" data-description="Color-coded badges for DNS record types (TXT, MX, PTR, CNAME) and requirement tiers (Required, Recommended, Optional)">
+
+<text class="record-label" x="40" y="76">DNS RECORD TYPES</text>
+<rect class="badge-txt" x="180" y="68" width="30" height="16" rx="3"/><text class="badge-text" x="195" y="77">TXT</text>
+<rect class="badge-mx" x="218" y="68" width="26" height="16" rx="3"/><text class="badge-text" x="231" y="77">MX</text>
+<rect class="badge-ptr" x="252" y="68" width="28" height="16" rx="3"/><text class="badge-text" x="266" y="77">PTR</text>
+<rect class="badge-cname" x="288" y="68" width="42" height="16" rx="3"/><text class="badge-text" x="309" y="77">CNAME</text>
+
+<text class="record-label" x="420" y="76">REQUIREMENT</text>
+<rect class="req-required" x="520" y="68" width="62" height="16" rx="3"/><text class="req-text" x="551" y="77">REQUIRED</text>
+<rect class="req-recommended" x="590" y="68" width="88" height="16" rx="3"/><text class="req-text" x="634" y="77">RECOMMENDED</text>
+<rect class="req-optional" x="686" y="68" width="62" height="16" rx="3"/><text class="req-text" x="717" y="77">OPTIONAL</text>
+
+<text class="record-muted" x="820" y="76">Receiving providers query your DNS on every delivery attempt</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- GROUP A: AUTHENTICATION -->
+<!-- ============================================================ -->
+
+<g id="dns-auth-records" aria-label="Authentication DNS Records" data-step="2" data-label="Authentication" data-description="Required DNS records for email authentication including SPF, DKIM, DMARC, and MX — all four required by Google, Microsoft, and Yahoo for bulk senders">
+
+<rect class="section-bar" x="40" y="96" width="1120" height="28" rx="5"/>
+<text class="section-text" x="60" y="112">AUTHENTICATION</text>
+<text class="section-desc" x="220" y="112">Required by Google, Microsoft, and Yahoo for bulk senders</text>
+
+<!-- SPF -->
+<rect class="record-card" x="40" y="134" width="545" height="152" rx="8"/>
+<text class="record-name" x="56" y="158">SPF</text>
+<rect class="badge-txt" x="108" y="148" width="30" height="16" rx="3"/><text class="badge-text" x="123" y="157">TXT</text>
+<rect class="req-required" x="490" y="148" width="62" height="16" rx="3"/><text class="req-text" x="521" y="157">REQUIRED</text>
+
+<text class="record-what" x="56" y="180">Specifies which servers are authorized to send for your domain</text>
+<text class="record-muted" x="56" y="196">Providers check Return-Path domain against SPF during delivery</text>
+
+<text class="record-label" x="56" y="216">HOST</text>
+<text class="host-code" x="100" y="216">@ (yourdomain.com)</text>
+
+<rect class="code-strip" x="52" y="228" width="522" height="24" rx="4"/>
+<text class="record-code" x="62" y="242">v=spf1 include:_spf.google.com include:sendgrid.net -all</text>
+
+<text class="record-muted" x="56" y="272">One SPF record per domain. Multiple records = permerror.</text>
+
+<!-- DKIM -->
+<rect class="record-card" x="615" y="134" width="545" height="152" rx="8"/>
+<text class="record-name" x="631" y="158">DKIM</text>
+<rect class="badge-txt" x="700" y="148" width="30" height="16" rx="3"/><text class="badge-text" x="715" y="157">TXT</text>
+<text class="record-muted" x="736" y="157">or</text>
+<rect class="badge-cname" x="752" y="148" width="42" height="16" rx="3"/><text class="badge-text" x="773" y="157">CNAME</text>
+<rect class="req-required" x="1065" y="148" width="62" height="16" rx="3"/><text class="req-text" x="1096" y="157">REQUIRED</text>
+
+<text class="record-what" x="631" y="180">Cryptographic signature proving message wasn't altered in transit</text>
+<text class="record-muted" x="631" y="196">Provider retrieves your public key from DNS to verify signature</text>
+
+<text class="record-label" x="631" y="216">HOST</text>
+<text class="host-code" x="675" y="216">selector._domainkey.yourdomain.com</text>
+
+<rect class="code-strip" x="627" y="228" width="522" height="24" rx="4"/>
+<text class="record-code" x="637" y="242">v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEB... (or CNAME to ESP)</text>
+
+<text class="record-muted" x="631" y="272">Selector chosen by you/ESP. Most ESPs use CNAME for key rotation.</text>
+
+<!-- DMARC -->
+<rect class="record-card" x="40" y="298" width="545" height="152" rx="8"/>
+<text class="record-name" x="56" y="322">DMARC</text>
+<rect class="badge-txt" x="145" y="312" width="30" height="16" rx="3"/><text class="badge-text" x="160" y="321">TXT</text>
+<rect class="req-required" x="490" y="312" width="62" height="16" rx="3"/><text class="req-text" x="521" y="321">REQUIRED</text>
+
+<text class="record-what" x="56" y="344">Tells providers what to do when SPF/DKIM fail or don't align</text>
+<text class="record-muted" x="56" y="360">Policy: none (monitor) → quarantine → reject. Reports via rua tag.</text>
+
+<text class="record-label" x="56" y="380">HOST</text>
+<text class="host-code" x="100" y="380">_dmarc.yourdomain.com</text>
+
+<rect class="code-strip" x="52" y="392" width="522" height="24" rx="4"/>
+<text class="record-code" x="62" y="406">v=DMARC1; p=reject; rua=mailto:dmarc@yourdomain.com; pct=100</text>
+
+<text class="record-muted" x="56" y="436">Start p=none, escalate to reject. Without rua, you enforce blind.</text>
+
+<!-- MX -->
+<rect class="record-card" x="615" y="298" width="545" height="152" rx="8"/>
+<text class="record-name" x="631" y="322">MX</text>
+<rect class="badge-mx" x="670" y="312" width="26" height="16" rx="3"/><text class="badge-text" x="683" y="321">MX</text>
+<rect class="req-required" x="1065" y="312" width="62" height="16" rx="3"/><text class="req-text" x="1096" y="321">REQUIRED</text>
+
+<text class="record-what" x="631" y="344">Specifies which servers accept incoming mail for your domain</text>
+<text class="record-muted" x="631" y="360">Missing MX signals illegitimate domain — affects sender reputation</text>
+
+<text class="record-label" x="631" y="380">HOST</text>
+<text class="host-code" x="675" y="380">@ (yourdomain.com)</text>
+
+<rect class="code-strip" x="627" y="392" width="522" height="24" rx="4"/>
+<text class="record-code" x="637" y="406">10 aspmx.l.google.com / 20 alt1.aspmx.l.google.com</text>
+
+<text class="record-muted" x="631" y="436">Priority numbers (10, 20) set failover order. Lower = tried first.</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- GROUP B: INFRASTRUCTURE -->
+<!-- ============================================================ -->
+
+<g id="dns-infra-records" aria-label="Infrastructure DNS Records" data-step="3" data-label="Infrastructure" data-description="PTR reverse DNS record required for IP reputation — maps sending IP back to a hostname that must forward-confirm">
+
+<rect class="section-bar" x="40" y="466" width="1120" height="28" rx="5"/>
+<text class="section-text" x="60" y="482">INFRASTRUCTURE</text>
+<text class="section-desc" x="220" y="482">Required for IP reputation</text>
+
+<!-- PTR -->
+<rect class="record-card" x="40" y="504" width="1120" height="176" rx="8"/>
+<text class="record-name" x="56" y="530">PTR (Reverse DNS)</text>
+<rect class="badge-ptr" x="280" y="520" width="28" height="16" rx="3"/><text class="badge-text" x="294" y="529">PTR</text>
+<rect class="req-required" x="1065" y="520" width="62" height="16" rx="3"/><text class="req-text" x="1096" y="529">REQUIRED</text>
+
+<text class="record-what" x="56" y="554">Maps your sending IP back to a hostname — provider checks it forward-confirms (PTR → A → same IP)</text>
+<text class="record-muted" x="56" y="570">Missing or mismatched PTR is a strong spam signal. Google explicitly requires valid PTR for all sending IPs.</text>
+
+<!-- Dedicated IP -->
+<rect class="code-strip" x="52" y="586" width="540" height="56" rx="5"/>
+<text class="record-label" x="68" y="602">DEDICATED IP</text>
+<text class="record-what" x="68" y="618">PTR should resolve to your hostname (e.g., mail.yourdomain.com)</text>
+<text class="record-muted" x="68" y="634">Contact your hosting provider to set. Verify it forward-confirms.</text>
+
+<!-- Shared / ESP IP -->
+<rect class="code-strip" x="612" y="586" width="536" height="56" rx="5"/>
+<text class="record-label" x="628" y="602">SHARED / ESP-MANAGED IP</text>
+<text class="record-what" x="628" y="618">PTR points to ESP hostname (e.g., o1.ptr7890.sendgrid.net)</text>
+<text class="record-muted" x="628" y="634">This is expected. Your sender identity comes from DKIM, not PTR.</text>
+
+<rect class="code-strip" x="52" y="652" width="1096" height="24" rx="4"/>
+<text class="record-code" x="62" y="666">131.105.36.54.in-addr.arpa → mail.yourdomain.com (must resolve back to 54.36.105.131)</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- GROUP C: ADVANCED -->
+<!-- ============================================================ -->
+
+<g id="dns-advanced-records" aria-label="Advanced Security and Brand DNS Records" data-step="4" data-label="Advanced" data-description="MTA-STS for TLS enforcement, TLS-RPT for TLS failure reporting, and BIMI for brand logo display — recommended or optional for enhanced security and brand recognition">
+
+<rect class="section-bar" x="40" y="696" width="1120" height="28" rx="5"/>
+<text class="section-text" x="60" y="712">ADVANCED — SECURITY + BRAND</text>
+<text class="section-desc" x="340" y="712">Security (inbound only) and brand enhancement (optional)</text>
+
+<!-- MTA-STS -->
+<rect class="record-card" x="40" y="734" width="370" height="168" rx="8"/>
+<text class="record-name" x="56" y="760">MTA-STS</text>
+<rect class="badge-txt" x="170" y="750" width="30" height="16" rx="3"/><text class="badge-text" x="185" y="759">TXT</text>
+<rect class="req-recommended" x="280" y="750" width="88" height="16" rx="3"/><text class="req-text" x="324" y="759">RECOMMENDED</text>
+
+<text class="record-what" x="56" y="782">Enforces strict TLS for inbound email</text>
+<text class="record-muted" x="56" y="798">Inbound only — not a factor in outbound sender evaluation</text>
+
+<text class="record-label" x="56" y="818">HOST</text>
+<text class="host-code" x="100" y="818">_mta-sts.yourdomain.com</text>
+
+<rect class="code-strip" x="52" y="830" width="346" height="24" rx="4"/>
+<text class="record-code" x="62" y="844">v=STSv1; id=20240101</text>
+
+<text class="record-muted" x="56" y="868">Also requires policy file hosted at</text>
+<text class="record-muted" x="56" y="884">mta-sts.yourdomain.com/.well-known/mta-sts.txt</text>
+
+<!-- TLS-RPT -->
+<rect class="record-card" x="420" y="734" width="370" height="168" rx="8"/>
+<text class="record-name" x="436" y="760">TLS-RPT</text>
+<rect class="badge-txt" x="550" y="750" width="30" height="16" rx="3"/><text class="badge-text" x="565" y="759">TXT</text>
+<rect class="req-recommended" x="660" y="750" width="88" height="16" rx="3"/><text class="req-text" x="704" y="759">RECOMMENDED</text>
+
+<text class="record-what" x="436" y="782">Where to send TLS delivery failure reports</text>
+<text class="record-muted" x="436" y="798">Inbound only — companion to MTA-STS</text>
+
+<text class="record-label" x="436" y="818">HOST</text>
+<text class="host-code" x="480" y="818">_smtp._tls.yourdomain.com</text>
+
+<rect class="code-strip" x="432" y="830" width="346" height="24" rx="4"/>
+<text class="record-code" x="442" y="844">v=TLSRPTv1; rua=mailto:tlsrpt@yourdomain.com</text>
+
+<text class="record-muted" x="436" y="868">JSON reports delivered daily. Same concept</text>
+<text class="record-muted" x="436" y="884">as DMARC rua but for TLS failures.</text>
+
+<!-- BIMI -->
+<rect class="record-card" x="800" y="734" width="360" height="168" rx="8"/>
+<text class="record-name" x="816" y="760">BIMI</text>
+<rect class="badge-txt" x="868" y="750" width="30" height="16" rx="3"/><text class="badge-text" x="883" y="759">TXT</text>
+<rect class="req-optional" x="1038" y="750" width="62" height="16" rx="3"/><text class="req-text" x="1069" y="759">OPTIONAL</text>
+
+<text class="record-what" x="816" y="782">Displays your brand logo in supporting inboxes</text>
+<text class="record-muted" x="816" y="798">Increases recipient engagement signals that feed sender reputation</text>
+
+<text class="record-label" x="816" y="818">HOST</text>
+<text class="host-code" x="860" y="818">default._bimi.yourdomain.com</text>
+
+<rect class="code-strip" x="812" y="830" width="336" height="24" rx="4"/>
+<text class="record-code" x="822" y="844">v=BIMI1; l=https://...logo.svg;</text>
+
+<text class="record-muted" x="816" y="868">Requires DMARC p=quarantine or p=reject.</text>
+<text class="record-muted" x="816" y="884">Gmail requires VMC (~$1,500/yr). Yahoo/Apple do not.</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- RECORD LOCATION QUICK REFERENCE -->
+<!-- ============================================================ -->
+
+<g id="dns-location-ref" aria-label="Record Location Quick Reference" data-step="5" data-label="Record Locations" data-description="Compact table showing the exact DNS host field entry, record type, and purpose for each of the eight email DNS records">
+
+<text class="tier-label" x="40" y="930">RECORD LOCATION QUICK REFERENCE — WHAT TO ENTER IN YOUR DNS PANEL</text>
+<line class="tier-line" x1="640" y1="930" x2="1160" y2="930" aria-hidden="true"/>
+
+<!-- Table header -->
+<rect class="table-header" x="40" y="942" width="1120" height="24" rx="4 4 0 0"/>
+<text class="table-header-text" x="60" y="956">Record</text>
+<text class="table-header-text" x="180" y="956">Host / Name field</text>
+<text class="table-header-text" x="560" y="956">Type</text>
+<text class="table-header-text" x="640" y="956">Purpose</text>
+
+<!-- Row 1: SPF -->
+<rect class="table-row-alt" x="40" y="966" width="1120" height="24" rx="0"/>
+<text class="table-text-bold" x="60" y="980">SPF</text>
+<text class="table-code" x="180" y="980">@</text>
+<rect class="badge-txt" x="560" y="972" width="30" height="14" rx="3"/><text class="badge-text" x="575" y="980">TXT</text>
+<text class="table-text" x="640" y="980">Authorized senders</text>
+
+<!-- Row 2: DKIM -->
+<text class="table-text-bold" x="60" y="1004">DKIM</text>
+<text class="table-code" x="180" y="1004">selector._domainkey</text>
+<rect class="badge-txt" x="540" y="996" width="30" height="14" rx="3"/><text class="badge-text" x="555" y="1004">TXT</text>
+<text class="table-text" x="575" y="1004">/</text>
+<rect class="badge-cname" x="585" y="996" width="42" height="14" rx="3"/><text class="badge-text" x="606" y="1004">CNAME</text>
+<text class="table-text" x="640" y="1004">Signing public key</text>
+
+<!-- Row 3: DMARC -->
+<rect class="table-row-alt" x="40" y="1014" width="1120" height="24" rx="0"/>
+<text class="table-text-bold" x="60" y="1028">DMARC</text>
+<text class="table-code" x="180" y="1028">_dmarc</text>
+<rect class="badge-txt" x="560" y="1020" width="30" height="14" rx="3"/><text class="badge-text" x="575" y="1028">TXT</text>
+<text class="table-text" x="640" y="1028">Auth policy + reporting</text>
+
+<!-- Row 4: MX -->
+<text class="table-text-bold" x="60" y="1052">MX</text>
+<text class="table-code" x="180" y="1052">@</text>
+<rect class="badge-mx" x="560" y="1044" width="26" height="14" rx="3"/><text class="badge-text" x="573" y="1052">MX</text>
+<text class="table-text" x="640" y="1052">Inbound mail servers</text>
+
+<!-- Row 5: PTR -->
+<rect class="table-row-alt" x="40" y="1062" width="1120" height="24" rx="0"/>
+<text class="table-text-bold" x="60" y="1076">PTR</text>
+<text class="table-code" x="180" y="1076">(set by hosting/IP provider, not your DNS panel)</text>
+<rect class="badge-ptr" x="560" y="1068" width="28" height="14" rx="3"/><text class="badge-text" x="574" y="1076">PTR</text>
+<text class="table-text" x="640" y="1076">Reverse DNS for sending IP</text>
+
+<!-- Row 6: MTA-STS -->
+<text class="table-text-bold" x="60" y="1100">MTA-STS</text>
+<text class="table-code" x="180" y="1100">_mta-sts</text>
+<rect class="badge-txt" x="560" y="1092" width="30" height="14" rx="3"/><text class="badge-text" x="575" y="1100">TXT</text>
+<text class="table-text" x="640" y="1100">TLS enforcement (inbound only)</text>
+
+<!-- Row 7: TLS-RPT -->
+<rect class="table-row-alt" x="40" y="1110" width="1120" height="24" rx="0"/>
+<text class="table-text-bold" x="60" y="1124">TLS-RPT</text>
+<text class="table-code" x="180" y="1124">_smtp._tls</text>
+<rect class="badge-txt" x="560" y="1116" width="30" height="14" rx="3"/><text class="badge-text" x="575" y="1124">TXT</text>
+<text class="table-text" x="640" y="1124">TLS failure reporting (inbound only)</text>
+
+<!-- Row 8: BIMI -->
+<text class="table-text-bold" x="60" y="1148">BIMI</text>
+<text class="table-code" x="180" y="1148">default._bimi</text>
+<rect class="badge-txt" x="560" y="1140" width="30" height="14" rx="3"/><text class="badge-text" x="575" y="1148">TXT</text>
+<text class="table-text" x="640" y="1148">Brand logo display</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- COMMON MISTAKES -->
+<!-- ============================================================ -->
+
+<g id="dns-common-mistakes" aria-label="Common DNS Mistakes" data-step="6" data-label="Common Mistakes" data-description="Four most frequent DNS configuration errors for email: multiple SPF records, DKIM selector mismatch, DMARC without reporting, and PTR not set or not forward-confirming">
+
+<rect class="mistake-box" x="40" y="1174" width="1120" height="132" rx="8"/>
+<text class="mistake-title" x="60" y="1196">Common Mistakes</text>
+
+<!-- Left column -->
+<!-- Mistake 1 -->
+<text class="mistake-label" x="60" y="1218">Multiple SPF records</text>
+<text class="mistake-text" x="60" y="1232">Two v=spf1 records on one domain → permerror.</text>
+<text class="mistake-text" x="60" y="1246">Merge into one record using include:</text>
+
+<!-- Mistake 2 -->
+<text class="mistake-label" x="60" y="1266">DKIM selector mismatch</text>
+<text class="mistake-text" x="60" y="1280">Key at wrong selector hostname. Verify selector</text>
+<text class="mistake-text" x="60" y="1294">matches what your ESP/MTA signs with.</text>
+
+<!-- Divider -->
+<line class="tier-line" x1="590" y1="1210" x2="590" y2="1294" aria-hidden="true"/>
+
+<!-- Right column -->
+<!-- Mistake 3 -->
+<text class="mistake-label" x="610" y="1218">DMARC p=none with no rua</text>
+<text class="mistake-text" x="610" y="1232">Monitoring policy with no monitoring — you enforce</text>
+<text class="mistake-text" x="610" y="1246">nothing and learn nothing. Always include rua.</text>
+
+<!-- Mistake 4 -->
+<text class="mistake-label" x="610" y="1266">PTR not set or doesn't forward-confirm</text>
+<text class="mistake-text" x="610" y="1280">Not in your DNS panel — contact your hosting or IP</text>
+<text class="mistake-text" x="610" y="1294">provider (or ESP if they own the sending IPs).</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- SOURCES -->
+<!-- ============================================================ -->
+
+<g id="dns-sources" aria-label="Sources" data-step="7" data-label="Sources" data-description="Primary sources including IETF RFCs for each protocol, Google sender guidelines, and BIMI Working Group specifications">
+
+<text class="source-text" x="600" y="1326">RFC 7208 (SPF) · RFC 6376 (DKIM) · RFC 7489 (DMARC) · RFC 5321 (MX) · RFC 1035 (PTR) · RFC 8461 (MTA-STS) · RFC 8460 (TLS-RPT)</text>
+<text class="source-text" x="600" y="1342">bimigroup.org · support.google.com/a/answer/81126 · Microsoft Tech Community (Apr 2025) · senders.yahooinc.com</text>
+
+</g>
+
+<!-- ============================================================ -->
+<!-- ATTRIBUTION -->
+<!-- ============================================================ -->
+
+<a href="https://www.inboxally.com">
+  <text class="attribution" x="36" y="1370">Source: InboxAlly · inboxally.com</text>
+</a>
+<text class="attribution" x="1164" y="1370" text-anchor="end">CC BY 4.0</text>
+
+</svg>
