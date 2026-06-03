@@ -1,0 +1,39 @@
+name: PR Checks
+# Minimal, language-agnostic automated check that runs on every pull request.
+# Purpose: give each PR a recorded status check (satisfies Vanta "Automated checks
+# enabled") AND provide a real security control (secret scanning) across all repos.
+#
+# Roll this out to each repo's default branch, then (recommended) mark "Secret scan"
+# as a *required* status check in branch protection so it must pass before merge.
+
+on:
+  pull_request:
+    branches: [main, master]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  secret-scan:
+    name: Secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (full history for diff scan)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # TruffleHog OSS — free, works on private repos, scans the PR diff for
+      # verified leaked credentials. Pin to a release tag for supply-chain safety.
+      - name: TruffleHog secret scan
+        uses: trufflesecurity/trufflehog@v3.90.8
+        with:
+          base: ${{ github.event.pull_request.base.sha }}
+          head: ${{ github.event.pull_request.head.sha }}
+          # The action already passes --fail/--no-update/--github-actions internally.
+          # Only add scan-tuning flags here (do NOT repeat --fail).
+          extra_args: --results=verified
