@@ -1,0 +1,10 @@
+# CODEOWNERS — default reviewers for InboxAlly repos.
+# Reviewers are listed individually (decision 2026-06-03: team handle would need
+# admin:org scope + team repo access; using individuals avoids that).
+# To change reviewers, edit this file in each repo.
+#
+# Auto-requests these reviewers on PRs (effective once on the repo's default branch).
+# The "require 1 approval" branch protection rule is satisfied by ANY peer approval,
+# not just these owners (require_code_owner_reviews is off).
+
+*       @ia-eric @shub-ia
